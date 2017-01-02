@@ -1,0 +1,4 @@
+*.pyc
+*.vtu
+*.pvd
+.ipynb_checkpoints/
