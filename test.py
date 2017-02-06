@@ -16,8 +16,8 @@ u = TrialFunction(V)
 v = TestFunction(V)
 a = inner(div(grad(u)), div(grad(v)))*dx
 
-with open("/tmp/laplace.h", "wt") as f:
-    out = ffc.compile_form(a, prefix="lap")
+with open("/tmp/biharmonic.h", "wt") as f:
+    out = ffc.compile_form(a, prefix="bh")
     #print(out[1])
     f.write(out[0])
 
