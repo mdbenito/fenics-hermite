@@ -13,6 +13,8 @@
         </indent-both>
       </padded>
     </macro>>
+
+    <assign|dfn|<macro|body|<strong|<arg|body>>>>
   </hide-preamble>
 
   <doc-data|<doc-title|Hermite elements:<new-line>introduction and
@@ -21,13 +23,100 @@
     Universität Augsburg
   </author-affiliation>>>|<doc-date|December 2016>>
 
-  <abstract-data|<abstract|After quickly reviewing the setting and notation
-  for finite element approximations, we explain (cubic) Hermite elements and
-  the coordinate transformation they require
-  <cite-detail|solin_partial_2005|Chapter 6>. We then detail some aspects of
-  our implementation for the FEniCS library
-  <cite|alnaes_fenics_2015|logg_automated_2012> and finish with some
-  examples.>>
+  <abstract-data|<abstract|We briefly review the setting and notation for
+  finite element approximations, using cubic Hermite elements and the
+  coordinate transformation they require. We then detail some aspects of our
+  implementation for the FEniCS library <cite|alnaes_fenics_2015|logg_automated_2012>
+  and finish with some applications.>>
+
+  <\small>
+    <\table-of-contents|toc>
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|1.<space|2spc>Setting>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1><vspace|0.5fn>
+
+      <with|par-left|4tab|Conforming and non-conforming discretizations
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2><vspace|0.15fn>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|2.<space|2spc>Cubic
+      Hermite elements in 2D> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3><vspace|0.5fn>
+
+      <with|par-left|1tab|2.1.<space|2spc>The reference simplex and shape
+      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|1tab|2.2.<space|2spc>The local basis
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|3.<space|2spc>Assembly
+      of the stiffness matrix> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7><vspace|0.5fn>
+
+      <with|par-left|1tab|3.1.<space|2spc>The global basis
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
+      <with|par-left|1tab|3.2.<space|2spc>The stiffness matrix
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
+
+      <with|par-left|1tab|3.3.<space|2spc>Computing integrals
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>Interpolation>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11><vspace|0.5fn>
+
+      <with|par-left|1tab|4.1.<space|2spc>The local nodal interpolant
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
+
+      <with|par-left|1tab|4.2.<space|2spc><with|mode|math|W<rsup|m,2>>-projection
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Implementation
+      in <with|font-shape|small-caps|FEniCS> >
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>The
+      Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-15><vspace|0.5fn>
+
+      <with|par-left|1tab|6.1.<space|2spc>Derivation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
+
+      <with|par-left|1tab|6.2.<space|2spc>Weak formulation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-17>>
+
+      <with|par-left|4tab|Essential boundary conditions
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
+
+      <with|par-left|4tab|Natural boundary conditions
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
+
+      <with|par-left|1tab|6.3.<space|2spc>Existence and uniqueness
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20>>
+
+      <with|par-left|1tab|6.4.<space|2spc>Discretization
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-21>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-22><vspace|0.5fn>
+    </table-of-contents>
+  </small>
 
   <section|Setting>
 
@@ -62,7 +151,7 @@
     <item>The triangulation <math|\<cal-T\>>.
 
     <item>A reference simplex <math|<wide|K|^>\<subset\>\<bbb-R\><rsup|2>>
-    with an associated set of linear forms (<dfn|degrees of freedom> or
+    with an associated set of linear forms (<em|degrees of freedom> or
     <em|dofs>) over <math|P<rsub|p><around*|(|<wide|K|^>|)>>, the space of
     polynomials of degree up to <math|p>, defining a (dual) local polynomial
     basis <math|<wide|\<cal-B\>|^>> of <math|P<rsub|p><around*|(|<wide|K|^>|)>>.<\footnote>
@@ -91,23 +180,18 @@
 
     <item>A method of interpolating functions
     <math|g\<in\>V\<subset\>H<rsup|2><around*|(|\<Omega\>|)>> into
-    <math|V<rsub|h>>, e.g. <math|H<rsup|1>>-projection.
+    <math|V<rsub|h>>, e.g. <math|H<rsup|2>>-projection.
 
     <item><todo|...>
   </itemize-dot>
 
   In this note we work in 2 dimensions, with polynomials of degree <math|p=3>
   and a particular choice of degrees of freedom giving rise to the classic
-  <em|Hermite finite element> <inactive|<cite|>>. This element is a
-  generalization of cubic Hermite interpolating polynomials on 1 dimension
-  and have been around in the literature since at least
-  <inactive|<cite|ciarlet_raviart>>.
-
-  <paragraph|Conforming and non-conforming discretizations>If
-  <math|V<rsub|h>> is a subspace of <math|H<rsup|2><around*|(|\<Omega\>|)>>,
-  we say that the discretization is <dfn|conforming>. Hermite elements are
-  conforming in 1D but not in 2D <cite-detail|brenner_mathematical_2008|Proposition
-  3.3.17>.<\footnote>
+  <em|Hermite finite element>. This element is a generalization of cubic
+  Hermite interpolating polynomials on 1 dimension and have been around in
+  the literature since at least <inactive|<cite|ciarlet_raviart>>. Hermite
+  elements are <math|H<rsup|2>>-conforming in 1D but not in 2D
+  <cite-detail|brenner_mathematical_2008|Proposition 3.3.17>.<\footnote>
     From <hlink|CompSci SE|http://scicomp.stackexchange.com/questions/2012/construction-of-c1-h2-conforming-finite-element-basis-for-triangular-or-te>:
 
     <\quotation>
@@ -126,13 +210,13 @@
   <section|Cubic Hermite elements in 2D>
 
   <\notation*>
-    In the following, <math|\<alpha\>,i,p\<in\><around*|{|1,2,3|}>> and
+    In this section <math|\<alpha\>,i,p\<in\><around*|{|1,2,3|}>> and
     <math|j,k,l,q,r,s\<in\><around*|{|1,2|}>>.
   </notation*>
 
   <subsection|The reference simplex and shape functions>
 
-  Let <math|<wide|K|^>> be a <em|reference simplex> in 2D with vertices
+  Let <math|<wide|K|^>> be a <dfn|reference simplex> in 2D with vertices
   <math|<wide|v|^><rsup|\<alpha\>>> and <math|\<b-x\>:<wide|K|^>\<rightarrow\>K>
   be a non-degenerate affine transformation into one of the cells of the
   physical domain <math|\<Omega\>>. Denote the inverse mapping by
@@ -198,7 +282,7 @@
   consists only of point evaluation forms), the immediate choice
   <math|\<cal-F\><around*|(|<wide|\<varphi\>|^>|)>\<assign\><wide|\<varphi\>|^>\<circ\><wide|\<b-x\>|^>>
   maps the basis <math|\<cal-B\>> into a basis of
-  <math|P<rsub|3><around*|(|K|)>> which fulfills the <em|delta property>
+  <math|P<rsub|3><around*|(|K|)>> which fulfills the <dfn|delta property>
   <eqref|eq:delta-property>. However, in order for <eqref|eq:delta-property>
   to hold in <math|K> (the linear functionals remaining unchanged) for the
   images of the Hermite pairs of dofs <math|<around*|(|<wide|\<varphi\>|^><rsub|2><rsup|\<alpha\>>,<wide|\<varphi\>|^><rsub|3><rsup|\<alpha\>>|)>>
@@ -307,12 +391,15 @@
 
   <section|Assembly of the stiffness matrix>
 
+  We now review the steps required to piece together the linear system
+  discretising <eqref|eq:linear-problem>.
+
   <subsection|The global basis>
 
   After defining the local shape functions
   <math|\<varphi\><rsup|\<alpha\>><rsub|i>> for each simplex <math|K> of the
   triangulation, we gather all of them into a basis for a polynomial space
-  <math|V<rsub|h>> with the help of a <em|local-to-global map>
+  <math|V<rsub|h>> with the help of a <dfn|local-to-global map>
   <math|\<iota\>>. This assigns local indices to a global set, matching
   vertices, etc. <todo|elaborate?>
 
@@ -360,8 +447,11 @@
 
   <section|Interpolation>
 
-  <todo|See <cite-detail|brenner_mathematical_2008|Ÿ4.8, p. 121> for info on
-  interpolation of non-smooth functions.>
+  <\note*>
+    See <cite-detail|brenner_mathematical_2008|Ÿ4.8> and
+    <cite|girault_hermite_2002> for info on interpolation of non-smooth
+    functions.
+  </note*>
 
   We have at least the following options for interpolating functions
   <math|g\<in\>H<rsup|2><around*|(|\<Omega\>|)>> into <math|V<rsub|h>>, from
@@ -377,23 +467,32 @@
     orthogonal projections in the element interiors. <todo|...>
 
     <item>Compute the nodal interpolant.
-
-    <\question*>
-      How should one approximate the derivatives? Recall that the local nodal
-      interpolant is given by
-
-      <\equation*>
-        I<rsub|K><around*|(|g|)>=<big|sum><rsub|\<alpha\>=1><rsup|3>\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>*\<varphi\><rsub|i>
-      </equation*>
-
-      where <math|\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>=\<partial\><rsub|i>
-      g<around*|(|v<rsup|\<alpha\>>|)>>
-    </question*>
   </enumerate>
 
-  <section|Implementation in FEniCS >
+  <subsection|The local nodal interpolant>
 
-  This required:
+  The local nodal interpolant is given by
+
+  <\equation*>
+    I<rsub|K><around*|(|g|)>=<big|sum><rsub|\<alpha\>=1><rsup|3>\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>*\<varphi\><rsub|i>
+  </equation*>
+
+  where <math|\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>=\<partial\><rsub|i-1>
+  g<around*|(|v<rsup|\<alpha\>>|)>> and <math|\<partial\><rsub|0>f=f>.
+
+  <\question*>
+    How should one compute the derivatives? Should we extend the interface of
+    <cpp|ufc::function> to include differentiation? Can we use AD?
+  </question*>
+
+  <subsection|<math|W<rsup|m,2>>-projection>
+
+  See <cite-detail|solin_partial_2005|Ÿ6.3.8>,
+  <cite|brenner_mathematical_2008>...
+
+  <section|Implementation in <name|FEniCS> >
+
+  An incomplete list of things that needed doing:
 
   <\enumerate>
     <item>Fixing the FIAT Hermite element definition (e.g. it was returning
@@ -420,19 +519,18 @@
       <item><tt|quadratures/quadraturetransformer.py>:\ 
     </itemize-dot>
 
-    <item><todo|Implementing the same transformation for the quadratures>.
-    See <tt|ffc/quadratures/quadraturetransformerbase.py>.
+    <item>Implementing the same transformation for the quadratures. See
+    <python|create_argument()> and <python|create_function()> in
+    <tt|ffc/quadratures/quadraturetransformerbase.py>.
 
-    <item><todo|Implementing a new interpolation method>. FIXME: why does
-    this work out of the box, even though I didn't code it yet? See
-    <tt|ffc/interpolatevertexvalues.py>.
+    <item><todo|Implementing the nodal interpolant>.
   </enumerate>
 
   <section|The Euler-Bernoulli beam model>
 
-  Model: 2D beam reduced to 1D problem. We study the deformation of the
-  midplane under the assumptions that after the deformation the normals to
-  the midplane:
+  This classical model reduces a 2D beam to a 1D problem. We study the
+  deformation of the midplane of a beam subject to transveral load, under the
+  assumptions that after the deformation the normals to the midplane:
 
   <\itemize-dot>
     <item>do not bend,
@@ -443,38 +541,37 @@
   </itemize-dot>
 
   This theory is adequate for thin beams and is intended for small strains
-  even with large global deformations: it is a physically linear but
-  geometrically non-linear theory.
-
-  For thicker beams, Timoshenko's theory, which accounts for internal shear
-  forces, yields more accurate predictions.
-
-  Fix <math|\<omega\>=<around*|(|a,b|)>> to be the midplane of the beam
-  <math|\<Omega\>=\<omega\>\<times\><around*|(|-h/2,h/2|)>\<subset\>\<bbb-R\><rsup|2>>.
+  even with large global deformations: it is a <em|physically linear> but
+  <em|geometrically non-linear> theory. For thicker beams, Timoshenko's
+  theory, which accounts for internal shear forces, yields more accurate
+  predictions <inactive|<cite|>>.
 
   <subsection|Derivation>
 
-  Conservation of momentum and linear constitutive relations yield
-  <cite-detail|solin_partial_2005|Ÿ6.1.1>:
+  Fix <math|\<omega\>=<around*|(|a,b|)>> to be the midplane of the beam
+  represented by the domain <math|\<Omega\>=\<omega\>\<times\><around*|(|-h/2,h/2|)>\<subset\>\<bbb-R\><rsup|2>>.
+  Conservation of momentum and certain linear constitutive relations yield
+  <cite-detail|solin_partial_2005|Ÿ6.1.1> the equation
 
   <\equation>
     <label|eq:euler-bernoulli><frac|\<mathd\><rsup|2>|\<mathd\>x<rsup|2>>
     <around*|(|b<around|(|x|)>*<frac|\<mathd\><rsup|2>|\<mathd\>x<rsup|2>>
-    u<around|(|x|)>|)>=f<around*|(|x|)>
+    u<around|(|x|)>|)>=f<around*|(|x|)>,
   </equation>
 
   where <math|b<around|(|x|)>=E<around|(|x|)>*I<around|(|x|)>> is the product
-  of Young's modulus <math|E> and the area moment of inertia of the beam
-  <math|I>.
+  of <dfn|Young's modulus> <math|E> and the <dfn|area moment of inertia> of
+  the beam <math|I>.
 
-  For steel (with \<less\> 0.3% carbon) at 21\<degree\>C,
+  For steel (with \<less\> 0.3% carbon) at 21\<degree\>C, the modulus is
   <math|E=203.4\<cdot\>10<rsup|9>> Pa and since our beam has a constant
   square cross section of side 0.01m, we have <math|I=8\<cdot\>10<rsup|-10>>.
   <todo|compute...>
 
   <subsection|Weak formulation>
 
-  Write <math|\<nabla\>u=<frac|\<mathd\>|\<mathd\>x> u> and
+  For consistency with notation for higher dimensions, write
+  <math|\<nabla\>u=<frac|\<mathd\>|\<mathd\>x> u> and
   <math|\<Delta\>u=<frac|\<mathd\><rsup|2>|\<mathd\>x<rsup|2>>*u>. Let
   <math|V> be a subspace of <math|H<rsup|2><around*|(|\<omega\>|)>> to be
   specified later. Multiplying <eqref|eq:euler-bernoulli> by a test function
@@ -494,8 +591,8 @@
   <paragraph|Essential boundary conditions>Split the boundary
   <math|\<gamma\>=<around*|{|a,b|}>> into (possibly empty) sets
   <math|\<gamma\><rsub|u>,\<gamma\><rsub|\<theta\>>\<subset\><around*|{|a,b|}>>.
-  We fix either the <strong|deflections> <math|u<around|(|\<alpha\>|)>> at
-  <math|\<alpha\>\<in\>\<gamma\><rsub|u>> or the <strong|slopes>
+  We fix either the <dfn|deflections> <math|u<around|(|\<alpha\>|)>> at
+  <math|\<alpha\>\<in\>\<gamma\><rsub|u>> or the <dfn|slopes>
   <math|u<rprime|'><around|(|\<alpha\>|)>> at
   <math|\<alpha\>\<in\>\<gamma\><rsub|\<theta\>>> or both. These conditions
   are incorporated into the definition of <math|V>. For example if we
@@ -507,17 +604,17 @@
 
   <paragraph|Natural boundary conditions>For
   <math|\<alpha\>\<in\>\<gamma\><rsub|M>\<subset\><around|{|a,b|}>>, we can
-  fix the <strong|bending moment>:
+  fix the <dfn|bending moment>:
 
   <\equation*>
     M<around*|(|\<alpha\>|)>=<around|(|b*\<Delta\>u|)><around|(|\<alpha\>|)>,
   </equation*>
 
   which for general <math|x\<in\>\<omega\>> is the torque exerted by forces
-  surrounding <math|x>. If, for example we find solutions such that
+  surrounding <math|x>. If for example we find solutions such that
   <math|M<around*|(|a|)>=0>, then we are assuming that the left end of the
   beam is free to rotate, i.e. that it undergoes no bending due to torque.
-  Alternatively we can set the <strong|shear force> at
+  Alternatively we can set the <dfn|shear force> at
   <math|\<alpha\>\<in\>\<gamma\><rsub|F>\<subset\><around*|{|a,b|}>>:
 
   <\equation*>
@@ -562,7 +659,7 @@
   \;
 
   <\bibliography|bib|tm-alpha|hermite.bib>
-    <\bib-list|4>
+    <\bib-list|5>
       <bibitem*|ABH+15><label|bib-alnaes_fenics_2015>Martin<nbsp>S.<nbsp>Alnaes,
       Jan Blechta, Johan Hake, August Johansson, Benjamin Kehlet, Anders
       Logg, Chris Richardson, Johannes Ring,
@@ -573,14 +670,20 @@
 
       <bibitem*|BS08><label|bib-brenner_mathematical_2008>Susanne<nbsp>C.<nbsp>Brenner<localize|
       and >L.<nbsp>Ridgway Scott.<newblock> <with|font-shape|italic|The
-      Mathematical Theory of Finite Element Methods>.<newblock>
+      mathematical theory of finite element methods>.<newblock>
       <localize|Number><nbsp>15<localize| in >Texts in Applied Mathematics.
       Springer New York, New York, NY, 3<localize| edition>, 2008.<newblock>
+
+      <bibitem*|GS02><label|bib-girault_hermite_2002>V.<nbsp>Girault<localize|
+      and >L.<nbsp>Scott.<newblock> Hermite interpolation of nonsmooth
+      functions preserving boundary conditions.<newblock>
+      <with|font-shape|italic|Mathematics of Computation>,
+      71(239):1043\U1074, 2002.<newblock>
 
       <bibitem*|LMW12><label|bib-logg_automated_2012>Anders Logg, Kent-Andre
       Mardal<localize|, and >Garth<nbsp>N.<nbsp>Wells<localize|,
       editors>.<newblock> <with|font-shape|italic|Automated solution of
-      differential equations by the Finite Element method>.<newblock>
+      differential equations by the finite element method>.<newblock>
       <localize|Number><nbsp>84<localize| in >Lecture notes in computational
       science and engineering. Springer, 2012.<newblock> DOI
       10.1007/978-3-642-23099-8.<newblock>
@@ -608,53 +711,54 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|?>>
-    <associate|auto-10|<tuple|3.3|?>>
-    <associate|auto-11|<tuple|4|?>>
-    <associate|auto-12|<tuple|5|?>>
-    <associate|auto-13|<tuple|6|?>>
-    <associate|auto-14|<tuple|6.1|?>>
-    <associate|auto-15|<tuple|6.2|?>>
-    <associate|auto-16|<tuple|2|?>>
-    <associate|auto-17|<tuple|3|?>>
-    <associate|auto-18|<tuple|6.3|?>>
-    <associate|auto-19|<tuple|6.4|?>>
-    <associate|auto-2|<tuple|1|?>>
-    <associate|auto-20|<tuple|6.4|?>>
-    <associate|auto-3|<tuple|2|?>>
-    <associate|auto-4|<tuple|2.1|?>>
-    <associate|auto-5|<tuple|1|?>>
-    <associate|auto-6|<tuple|2.2|?>>
-    <associate|auto-7|<tuple|3|?>>
-    <associate|auto-8|<tuple|3.1|?>>
-    <associate|auto-9|<tuple|3.2|?>>
-    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|?>>
-    <associate|bib-brenner_mathematical_2008|<tuple|BS08|?>>
-    <associate|bib-logg_automated_2012|<tuple|LMW12|?>>
-    <associate|bib-solin_partial_2005|<tuple|Sol05|?>>
-    <associate|eq:delta-property|<tuple|2|?>>
-    <associate|eq:euler-bernoulli|<tuple|6|?>>
-    <associate|eq:hermite-first-derivatives|<tuple|4|?>>
-    <associate|eq:hermite-second-derivatives|<tuple|5|?>>
-    <associate|eq:hermite-transform|<tuple|3|?>>
-    <associate|eq:linear-problem|<tuple|1|?>>
-    <associate|fig:reference-triangle|<tuple|1|?>>
-    <associate|footnote-1|<tuple|1|?>>
-    <associate|footnote-2|<tuple|2|?>>
-    <associate|footnote-3|<tuple|3|?>>
-    <associate|footnote-4|<tuple|4|?>>
-    <associate|footnr-1|<tuple|1|?>>
-    <associate|footnr-2|<tuple|2|?>>
-    <associate|footnr-3|<tuple|3|?>>
-    <associate|footnr-4|<tuple|4|?>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|4|5>>
+    <associate|auto-11|<tuple|4.1|5>>
+    <associate|auto-12|<tuple|4.2|5>>
+    <associate|auto-13|<tuple|5|5>>
+    <associate|auto-14|<tuple|6|5>>
+    <associate|auto-15|<tuple|6.1|6>>
+    <associate|auto-16|<tuple|6.2|6>>
+    <associate|auto-17|<tuple|1|6>>
+    <associate|auto-18|<tuple|2|7>>
+    <associate|auto-19|<tuple|6.3|7>>
+    <associate|auto-2|<tuple|2|2>>
+    <associate|auto-20|<tuple|6.4|7>>
+    <associate|auto-21|<tuple|6.4|7>>
+    <associate|auto-22|<tuple|6.4|7>>
+    <associate|auto-3|<tuple|2.1|2>>
+    <associate|auto-4|<tuple|1|2>>
+    <associate|auto-5|<tuple|2.2|3>>
+    <associate|auto-6|<tuple|3|3>>
+    <associate|auto-7|<tuple|3.1|4>>
+    <associate|auto-8|<tuple|3.2|4>>
+    <associate|auto-9|<tuple|3.3|4>>
+    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|7>>
+    <associate|bib-brenner_mathematical_2008|<tuple|BS08|7>>
+    <associate|bib-girault_hermite_2002|<tuple|GS02|7>>
+    <associate|bib-logg_automated_2012|<tuple|LMW12|7>>
+    <associate|bib-solin_partial_2005|<tuple|Sol05|7>>
+    <associate|eq:delta-property|<tuple|2|3>>
+    <associate|eq:euler-bernoulli|<tuple|6|6>>
+    <associate|eq:hermite-first-derivatives|<tuple|4|4>>
+    <associate|eq:hermite-second-derivatives|<tuple|5|4>>
+    <associate|eq:hermite-transform|<tuple|3|3>>
+    <associate|eq:linear-problem|<tuple|1|1>>
+    <associate|fig:reference-triangle|<tuple|1|3>>
+    <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-2|<tuple|2|2>>
+    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-4|<tuple|4|3>>
+    <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|2>>
+    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-4|<tuple|4|3>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|bib>
-      solin_partial_2005
-
       alnaes_fenics_2015
 
       logg_automated_2012
@@ -671,7 +775,13 @@
 
       brenner_mathematical_2008
 
+      girault_hermite_2002
+
       solin_partial_2005
+
+      solin_partial_2005
+
+      brenner_mathematical_2008
 
       solin_partial_2005
 
@@ -724,41 +834,50 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11><vspace|0.5fn>
 
+      <with|par-left|<quote|1tab>|4.1.<space|2spc>The local nodal interpolant
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
+
+      <with|par-left|<quote|1tab>|4.2.<space|2spc><with|mode|<quote|math>|W<rsup|m,2>>-projection
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Implementation
-      in FEniCS > <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12><vspace|0.5fn>
+      in <with|font-shape|<quote|small-caps>|FEniCS> >
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>The
       Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Derivation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14>>
+      <no-break><pageref|auto-16>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|4tab>|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16><vspace|0.15fn>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
 
       <with|par-left|<quote|4tab>|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Existence and uniqueness
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|<quote|1tab>|6.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-21>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20><vspace|0.5fn>
+      <no-break><pageref|auto-22><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
