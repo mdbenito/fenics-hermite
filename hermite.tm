@@ -645,20 +645,16 @@
 
   <subsection|Discretization>
 
-  Recall that <math|H<rsup|2><around|(|a,b|)>\<in\>C<rsup|1><around|(|a,b|)>>
-  by the Sobolev embeddings.
-
   Even though cuadratic polynomials might be enough, we want to construct a
   Ciarlet finite element, i.e. with a unisolvent set of degrees of freedom,
   which requires at least cubic polynomials ... [elaborate, see
-  <cite-detail|solin_partial_2005|p. 218>]
+  <cite-detail|solin_partial_2005|p. 218>].
 
-  So we use cubic Hermite elements, <todo|which are <math|H<rsup|2>>
-  conforming in <math|<with|math-font|Bbb|\<bbb-R\>>>>.
+  Recall that <math|H<rsup|2><around|(|a,b|)>\<subset\>C<rsup|1,\<gamma\>><around|(|a,b|)>,\<gamma\>=1/2>
+  by the Sobolev embeddings.
 
-  \;
-
-  \;
+  We use cubic Hermite elements, which are <math|C<rsup|1>> in
+  <math|\<bbb-R\>>.
 
   <\bibliography|bib|tm-alpha|hermite.bib>
     <\bib-list|6>
@@ -775,13 +771,13 @@
 
       logg_automated_2012
 
-      olgaard_optimizations_2010
-
       brenner_mathematical_2008
 
       brenner_mathematical_2008
 
       solin_partial_2005
+
+      olgaard_optimizations_2010
 
       brenner_mathematical_2008
 
