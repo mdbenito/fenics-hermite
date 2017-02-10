@@ -4,17 +4,13 @@
 
 <\body>
   <\hide-preamble>
-    <assign|vector|<macro|x|<shrink-inline|<left|(><tformat|<cwith|1|-1|1|-1|cell-halign|c><cwith|1|-1|1|1|cell-lsep|0><cwith|1|-1|1|1|cell-rsep|0><cwith|1|-1|1|1|cell-bsep|0.2em><cwith|1|-1|1|1|cell-tsep|0.2em>|<arg|x>><right|)>>>>
+    \;
 
-    <assign|quotation|<\macro|body>
-      <\padded>
-        <\indent-both|<value|quote-left-indentation>|<value|quote-right-indentation>>
-          <surround|<yes-indent>||<em|<arg|body>>>
-        </indent-both>
-      </padded>
-    </macro>>
-
-    <assign|dfn|<macro|body|<strong|<arg|body>>>>
+    <assign|python-code|<macro|body|<\small>
+      <\pseudo-code>
+        <python|<arg|body>>
+      </pseudo-code>
+    </small>>>
   </hide-preamble>
 
   <doc-data|<doc-title|Hermite elements:<new-line>introduction and
@@ -45,72 +41,80 @@
 
       <with|par-left|1tab|2.2.<space|2spc>The local basis
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      <no-break><pageref|auto-6>>
 
-      <vspace*|1fn><with|font-series|bold|math-font-series|bold|3.<space|2spc>Assembly
-      of the stiffness matrix> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
-
-      <with|par-left|1tab|3.1.<space|2spc>The global basis
+      <with|par-left|1tab|2.3.<space|2spc>The global basis
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|1tab|3.2.<space|2spc>The stiffness matrix
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|3.<space|2spc>Assembly
+      of the stiffness matrix> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8><vspace|0.5fn>
 
-      <with|par-left|1tab|3.3.<space|2spc>Computing integrals
+      <with|par-left|1tab|3.1.<space|2spc>The stiffness matrix
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
+      <with|par-left|1tab|3.2.<space|2spc>Computing integrals
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>Interpolation>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10><vspace|0.5fn>
+      <no-break><pageref|auto-11><vspace|0.5fn>
 
       <with|par-left|1tab|4.1.<space|2spc>The local nodal interpolant
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|1tab|4.2.<space|2spc><with|mode|math|W<rsup|m,2>>-projection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Implementation
       in <with|font-shape|small-caps|FEniCS> >
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13><vspace|0.5fn>
+      <no-break><pageref|auto-14><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>The
       Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <with|par-left|1tab|6.1.<space|2spc>Derivation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-16>>
 
       <with|par-left|1tab|6.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|4tab|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17><vspace|0.15fn>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
 
       <with|par-left|4tab|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
       <with|par-left|1tab|6.3.<space|2spc>Existence and uniqueness
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|1tab|6.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-21>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|Appendix
+      A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-22><vspace|0.5fn>
+
+      <with|par-left|1tab|A.1.<space|2spc>Computing the Hermite shape
+      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-23>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21><vspace|0.5fn>
+      <no-break><pageref|auto-24><vspace|0.5fn>
     </table-of-contents>
   </small>
 
@@ -138,45 +142,44 @@
     </equation>
   </em>
 
-  The finite element method builds a suitable discretisation <math|V<rsub|h>>
-  of the space <math|V> and projects Problem <eqref|eq:linear-problem> onto
-  it for its numerical solution. In broad terms, the standard construction is
-  a discrete polynomial space <math|V<rsub|h>> involving:
+  Assuming coerciveness of <math|a>, this problem has a solution by
+  Lax-Milgram. The finite element method builds a suitable discretisation
+  <math|V<rsub|h>> of the space <math|V> and projects Problem
+  <eqref|eq:linear-problem> onto it for its numerical solution. In broad
+  terms, the standard construction is a discrete polynomial space
+  <math|V<rsub|h>> involving:
 
   <\itemize-dot>
     <item>The triangulation <math|\<cal-T\>>.
 
-    <item>A reference simplex <math|<wide|K|^>\<subset\>\<bbb-R\><rsup|2>>
-    with an associated set of linear forms (<em|degrees of freedom> or
-    <em|dofs>) over <math|P<rsub|p><around*|(|<wide|K|^>|)>>, the space of
-    polynomials of degree up to <math|p>, defining a (dual) local polynomial
-    basis <math|<wide|\<cal-B\>|^>> of <math|P<rsub|p><around*|(|<wide|K|^>|)>>.<\footnote>
-      In <name|FIAT>, the polynomials of <math|<wide|\<cal-B\>|^>> (the shape
-      functions) are themselves expressed in a fixed polynomial basis with
-      good numerical properties. In particular the one picked
-      (<todo|Dubiner?>) yields much better condition numbers for the mass
-      matrices than e.g. the basis of monomials
-      <cite-detail|logg_automated_2012|Ÿ4.3.2>.
+    <item>A reference simplex <math|<wide|K|^>\<subset\>\<bbb-R\><rsup|d>>
+    with an associated set <math|<wide|\<cal-L\>|^>> of linear forms
+    (<em|degrees of freedom> or <em|dofs>) over
+    <math|P<rsub|p><around*|(|<wide|K|^>|)>>, the space of polynomials of
+    degree up to <math|p>, defining a (dual) local polynomial basis
+    <math|<wide|\<cal-V\>|^>> of <math|P<rsub|p><around*|(|<wide|K|^>|)>>
+    (<em|shape functions>).<\footnote>
+      In <name|FIAT>, the polynomials of <math|<wide|V|^>> are themselves
+      expressed in a fixed polynomial basis with good numerical properties.
+      In particular the one picked (<todo|Dubiner?>) yields much better
+      condition numbers for the mass matrices than e.g. the basis of
+      monomials <cite-detail|logg_automated_2012|Ÿ4.3.2>.
     </footnote>
 
     <item>A set of invertible affine maps
     <math|<around*|{|\<b-x\><rsup|K>|}><rsub|K\<in\>\<cal-T\>>> between
-    <math|<wide|K|^>> and each triangle in <math|\<cal-T\>>.
+    <math|<wide|K|^>> and each simplex <math|K\<in\>\<cal-T\>>.
 
-    <item>A transformation <math|\<cal-F\>:<wide|\<cal-B\>|^><around*|(|P<rsub|p><around*|(|<wide|K|^>|)>|)>\<rightarrow\>\<cal-B\><around*|(|P<rsub|p><around*|(|K|)>|)>>
-    preserving certain properties of <math|<wide|\<cal-B\>|^>> and
-    <math|<wide|\<cal-B\>|^><rprime|'>>(e.g. duality).
+    <item>A transformation <math|\<cal-F\><rsub|K>:<wide|\<cal-V\>|^><around*|(|P<rsub|p><around*|(|<wide|K|^>|)>|)>\<rightarrow\>\<cal-V\><around*|(|P<rsub|p><around*|(|K|)>|)>>
+    preserving the duality property of <math|<wide|\<cal-V\>|^>> and
+    <math|<wide|\<cal-L\>|^>>.
 
-    <item>A <em|local-to-global dof mapping> <math|\<iota\><rsup|K>>,
+    <item>A <em|local-to-global dof mapping> <math|\<iota\><rsub|K>>,
     assigning local dofs in each <math|K\<in\>\<cal-T\>> to global dofs in
-    <math|V<rsub|h>>. This mapping is used in the definition of the global
-    space <math|V<rsub|h>> to impose continuity properties of functions in
-    <math|V<rsub|h>> by requiring local dofs to agree on matching vertices,
-    faces, etc.
+    <math|V<rsub|h>>.
 
-    <item>A method of interpolating functions
-    <math|g\<in\>V\<subset\>H<rsup|2><around*|(|\<Omega\>|)>> into
-    <math|V<rsub|h>>, e.g. <math|H<rsup|2>>-projection.
+    <item>A method of interpolating functions <math|g\<in\>V> into
+    <math|V<rsub|h>>, e.g. <math|L<rsup|2>>-projection.
 
     <item>A method of computing integrals of linear forms defined over
     <math|V<rsub|h>>.
@@ -184,12 +187,12 @@
     <item><todo|...>
   </itemize-dot>
 
-  In this note we work in 2 dimensions, with polynomials of degree <math|p=3>
-  and a particular choice of degrees of freedom giving rise to the classic
-  <em|Hermite finite element>. This element is a generalization of cubic
-  Hermite interpolating polynomials on 1 dimension and have been around in
+  In this note we work in <math|d=2> dimensions, with polynomials of degree
+  <math|p=3> and a particular choice of degrees of freedom giving rise to the
+  classic <em|Hermite finite element>. This element is a generalization of
+  cubic Hermite interpolating polynomials on 1 dimension which has been in
   the literature since at least <inactive|<cite|ciarlet_raviart>>. Hermite
-  elements are <math|H<rsup|2>>-conforming in 1D but not in 2D
+  elements are <math|C<rsup|1>> in 1D but not in 2D
   <cite-detail|brenner_mathematical_2008|Proposition 3.3.17>.<\footnote>
     From <hlink|CompSci SE|http://scicomp.stackexchange.com/questions/2012/construction-of-c1-h2-conforming-finite-element-basis-for-triangular-or-te>:
 
@@ -210,7 +213,7 @@
 
   <\notation*>
     In this section <math|\<alpha\>,i,p\<in\><around*|{|1,2,3|}>> and
-    <math|j,k,l,q,r,s\<in\><around*|{|1,2|}>>.
+    <math|j,k,m,q,r,s\<in\><around*|{|1,2|}>>.
   </notation*>
 
   <subsection|The reference simplex and shape functions>
@@ -225,68 +228,89 @@
   Let <math|P<rsub|3>=P<rsub|3><around*|(|<wide|K|^>|)>> be the space of
   polynomials of order up to 3 defined over <math|<wide|K|^>>. We define 10
   linear forms (the <dfn|degrees of freedom> or <dfn|dofs>) in the dual
-  <math|P<rsub|3><rprime|'>\<assign\>P<rsub|3><around*|(|<wide|K|^>|)><rprime|'>>
-  as follows: for each vertex <math|<wide|v|^><rsup|\<alpha\>>> in
-  <math|<wide|K|^>> add one point evaluation
+  <math|P<rsub|3><around*|(|<wide|K|^>|)><rprime|'>> as follows: for each
+  vertex <math|<wide|v|^><rsup|\<alpha\>>> in <math|<wide|K|^>> add one point
+  evaluation
 
   <\equation*>
-    \<psi\><rsup|\<alpha\>><rsub|1><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|\<alpha\>>|)>,
+    l<rsup|\<alpha\>><rsub|1><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|\<alpha\>>|)>,
   </equation*>
 
   and evaluation of both partial derivatives
 
   <\equation*>
-    \<psi\><rsub|i+1><rsup|\<alpha\>><around*|(|f|)>\<assign\>f<rsub|,i><around*|(|<wide|v|^><rsup|\<alpha\>>|)>,<space|2em>i\<in\><around*|{|1,2|}>.
+    l<rsub|i+1><rsup|\<alpha\>><around*|(|f|)>\<assign\>f<rsub|,i><around*|(|<wide|v|^><rsup|\<alpha\>>|)>,<space|2em>i\<in\><around*|{|1,2|}>.
   </equation*>
 
   Finally at the barycenter <math|<wide|v|^><rsup|0>> of <math|<wide|K|^>>
   add a last evaluation
 
   <\equation*>
-    \<psi\><rsub|0><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|0>|)>.
+    l<rsub|0><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|0>|)>.
   </equation*>
 
   <big-figure|<with|gr-mode|<tuple|edit|math-at>|gr-frame|<tuple|scale|1cm|<tuple|0.270004gw|0.180009gh>>|gr-geometry|<tuple|geometry|0.280007par|0.200003par|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|<graphics||<line|<point|0|0>|<point|2.0|0.0>|<point|0.0|2.0>|<point|0.0|0.0>>>>|<todo|<label|fig:reference-triangle>The
   reference triangle and the mapping <math|\<b-x\>>...>>
 
-  The linear forms <math|\<cal-B\><rprime|'>\<assign\><around*|{|<wide|\<psi\>|^><rsup|\<alpha\>><rsub|i>|}>\<cup\><around*|{|<wide|\<psi\>|^><rsub|0>|}>>
-  are a basis of <math|P<rsub|3><rprime|'>> with dual
-  <math|\<cal-B\>=<around*|{|<wide|\<varphi\>|^><rsub|i><rsup|\<alpha\>>|}>\<cup\><around*|{|<wide|\<varphi\>|^><rsub|0>|}>>
+  The linear forms <math|<wide|\<cal-L\>|^>\<assign\><around*|{|<wide|l|^><rsup|\<alpha\>><rsub|i>|}>\<cup\><around*|{|<wide|l|^><rsub|0>|}>>
+  are a basis of <math|P<rsub|3><around*|(|<wide|K|^>|)><rprime|'>> with dual
+  <math|<wide|\<cal-V\>|^>=<around*|{|<wide|\<varphi\>|^><rsub|i><rsup|\<alpha\>>|}>\<cup\><around*|{|<wide|\<varphi\>|^><rsub|0>|}>>
   <cite-detail|brenner_mathematical_2008|3.x.11>. Reindexing with
-  <math|k=3*<around*|(|\<alpha\>-1|)>+i>, this means that <math|\<cal-B\>>
-  consists of 10 polynomials <math|<wide|\<varphi\>|^><rsub|k>\<in\>P<rsub|3><around*|(|<wide|K|^>|)>>
+  <math|k=3*<around*|(|\<alpha\>-1|)>+i>, this means that
+  <math|<wide|\<cal-V\>|^>> consists of 10 polynomials
+  <math|<wide|\<varphi\>|^><rsub|k>\<in\>P<rsub|3><around*|(|<wide|K|^>|)>>
   called <dfn|shape functions>, such that the following duality property
   holds:
 
   <\equation>
-    <label|eq:delta-property><wide|\<psi\>|^><rsub|j><around*|(|<wide|\<varphi\>|^><rsub|k>|)>=\<delta\><rsub|j\<nocomma\>k>,<space|2em>j,k\<in\><around*|{|0,\<ldots\>,9|}>.
+    <label|eq:delta-property><wide|l|^><rsub|j><around*|(|<wide|\<varphi\>|^><rsub|k>|)>=\<delta\><rsub|j\<nocomma\>k>,<space|2em>j,k\<in\><around*|{|0,\<ldots\>,9|}>.
   </equation>
 
-  In particular <math|<wide|\<psi\>|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|1>|)>=<wide|\<varphi\>|^><rsub|1><around*|(|<wide|v|^><rsub|1>|)>=1>,
-  <math|<wide|\<psi\>|^><rsub|2><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=\<partial\><rsub|1><wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=1>
-  and <math|<wide|\<psi\>|^><rsub|3><around*|(|<wide|\<varphi\>|^><rsub|3>|)>=\<partial\><rsub|2><wide|\<varphi\>|^><rsub|3><around*|(|<wide|v|^><rsub|1>|)>=1>
-  but <math|<wide|\<psi\>|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=<wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=0>
+  In particular <math|<wide|l|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|1>|)>=<wide|\<varphi\>|^><rsub|1><around*|(|<wide|v|^><rsub|1>|)>=1>,
+  <math|<wide|l|^><rsub|2><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=\<partial\><rsub|1><wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=1>
+  and <math|<wide|l|^><rsub|3><around*|(|<wide|\<varphi\>|^><rsub|3>|)>=\<partial\><rsub|2><wide|\<varphi\>|^><rsub|3><around*|(|<wide|v|^><rsub|1>|)>=1>
+  but <math|<wide|l|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=<wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=0>
   and so on.
+
+  <\big-figure>
+    <image|img/hermite2d-w-0.eps|0.32par|||><image|img/hermite2d-w-1.eps|0.32par|||><image|img/hermite2d-w-2.eps|0.32par|||>
+
+    <image|img/hermite2d-w-3.eps|0.32par|||><image|img/hermite2d-w-4.eps|0.32par|||><image|img/hermite2d-w-5.eps|0.32par|||>
+
+    <image|img/hermite2d-w-6.eps|0.32par|||><image|img/hermite2d-w-7.eps|0.32par|||><image|img/hermite2d-w-8.eps|0.32par|||>
+
+    <htab|48mm><image|img/hermite2d-w-9.eps|0.32par|||>
+  </big-figure|The ten Hermite shape functions for a triangle.>
 
   <subsection|The local basis>
 
-  The reference shape functions are then mapped onto a <dfn|local basis over
-  the physical cell> <math|K> by means of a mapping
+  The degrees of freedom <math|<wide|\<cal-L\>|^>> are mapped into another
+  basis <math|\<cal-L\>=<around*|{|l<rsub|i>:P<rsub|3><around*|(|K|)>\<rightarrow\>\<bbb-R\>|}>>
+  of <math|P<rsub|3><around*|(|K|)><rprime|'>> by simple identification of
+  the vertices: <math|l<rsup|\<alpha\>><rsub|1><around*|(|\<varphi\>|)>\<assign\>\<varphi\><around*|(|v<rsup|\<alpha\>>|)>,l<rsup|\<alpha\>><rsub|2><around*|(|\<varphi\>|)>\<assign\>\<partial\><rsub|1>\<varphi\><around*|(|v<rsup|\<alpha\>>|)>,l<rsup|\<alpha\>><rsub|3><around*|(|\<varphi\>|)>\<assign\>\<partial\><rsub|2>\<varphi\><around*|(|v<rsup|\<alpha\>>|)>>,
+  whereas the reference shape functions are mapped onto a <dfn|local basis of
+  shape functions> over the physical cell <math|K> by means of a mapping
 
   <\equation*>
-    <wide|\<varphi\>|^>\<mapsto\>\<varphi\>=\<cal-F\><around*|(|<wide|\<varphi\>|^>|)>.
+    <wide|\<varphi\>|^>\<mapsto\>\<varphi\>\<assign\>\<cal-F\><rsub|K><around*|(|<wide|\<varphi\>|^>|)>.
   </equation*>
 
-  For standard Lagrange elements (i.e. when <math|\<cal-B\><rprime|'>>
-  consists only of point evaluation forms), the immediate choice
-  <math|\<cal-F\><around*|(|<wide|\<varphi\>|^>|)>\<assign\><wide|\<varphi\>|^>\<circ\><wide|\<b-x\>|^>>
-  maps the basis <math|\<cal-B\>> into a basis of
-  <math|P<rsub|3><around*|(|K|)>> which fulfills the <dfn|delta property>
-  <eqref|eq:delta-property>. However, in order for <eqref|eq:delta-property>
-  to hold in <math|K> (the linear functionals remaining unchanged) for the
+  For standard Lagrange elements (i.e. when <math|\<cal-L\>> consists only of
+  point evaluation forms), the immediate choice
+  <math|\<cal-F\><rsub|K><around*|(|<wide|\<varphi\>|^>|)>\<assign\><wide|\<varphi\>|^>\<circ\><wide|\<b-x\>|^>>
+  would map <math|<wide|\<cal-V\>|^>> into a basis of
+  <math|P<rsub|3><around*|(|K|)>> which fulfills the <dfn|duality property>
+  <eqref|eq:delta-property> wrt. <math|\<cal-L\>>. However, note that in
+  general:
+
+  <\equation*>
+    <wide|\<varphi\>|^><rsub|,i><around*|(|<wide|x|^>|)>\<neq\><around*|(|<wide|\<varphi\>|^>\<circ\><wide|\<b-x\>|^>|)><rsub|,i><around*|(|\<b-x\><around*|(|<wide|x|^>|)>|)>,
+  </equation*>
+
+  <todo|so that <eqref|eq:delta-property> will not hold in <math|K>.> For the
   images of the Hermite pairs of dofs <math|<around*|(|<wide|\<varphi\>|^><rsub|2><rsup|\<alpha\>>,<wide|\<varphi\>|^><rsub|3><rsup|\<alpha\>>|)>>
   we require a different transformation which at vertex
-  <math|v<rsup|\<alpha\>>> of <math|K>, sets the shape functions to a linear
+  <math|v<rsup|\<alpha\>>> of <math|K> sets the shape functions to a linear
   combination of all the shape functions at
   <math|<wide|v|^><rsup|\<alpha\>>>.
 
@@ -303,24 +327,38 @@
       H\<assign\><matrix|<tformat|<table|<row|<cell|1>|<cell|0>|<cell|0>>|<row|<cell|0>|<cell|\<b-x\><rsub|1,1>>|<cell|\<b-x\><rsub|1,2>>>|<row|<cell|0>|<cell|\<b-x\><rsub|2,1>>|<cell|\<b-x\><rsub|2,2>>>>>>.
     </equation*>
 
-    The <dfn|Hermite transformation> <math|\<cal-F\>> is given by the matrix
-    <math|H> as:
+    The <dfn|Hermite transformation> <math|\<cal-F\><rsub|K>> is given by the
+    matrix <math|H> as:
 
     <\equation>
-      <label|eq:hermite-transform>\<Phi\><rsub|\<alpha\>><around*|(|x|)>=\<cal-F\><around*|(|<wide|\<Phi\>|^><rsub|\<alpha\>><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>|)>\<assign\>H<around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>*<wide|\<Phi\>|^><rsub|\<alpha\>><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>.
+      <label|eq:hermite-transform>\<Phi\><rsub|\<alpha\>><around*|(|x|)>=\<cal-F\><rsub|K><around*|(|<wide|\<Phi\>|^><rsub|\<alpha\>><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>|)>\<assign\>H<around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>*<wide|\<Phi\>|^><rsub|\<alpha\>><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>.
     </equation>
-
-    This transformation respects property
-    <eqref|eq:delta-property>.<\footnote>
-      This can be seen by solving the linear system resulting from imposing
-      condition <eqref|eq:delta-property> for a linear combination of the
-      relevant shape functions <cite-detail|solin_partial_2005|Ÿ6.4.3>. We
-      can easily check that it holds in the physical domain: for the point
-      evaluations this is clear and for the others it is a matter of applying
-      the chain rule: <math|\<psi\><rsub|2><around*|(|\<varphi\><rsub|2>|)>=\<partial\><rsub|1>\<varphi\><rsub|2><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*\<delta\><rsub|k\<nocomma\>l>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=1>,
-      where <math|k,l\<in\><around*|{|1,2|}>>.
-    </footnote>
   </definition*>
+
+  <\proposition>
+    The Hermite transformation <math|\<cal-F\><rsub|K>>:
+
+    <\enumerate>
+      <item>maps <math|<wide|\<cal-V\>|^>> into a basis <math|\<cal-V\>> of
+      <math|P<rsub|3><around*|(|K|)>>,
+
+      <item>respects property <eqref|eq:delta-property>.
+    </enumerate>
+  </proposition>
+
+  <\proof>
+    The matrix <math|H> is obtained by solving the linear system resulting
+    from imposing condition <eqref|eq:delta-property> for a linear
+    combination of the relevant shape functions
+    <cite-detail|solin_partial_2005|Ÿ6.4.3>.
+
+    Property 1 follows from the fact that <math|\<b-x\>> is non-singular,
+    hence <math|det H=det D\<b-x\>\<neq\>0> <todo|and ...>.
+
+    Property 2 for the point evaluations is clear and for the others it is a
+    matter of applying the chain rule: <math|l<rsub|2><around*|(|\<varphi\><rsub|2>|)>=\<partial\><rsub|1>\<varphi\><rsub|2><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*\<delta\><rsub|k\<nocomma\>l>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=1>,
+    where <math|k,l\<in\><around*|{|1,2|}>>.
+  </proof>
 
   If we look at the entries related to partial derivatives we have:
 
@@ -381,48 +419,80 @@
   once more the same as if we had only used the inverse mapping
   <math|<wide|\<b-x\>|^>> to change variables.
 
-  With <math|3> derivatives <todo|generalise to <math|k> derivatives with a
-  multiindex>:
+  With <math|3> derivatives:
 
   <\equation*>
-    \<varphi\><rsub|i,j\<nocomma\>k\<nocomma\>l><rsup|\<alpha\>>=H<rsub|i\<nocomma\>p>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|p,q\<nocomma\>r\<nocomma\>s>*<wide|\<b-x\>|^><rsub|q,j>*<wide|\<b-x\>|^><rsub|r,k>*<wide|\<b-x\>|^><rsub|s,l>.
+    \<varphi\><rsub|i,j\<nocomma\>k\<nocomma\>m><rsup|\<alpha\>>=H<rsub|i\<nocomma\>p>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|p,q\<nocomma\>r\<nocomma\>s>*<wide|\<b-x\>|^><rsub|q,j>*<wide|\<b-x\>|^><rsub|r,k>*<wide|\<b-x\>|^><rsub|s,m>.
   </equation*>
+
+  <\proposition>
+    <todo|generalise to <math|k> derivatives with a multiindex>.
+  </proposition>
+
+  <subsection|The global basis>
+
+  With the previous construction we obtain a collection of triples
+  <math|<around*|{|<around*|(|K,\<cal-V\><rsub|K>,\<cal-L\><rsub|K>|)>|}><rsub|K\<in\>\<cal-T\>>>.
+  We now gather all of the shape functions into a basis for a polynomial
+  space <math|V<rsub|h>> with the help of a collection of
+  <dfn|local-to-global maps> <math|\<iota\><rsub|K>>. These map local indices
+  to a global set and ensure any continuity properties by requiring local
+  dofs to agree. Specifically, for each <math|K\<in\>\<cal-T\>> we define
+
+  <\equation*>
+    \<iota\><rsub|K>:I<rsub|K>=<around*|{|1,\<ldots\>,n<rsub|K>|}>\<rightarrow\>I=<around*|{|1,\<ldots\>,N|}>.
+  </equation*>
+
+  This defines a family of linear functionals
+  <math|\<cal-L\>=<around*|{|l<rsub|i>|}><rsub|i=1><rsup|N>> via
+
+  <\equation*>
+    l<rsub|\<iota\><rsub|K><around*|(|i|)>><around*|(|v|)>\<assign\>l<rsub|i><rsup|K><around*|(|v<rsub|\|K>|)>,<space|2em>i\<in\>I<rsub|K>,
+  </equation*>
+
+  for every <math|v\<in\>V<rsub|h>>, where <math|V<rsub|h>> consists of the
+  functions <math|v> satisfying:
+
+  <\enumerate>
+    <item><math|v<rsub|\|K>\<in\>\<cal-V\><rsub|K>>.
+
+    <item>For all <math|K,K<rprime|'>> and
+    <math|<around*|(|i,i<rprime|'>|)>\<in\>I<rsub|K>\<times\>I<rsub|K<rprime|'>>>
+    such that <math|\<iota\><rsub|K><around*|(|i|)>=\<iota\><rsub|K<rprime|'>><around*|(|i<rprime|'>|)>>
+    it holds that
+
+    <\equation*>
+      l<rsub|i><rsup|K><around*|(|v<rsub|\|K>|)>=l<rsup|K<rprime|'>><rsub|i<rprime|'>><around*|(|v<rsub|\|K<rprime|'>>|)>.
+    </equation*>
+  </enumerate>
 
   <section|Assembly of the stiffness matrix>
 
   We now review the steps required to piece together the linear system
   discretising <eqref|eq:linear-problem>.
 
-  <subsection|The global basis>
-
-  After defining the local shape functions
-  <math|\<varphi\><rsup|\<alpha\>><rsub|i>> for each simplex <math|K> of the
-  triangulation, we gather all of them into a basis for a polynomial space
-  <math|V<rsub|h>> with the help of a <dfn|local-to-global map>
-  <math|\<iota\>>. This assigns local indices to a global set, matching
-  vertices, etc. <todo|elaborate?>
-
   <subsection|The stiffness matrix>
 
   In order to discretise <eqref|eq:linear-problem> we require the action of
-  <math|a> on the polynomial space <math|V<rsub|h>=span<around*|{|\<varphi\><rsub|1>,\<ldots\>,\<varphi\><rsub|10*N>|}>>:
+  <math|a> on the polynomial space <math|V<rsub|h>=span<around*|{|\<varphi\><rsub|1>,\<ldots\>,\<varphi\><rsub|M>|}>>,
+  where <math|M=10*N> in the case of 2D Cubic Hermite elements. Using
+  superindices to tell the two copies of <math|V<rsub|h>> apart we want to
+  compute the values of
 
   <\equation*>
     a:V<rsup|<around*|(|1|)>><rsub|h>\<times\>V<rsup|<around*|(|2|)>><rsub|h>\<rightarrow\>\<bbb-R\>,
   </equation*>
 
-  where we used superindices to tell the two copies of <math|V<rsub|h>>
-  apart. This can be split into the contribution of each element, meaning
-  that we compute the values
+  over all basis functions. This can be split into the contribution of each
+  element, meaning that we compute the values
 
   <\equation*>
     A<rsub|i>=a<around*|(|\<varphi\><rsub|i><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|j>|)>=<big|sum><rsub|K\<in\>\<cal-T\>>a<rsup|K><around*|(|\<varphi\><rsub|i><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|j>|)>
   </equation*>
 
-  with \ <math|0\<leqslant\>i,j\<less\>10*N> and <math|a<rsup|K>> the
-  contribution from element <math|K>. Because of the compact supports of the
-  basis functions, most terms in the sum will be zero. <todo|This results in
-  a global element matrix <math|A> and a system <math|A*u=b>...>
+  with \ <math|0\<leqslant\>i,j\<less\>M> and <math|a<rsup|K>> the
+  contribution from element <math|K>. <todo|This results in a global element
+  matrix <math|A> and a system <math|A*u=b>...>
 
   <subsection|Computing integrals>
 
@@ -476,10 +546,10 @@
   The local nodal interpolant is given by
 
   <\equation*>
-    I<rsub|K><around*|(|g|)>=<big|sum><rsub|\<alpha\>=1><rsup|3>\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>*\<varphi\><rsub|i>
+    I<rsub|K><around*|(|g|)>=<big|sum><rsub|\<alpha\>=1><rsup|3>l<rsup|\<alpha\>><rsub|i><around*|(|g|)>*\<varphi\><rsub|i>
   </equation*>
 
-  where <math|\<psi\><rsup|\<alpha\>><rsub|i><around*|(|g|)>=\<partial\><rsub|i-1>
+  where <math|l<rsup|\<alpha\>><rsub|i><around*|(|g|)>=\<partial\><rsub|i-1>
   g<around*|(|v<rsup|\<alpha\>>|)>> and <math|\<partial\><rsub|0>f=f>.
 
   <\question*>
@@ -506,9 +576,9 @@
 
     <\itemize-dot>
       <item><tt|representation.py>: for every dof
-      <math|<wide|\<psi\>|^><rsub|i><rsup|\<alpha\>>> include the
-      coefficients of the other dofs <math|<wide|\<psi\>|^><rsub|j><rsup|\<alpha\>>>
-      for <math|j\<neq\>i> in the <tt|dof_data> structure passed to the next
+      <math|<wide|l|^><rsub|i><rsup|\<alpha\>>> include the coefficients of
+      the other dofs <math|<wide|l|^><rsub|j><rsup|\<alpha\>>> for
+      <math|j\<neq\>i> in the <tt|dof_data> structure passed to the next
       compiler stage.
 
       <item><tt|evaluatebasis.py>: using the Jacobian of the geometric
@@ -656,6 +726,131 @@
   We use cubic Hermite elements, which are <math|C<rsup|1>> in
   <math|\<bbb-R\>>.
 
+  <appendix|>
+
+  <subsection|Computing the Hermite shape functions>
+
+  We choose a monomial basis <math|G=<around|{|1,x,x<rsup|2>,x<rsup|3>|}>> to
+  express the shape functions in. The degrees of freedom
+  <math|L\<subset\>P<rsub|3><around|(|T|)><rprime|'>> are point evaluation
+  and partial differentiation at the vertices, plus evaluation at the
+  barycenter. We build the Vandermonde matrix
+  <math|V<rsub|i*j>=L<rsub|i><around|(|G<rsub|j>|)>> and invert it. The
+  columns of <math|V<rsup|-1>> are the coefficients of the shape functions
+  expressed in the basis <math|G>.
+
+  This can be done by hand or using Automatic Differentitation with
+  <name|autograd> and the following bit of code:
+
+  <\python-code>
+    import autograd as ad
+
+    import autograd.numpy as np
+
+    \;
+
+    # Partial derivatives
+
+    def dx(f):
+
+    \ \ \ \ return ad.grad(f, 0)
+
+    def dy(f):
+
+    \ \ \ \ return ad.grad(f, 1)
+
+    \;
+
+    # Monomial basis for $P_3(R^2)$
+
+    G = [lambda x,y: 1, lambda x,y: x, lambda x,y: y, lambda x,y: x**2,\ 
+
+    \ \ \ \ \ lambda x,y: x*y, lambda x,y: y**2, lambda x,y: x**3, lambda
+    x,y: x**2*y,
+
+    \ \ \ \ \ lambda x,y: x*y**2, lambda x,y: y**3]
+
+    \;
+
+    # Hermite degrees of freedom on the reference triangle
+    [(0,0),(1,0),(0,1)]:
+
+    # point evaluation and partial derivatives at each vertex, plus
+    evaluation at
+
+    # the barycenter.
+
+    L = [lambda f: f(0., 0.), lambda f: dx(f)(0., 0.), lambda f: dy(f)(0.,
+    0.),
+
+    \ \ \ \ \ lambda f: f(1., 0.), lambda f: dx(f)(1., 0.), lambda f:
+    dy(f)(1., 0.),
+
+    \ \ \ \ \ lambda f: f(0., 1.), lambda f: dx(f)(0., 1.), lambda f:
+    dy(f)(0., 1.),
+
+    \ \ \ \ \ lambda f: f(1./3., 1./3.)]
+
+    \;
+
+    # Build Vandermonde matrix
+
+    V = np.zeros((10,10))
+
+    for i, j in np.ndindex(V.shape):
+
+    \ \ \ \ V[i,j] = L[i](G[j])
+
+    \;
+
+    # Invert and read linear combinations of basis functions from G from the
+    columns
+
+    Vinv = np.linalg.inv(V)
+
+    \;
+
+    # Write strings to be pasted into tests/unit/test_elements.py
+
+    S = ["1", "x[0]", "x[1]", "x[0]**2", "x[0]*x[1]", "x[1]**2",
+
+    \ \ \ \ \ "x[0]**3", "x[0]**2*x[1]", "x[0]*x[1]**2", "x[1]**3"]
+
+    s = "th = [None] * 10\\n"
+
+    for j in range(10):
+
+    \ \ \ \ s += "th[%d] = lambda x: " % j
+
+    \ \ \ \ l = []
+
+    \ \ \ \ for i in range(10):
+
+    \ \ \ \ \ \ \ \ coeff = Vinv[i,j]
+
+    \ \ \ \ \ \ \ \ # Try to simplify coefficients a bit
+
+    \ \ \ \ \ \ \ \ # We have alreay checked that they are integers
+
+    \ \ \ \ \ \ \ \ if not np.isclose(coeff, 0):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ sign = "+" if coeff \<gtr\> 0 else "-"
+
+    \ \ \ \ \ \ \ \ \ \ \ \ coeff = np.abs(coeff)
+
+    \ \ \ \ \ \ \ \ \ \ \ \ prefix = "%s %d *" % (sign, coeff) if not
+    np.isclose(coeff, 1)\\
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else
+    sign
+
+    \ \ \ \ \ \ \ \ \ \ \ \ l.append("%s %s" % (prefix, S[i]))
+
+    \ \ \ \ s += " ".join(l) + "\\n"
+
+    print(s)
+  </python-code>
+
   <\bibliography|bib|tm-alpha|hermite.bib>
     <\bib-list|6>
       <bibitem*|ABH+15><label|bib-alnaes_fenics_2015>Martin<nbsp>S.<nbsp>Alnaes,
@@ -715,48 +910,49 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4|5>>
-    <associate|auto-11|<tuple|4.1|5>>
-    <associate|auto-12|<tuple|4.2|5>>
-    <associate|auto-13|<tuple|5|5>>
-    <associate|auto-14|<tuple|6|5>>
-    <associate|auto-15|<tuple|6.1|6>>
-    <associate|auto-16|<tuple|6.2|6>>
-    <associate|auto-17|<tuple|1|6>>
-    <associate|auto-18|<tuple|2|7>>
-    <associate|auto-19|<tuple|6.3|7>>
-    <associate|auto-2|<tuple|2|2>>
-    <associate|auto-20|<tuple|6.4|7>>
-    <associate|auto-21|<tuple|6.4|7>>
-    <associate|auto-3|<tuple|2.1|2>>
-    <associate|auto-4|<tuple|1|2>>
-    <associate|auto-5|<tuple|2.2|3>>
-    <associate|auto-6|<tuple|3|3>>
-    <associate|auto-7|<tuple|3.1|4>>
-    <associate|auto-8|<tuple|3.2|4>>
-    <associate|auto-9|<tuple|3.3|4>>
-    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|7>>
-    <associate|bib-brenner_mathematical_2008|<tuple|BS08|7>>
-    <associate|bib-girault_hermite_2002|<tuple|GS02|7>>
-    <associate|bib-logg_automated_2012|<tuple|LMW12|7>>
+    <associate|auto-1|<tuple|1|?>>
+    <associate|auto-10|<tuple|3.2|?>>
+    <associate|auto-11|<tuple|4|?>>
+    <associate|auto-12|<tuple|4.1|?>>
+    <associate|auto-13|<tuple|4.2|?>>
+    <associate|auto-14|<tuple|5|?>>
+    <associate|auto-15|<tuple|6|?>>
+    <associate|auto-16|<tuple|6.1|?>>
+    <associate|auto-17|<tuple|6.2|?>>
+    <associate|auto-18|<tuple|1|?>>
+    <associate|auto-19|<tuple|2|?>>
+    <associate|auto-2|<tuple|2|?>>
+    <associate|auto-20|<tuple|6.3|?>>
+    <associate|auto-21|<tuple|6.4|?>>
+    <associate|auto-22|<tuple|A|?>>
+    <associate|auto-23|<tuple|A.1|?>>
+    <associate|auto-24|<tuple|A.1|?>>
+    <associate|auto-3|<tuple|2.1|?>>
+    <associate|auto-4|<tuple|1|?>>
+    <associate|auto-5|<tuple|2|?>>
+    <associate|auto-6|<tuple|2.2|?>>
+    <associate|auto-7|<tuple|2.3|?>>
+    <associate|auto-8|<tuple|3|?>>
+    <associate|auto-9|<tuple|3.1|?>>
+    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|?>>
+    <associate|bib-brenner_mathematical_2008|<tuple|BS08|?>>
+    <associate|bib-girault_hermite_2002|<tuple|GS02|?>>
+    <associate|bib-logg_automated_2012|<tuple|LMW12|?>>
     <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|?>>
-    <associate|bib-solin_partial_2005|<tuple|Sol05|7>>
-    <associate|eq:delta-property|<tuple|2|3>>
-    <associate|eq:euler-bernoulli|<tuple|6|6>>
-    <associate|eq:hermite-first-derivatives|<tuple|4|4>>
-    <associate|eq:hermite-second-derivatives|<tuple|5|4>>
-    <associate|eq:hermite-transform|<tuple|3|3>>
-    <associate|eq:linear-problem|<tuple|1|1>>
-    <associate|fig:reference-triangle|<tuple|1|3>>
-    <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|2>>
-    <associate|footnote-3|<tuple|3|2>>
-    <associate|footnote-4|<tuple|4|3>>
-    <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|2>>
-    <associate|footnr-3|<tuple|3|2>>
-    <associate|footnr-4|<tuple|4|3>>
+    <associate|bib-solin_partial_2005|<tuple|Sol05|?>>
+    <associate|eq:delta-property|<tuple|2|?>>
+    <associate|eq:euler-bernoulli|<tuple|6|?>>
+    <associate|eq:hermite-first-derivatives|<tuple|4|?>>
+    <associate|eq:hermite-second-derivatives|<tuple|5|?>>
+    <associate|eq:hermite-transform|<tuple|3|?>>
+    <associate|eq:linear-problem|<tuple|1|?>>
+    <associate|fig:reference-triangle|<tuple|1|?>>
+    <associate|footnote-1|<tuple|1|?>>
+    <associate|footnote-2|<tuple|2|?>>
+    <associate|footnote-3|<tuple|3|?>>
+    <associate|footnr-1|<tuple|1|?>>
+    <associate|footnr-2|<tuple|2|?>>
+    <associate|footnr-3|<tuple|3|?>>
   </collection>
 </references>
 
@@ -798,6 +994,9 @@
       red>|<datoms|<macro|x|<resize|<tabular|<tformat|<cwith|1|1|1|1|cell-background|pastel
       red>|<cwith|1|1|1|1|cell-lsep|0fn>|<cwith|1|1|1|1|cell-rsep|0fn>|<cwith|1|1|1|1|cell-bsep|<value|marked-padding>>|<cwith|1|1|1|1|cell-tsep|<value|marked-padding>>|<table|<row|<cell|<arg|x>>>>>>|<plus|1l|0fn>|<plus|1b|<value|marked-padding>>|<minus|1r|0fn>|<minus|1t|<value|marked-padding>>>>|[The
       reference triangle and the mapping <with|mode|<quote|math>|\<b-x\>>...]>>|<pageref|auto-4>>
+
+      <tuple|normal|The ten Hermite shape functions for a
+      triangle.|<pageref|auto-5>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Setting>
@@ -814,72 +1013,80 @@
 
       <with|par-left|<quote|1tab>|2.2.<space|2spc>The local basis
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      <no-break><pageref|auto-6>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3.<space|2spc>Assembly
-      of the stiffness matrix> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
-
-      <with|par-left|<quote|1tab>|3.1.<space|2spc>The global basis
+      <with|par-left|<quote|1tab>|2.3.<space|2spc>The global basis
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|3.2.<space|2spc>The stiffness matrix
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3.<space|2spc>Assembly
+      of the stiffness matrix> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|3.3.<space|2spc>Computing integrals
+      <with|par-left|<quote|1tab>|3.1.<space|2spc>The stiffness matrix
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
+      <with|par-left|<quote|1tab>|3.2.<space|2spc>Computing integrals
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4.<space|2spc>Interpolation>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10><vspace|0.5fn>
+      <no-break><pageref|auto-11><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|4.1.<space|2spc>The local nodal interpolant
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|1tab>|4.2.<space|2spc><with|mode|<quote|math>|W<rsup|m,2>>-projection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Implementation
       in <with|font-shape|<quote|small-caps>|FEniCS> >
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13><vspace|0.5fn>
+      <no-break><pageref|auto-14><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>The
       Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Derivation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-16>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|4tab>|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17><vspace|0.15fn>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
 
       <with|par-left|<quote|4tab>|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Existence and uniqueness
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19>>
+      <no-break><pageref|auto-20>>
 
       <with|par-left|<quote|1tab>|6.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-21>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
+      A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-22><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|A.1.<space|2spc>Computing the Hermite shape
+      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-23>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21><vspace|0.5fn>
+      <no-break><pageref|auto-24><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
