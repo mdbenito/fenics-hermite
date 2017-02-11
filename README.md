@@ -20,7 +20,8 @@ actual implementation is done.
 * `ffc-elements.ipynb`: Progress during the implementation in FFC.
 * `ffc-forms.ipynb`: Progress during the implementation of
    quadratures.
-* `hermite.tm`: Math for the Hermite elements. In progress.
+* `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
+  Hermite elements. In progress.
 * `instant.ipynb`: Tests with instant.
 * `test.py`: Use this to run tests with pdb (or realgud:pdb in emacs)
 * `utils.py`: colorizing and other amazing stuff.
