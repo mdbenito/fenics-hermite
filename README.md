@@ -1,10 +1,15 @@
-# Implementation of Hermite elements for FEniCS
-
 # Hermite elements for FEniCS #
 
-This is a repo to collect the notes and notebooks on my progress. Most
-of the code depends on my branches on ffc, fiat and ufl, where the
-actual implementation is done.
+This is a repo to collect the notes and notebooks on my progress in
+the implementation of (Cubic) Hermite elements
+for [FEniCS](https://fenicsproject.org/).
+
+## Dependencies ##
+
+Most of the code depends on my branches on ffc, fiat and ufl, where
+the actual implementation is done.
+
+**TODO** Provide SHAs for the relevant commits across all FEniCS subprojects.
 
 ## Files ##
 
