@@ -249,7 +249,7 @@
     l<rsub|0><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|0>|)>.
   </equation*>
 
-  <big-figure|<with|gr-mode|<tuple|edit|math-at>|gr-frame|<tuple|scale|1cm|<tuple|0.270004gw|0.180009gh>>|gr-geometry|<tuple|geometry|0.280007par|0.200003par|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|<graphics||<line|<point|0|0>|<point|2.0|0.0>|<point|0.0|2.0>|<point|0.0|0.0>>>>|<todo|<label|fig:reference-triangle>The
+  <big-figure|<with|gr-mode|<tuple|edit|point>|gr-frame|<tuple|scale|1cm|<tuple|0.270004gw|0.180009gh>>|gr-geometry|<tuple|geometry|0.280007par|0.200003par|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|<graphics||<line|<point|0|0>|<point|2.0|0.0>|<point|0.0|2.0>|<point|0.0|0.0>>|<point|0|0>|<point|0|0>|<point|2|0>|<point|0|2>|<point|0.7|0.6>>>|<todo|<label|fig:reference-triangle>The
   reference triangle and the mapping <math|\<b-x\>>...>>
 
   The linear forms <math|<wide|\<cal-L\>|^>\<assign\><around*|{|<wide|l|^><rsup|\<alpha\>><rsub|i>|}>\<cup\><around*|{|<wide|l|^><rsub|0>|}>>
