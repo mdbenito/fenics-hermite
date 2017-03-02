@@ -55,66 +55,70 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|1tab|3.2.<space|2spc>Computing integrals
+      <with|par-left|1tab|3.2.<space|2spc>Imposing boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
+      <with|par-left|1tab|3.3.<space|2spc>Computing integrals
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
+
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|4.<space|2spc>Interpolation>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11><vspace|0.5fn>
+      <no-break><pageref|auto-12><vspace|0.5fn>
 
       <with|par-left|1tab|4.1.<space|2spc>The local nodal interpolant
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
 
       <with|par-left|1tab|4.2.<space|2spc><with|mode|math|W<rsup|m,2>>-projection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
+      <no-break><pageref|auto-14>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Implementation
       in <with|font-shape|small-caps|FEniCS> >
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>The
       Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15><vspace|0.5fn>
+      <no-break><pageref|auto-16><vspace|0.5fn>
 
       <with|par-left|1tab|6.1.<space|2spc>Derivation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|1tab|6.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-18>>
 
       <with|par-left|4tab|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
       <with|par-left|4tab|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19><vspace|0.15fn>>
+      <no-break><pageref|auto-20><vspace|0.15fn>>
 
       <with|par-left|1tab|6.3.<space|2spc>Existence and uniqueness
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-21>>
 
       <with|par-left|1tab|6.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21>>
+      <no-break><pageref|auto-22>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Appendix
       A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22><vspace|0.5fn>
+      <no-break><pageref|auto-23><vspace|0.5fn>
 
       <with|par-left|1tab|A.1.<space|2spc>Computing the Hermite shape
       functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23>>
+      <no-break><pageref|auto-24>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-24><vspace|0.5fn>
+      <no-break><pageref|auto-25><vspace|0.5fn>
     </table-of-contents>
   </small>
 
@@ -494,6 +498,28 @@
   contribution from element <math|K>. <todo|This results in a global element
   matrix <math|A> and a system <math|A*u=b>...>
 
+  <subsection|Imposing boundary conditions>
+
+  A standard way of imposing Dirichlet boundary conditions (and the one used
+  in <name|FEniCS>) is to force the coefficients of the discrete solution
+  corresponding to nodal Lagrange shape functions at the boundary to have the
+  desired values. If the solution has to equal some value <math|v<rsub|0>> at
+  a point whose corresponding global dof has index <math|i<rsub|0>>, then
+  this is easily achieved by setting <math|A<rsub|i<rsub|0>\<nocomma\>j>=\<delta\><rsub|i<rsub|0>\<nocomma\>j>>
+  for all <math|j> and <math|b<rsub|i<rsub|0>>=v<rsub|0>> before solving the
+  system, see <cite-detail|quarteroni_numerical_2009|Ÿ8.4.5>.
+
+  One must be careful however with Hermite elements, since not all dofs at a
+  boundary node in the mesh are of Lagrange type: setting the Hermite ones
+  effectively fixes the first derivatives of the solution at this point, not
+  its value.
+
+  This turns out to be an issue with the current version of
+  <name|FEniCS>,<\footnote>
+    Version <tt|2017.1.0.dev0>.
+  </footnote> where <cpp|DirichletBC> assumes that all dofs at a mesh node
+  stem from point evaluations. See the implementation details below.
+
   <subsection|Computing integrals>
 
   The contribution <math|a<rsup|K>> from element <math|K> to the stiffness
@@ -594,6 +620,10 @@
     <item>Implementing the same transformation for the quadratures. See
     <python|create_argument()> and <python|create_function()> in
     <tt|ffc/quadratures/quadraturetransformerbase.py>.
+
+    <item>Amending the assembled stiffness matrix to account for the presence
+    of Hermite dofs. In particular undoing the changes done by
+    <cpp|DirichletBC.apply()> to the corresponding rows.
 
     <item><todo|Implementing the nodal interpolant>.
   </enumerate>
@@ -852,7 +882,7 @@
   </python-code>
 
   <\bibliography|bib|tm-alpha|hermite.bib>
-    <\bib-list|6>
+    <\bib-list|7>
       <bibitem*|ABH+15><label|bib-alnaes_fenics_2015>Martin<nbsp>S.<nbsp>Alnaes,
       Jan Blechta, Johan Hake, August Johansson, Benjamin Kehlet, Anders
       Logg, Chris Richardson, Johannes Ring,
@@ -880,6 +910,12 @@
       <localize|Number><nbsp>84<localize| in >Lecture notes in computational
       science and engineering. Springer, 2012.<newblock> DOI
       10.1007/978-3-642-23099-8.<newblock>
+
+      <bibitem*|Qua09><label|bib-quarteroni_numerical_2009>Alfio
+      Quarteroni.<newblock> <with|font-shape|italic|Numerical Models for
+      Differential Problems>.<newblock> <localize|Number><nbsp>8<localize| in
+      >Modeling, Simulation and Applications. Springer, 1<localize| edition>,
+      2009.<newblock>
 
       <bibitem*|Sol05><label|bib-solin_partial_2005>Pavel Solin.<newblock>
       <with|font-shape|italic|Partial differential equations and the finite
@@ -912,21 +948,22 @@
   <\collection>
     <associate|auto-1|<tuple|1|?>>
     <associate|auto-10|<tuple|3.2|?>>
-    <associate|auto-11|<tuple|4|?>>
-    <associate|auto-12|<tuple|4.1|?>>
-    <associate|auto-13|<tuple|4.2|?>>
-    <associate|auto-14|<tuple|5|?>>
-    <associate|auto-15|<tuple|6|?>>
-    <associate|auto-16|<tuple|6.1|?>>
-    <associate|auto-17|<tuple|6.2|?>>
-    <associate|auto-18|<tuple|1|?>>
-    <associate|auto-19|<tuple|2|?>>
+    <associate|auto-11|<tuple|3.3|?>>
+    <associate|auto-12|<tuple|4|?>>
+    <associate|auto-13|<tuple|4.1|?>>
+    <associate|auto-14|<tuple|4.2|?>>
+    <associate|auto-15|<tuple|5|?>>
+    <associate|auto-16|<tuple|6|?>>
+    <associate|auto-17|<tuple|6.1|?>>
+    <associate|auto-18|<tuple|6.2|?>>
+    <associate|auto-19|<tuple|1|?>>
     <associate|auto-2|<tuple|2|?>>
-    <associate|auto-20|<tuple|6.3|?>>
-    <associate|auto-21|<tuple|6.4|?>>
-    <associate|auto-22|<tuple|A|?>>
-    <associate|auto-23|<tuple|A.1|?>>
+    <associate|auto-20|<tuple|2|?>>
+    <associate|auto-21|<tuple|6.3|?>>
+    <associate|auto-22|<tuple|6.4|?>>
+    <associate|auto-23|<tuple|A|?>>
     <associate|auto-24|<tuple|A.1|?>>
+    <associate|auto-25|<tuple|A.1|?>>
     <associate|auto-3|<tuple|2.1|?>>
     <associate|auto-4|<tuple|1|?>>
     <associate|auto-5|<tuple|2|?>>
@@ -939,6 +976,7 @@
     <associate|bib-girault_hermite_2002|<tuple|GS02|?>>
     <associate|bib-logg_automated_2012|<tuple|LMW12|?>>
     <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|?>>
+    <associate|bib-quarteroni_numerical_2009|<tuple|Qua09|?>>
     <associate|bib-solin_partial_2005|<tuple|Sol05|?>>
     <associate|eq:delta-property|<tuple|2|?>>
     <associate|eq:euler-bernoulli|<tuple|6|?>>
@@ -950,9 +988,11 @@
     <associate|footnote-1|<tuple|1|?>>
     <associate|footnote-2|<tuple|2|?>>
     <associate|footnote-3|<tuple|3|?>>
+    <associate|footnote-4|<tuple|4|?>>
     <associate|footnr-1|<tuple|1|?>>
     <associate|footnr-2|<tuple|2|?>>
     <associate|footnr-3|<tuple|3|?>>
+    <associate|footnr-4|<tuple|4|?>>
   </collection>
 </references>
 
@@ -972,6 +1012,8 @@
       brenner_mathematical_2008
 
       solin_partial_2005
+
+      quarteroni_numerical_2009
 
       olgaard_optimizations_2010
 
@@ -1027,66 +1069,70 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1tab>|3.2.<space|2spc>Computing integrals
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|3.2.<space|2spc>Imposing boundary
+      conditions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|1tab>|3.3.<space|2spc>Computing integrals
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4.<space|2spc>Interpolation>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11><vspace|0.5fn>
+      <no-break><pageref|auto-12><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|4.1.<space|2spc>The local nodal interpolant
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
 
       <with|par-left|<quote|1tab>|4.2.<space|2spc><with|mode|<quote|math>|W<rsup|m,2>>-projection
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
+      <no-break><pageref|auto-14>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Implementation
       in <with|font-shape|<quote|small-caps>|FEniCS> >
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>The
       Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15><vspace|0.5fn>
+      <no-break><pageref|auto-16><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|6.1.<space|2spc>Derivation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-17>>
 
       <with|par-left|<quote|1tab>|6.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-18>>
 
       <with|par-left|<quote|4tab>|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
       <with|par-left|<quote|4tab>|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19><vspace|0.15fn>>
+      <no-break><pageref|auto-20><vspace|0.15fn>>
 
       <with|par-left|<quote|1tab>|6.3.<space|2spc>Existence and uniqueness
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-21>>
 
       <with|par-left|<quote|1tab>|6.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-21>>
+      <no-break><pageref|auto-22>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
       A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-22><vspace|0.5fn>
+      <no-break><pageref|auto-23><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|A.1.<space|2spc>Computing the Hermite shape
       functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23>>
+      <no-break><pageref|auto-24>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-24><vspace|0.5fn>
+      <no-break><pageref|auto-25><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
