@@ -1,7 +1,26 @@
-
 # coding: utf-8
 
-# In[ ]:
+from functools import reduce
+
+def fnand(*fs):
+    def res(*args):
+        return reduce(lambda x,y: x and y, [f(*args) for f in fs])
+    return res
+
+def fnor(*fs):
+    def res(*args):
+        return reduce(lambda x,y: x or y, [f(*args) for f in fs])
+    return res
+
+def fnnot(f):
+    def res(*args):
+        return not f(*args)
+    return res
+
+def one_arg(f):
+    def res(x):
+        return f(x)
+    return res
 
 def color_reset(color_func):
     def reset_string(s):
@@ -23,4 +42,3 @@ def yellow(s):
 @color_reset
 def blue(s):
     return "\x1b[34m" + s
-
