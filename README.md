@@ -20,17 +20,20 @@ other subprojects:
 
 ## Files ##
 
+* `Poisson1D.ipynb`: A 1D example to test Dirichlet BCs.
+* `Poisson2D.ipynb`: The official 2D example in dolfin, with Hermite
+  elements.
+* `boundary.ipynb`: Steps towards the implementation of Dirichlet and
+  Neumann boundary conditions with Hermite elements. Mostly just a
+  hack on the assembled stiffness matrix.
 * `Euler-Bernoulli.ipynb`: The Euler Bernoulli beam model in a
-   notebook. Missing: How to set the boundary conditions for the
-   simply supported beam? I'm a bit confused by how to set the bending
-   moments to zero (the text in the notebook might be wrong). The
-   mathematics are taken from (and possibly out of sync with)
-   `hermite.tm`.
+   notebook.  The mathematics are taken from (and possibly out of sync
+   with) `hermite.tm`.
 * `biharmonic.ipynb`: A test (biharmonic with non conforming interior
    penalty method) using Lagrange or Hermite elements.
 * `debug.ipynb`: Some random tests.
-* `ffc-elements.ipynb`: Progress during the implementation in FFC.
-* `ffc-forms.ipynb`: Progress during the implementation of
+* `elements.ipynb`: Progress during the implementation in FFC.
+* `quadrature.ipynb`: Progress during the implementation of
    quadratures.
 * `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
   Hermite elements. In progress.
