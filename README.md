@@ -37,7 +37,7 @@ other subprojects:
    quadratures.
 * `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
   Hermite elements. In progress.
-* `instant.ipynb`: Tests with instant.
+* `instant-test.ipynb`: Tests with instant.
 * `test.py`: Use this to run tests with pdb (or realgud:pdb in emacs)
 * `utils.py`: colorizing and other amazing stuff.
 * `README.md`: ...
