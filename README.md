@@ -10,12 +10,14 @@ for [FEniCS](https://fenicsproject.org/).
   number of cells in the mesh. This is most surely an issue with the
   quadrature code not properly scaling the derivatives or something
   like that.
-* Finish implementing boundary conditions: As an improvement to the
-  current hack, use PETSc. Ideally subclass DirichletBC to properly
-  manage elements with dofs at the vertices which are not
-  `PointEvaluation`s. Also: decide how to implement essential Neumann
-  BCs for 4th order problems (beyond the current hack)
-* Develop more tests.
+* Finish implementing boundary conditions: Check the effect that
+  meddling with the stiffness matrix has over the solution of the
+  system. Finish essential Neumann BCs for 4th order problems (beyond
+  the current hack).
+* Incorporate the restriction on the space of polynomials for the
+  element leading to Kirchhoff triangles.
+* Implement arbitrary (d > 3) polynomial orders.
+* More tests.
 * ???
 
 ## Dependencies ##
@@ -44,7 +46,7 @@ other subprojects:
   elements.
 * `boundary.ipynb`: Steps towards the implementation of Dirichlet and
   Neumann boundary conditions with Hermite elements. Mostly just a
-  hack on the assembled stiffness matrix. **TODO:** Use PETSc.
+  hack on the assembled stiffness matrix.
 * `Euler-Bernoulli.ipynb`: The Euler Bernoulli beam model in a
    notebook.  The mathematics are taken from (and possibly out of sync
    with) `hermite.tm`.
