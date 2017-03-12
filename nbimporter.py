@@ -1,3 +1,10 @@
+# Imports IPython notebooks.
+# Based on https://github.com/adrn/ipython/blob/master/examples/Notebook/Importing%20Notebooks.ipynb
+# See also: https://github.com/grst/nbimporter
+#
+# This basically adds some parsing which avoids executing any code
+# in the notebooks which isn't a definition. See NotebookLoader below.
+
 import io, os, sys, types, ast
 import nbformat
 
@@ -5,11 +12,11 @@ from IPython import get_ipython
 from IPython.core.interactiveshell import InteractiveShell
 
 def find_notebook(fullname, path=None):
-    """find a notebook, given its fully qualified name and an optional path
+    """ Find a notebook, given its fully qualified name and an
+    optional path.
     
-    This turns "foo.bar" into "foo/bar.ipynb"
-    and tries turning "Foo_Bar" into "Foo Bar" if Foo_Bar
-    does not exist.
+    This turns "foo.bar" into "foo/bar.ipynb" and tries turning 
+    "Foo_Bar" into "Foo Bar" if Foo_Bar does not exist.
     """
     name = fullname.rsplit('.', 1)[-1]
     if not path:
@@ -24,8 +31,8 @@ def find_notebook(fullname, path=None):
             return nb_path
 
 class CellTransformer(ast.NodeTransformer):
-    """ Removes all nodes from an AST tree which are not suitable for export out 
-    of a notebook. """
+    """ Removes all nodes from an AST tree which are not suitable
+    for exporting out of a notebook. """
     def visit(self, node):
         """ Visit a node. """
         if node.__class__.__name__ in ['Module', 'FunctionDef', 'ClassDef', 
@@ -34,20 +41,30 @@ class CellTransformer(ast.NodeTransformer):
         return None
 
 class NotebookLoader(object):
-    """Module Loader for IPython Notebooks"""
+    """ Module Loader for IPython Notebooks.
+    
+    Importing from a notebook is different from a module: because one
+    typically has many computations and tests besides actual usable code,
+    here we only run code which either defines a function or a class, or
+    imports code from other modules and notebooks.
+    
+    Furthermore, in order to provide per-notebook initialisation, if a
+    special function __init__() is defined in the notebook, it will be
+    executed the first time an import statement is.
+    """
+    
     def __init__(self, path=None):
         self.shell = InteractiveShell.instance()
         self.path = path
     
     def load_module(self, fullname):
-        """import a notebook as a module"""
+        """ Imports a notebook as a module. """
         path = find_notebook(fullname, self.path)
         
-        print ("importing notebook from %s" % path)
+        #print("Importing notebook `%s`." % path)
                                        
         # load the notebook object
-        nb = nbformat.read(path, as_version=4)
-        
+        nb = nbformat.read(path, as_version=4)    
         
         # create the module and add it to sys.modules
         # if name in sys.modules:
@@ -70,15 +87,24 @@ class NotebookLoader(object):
                 code = self.shell.input_transformer_manager.transform_cell(cell.source)
                 # Remove anything that isn't a def or a class
                 tree = deleter.generic_visit(ast.parse(code))
-                # run the code in themodule
+                # run the code in the module
                 codeobj = compile(tree, filename=path, mode='exec')
                 exec(codeobj, mod.__dict__)
         finally:
             self.shell.user_ns = save_user_ns
+
+        # Run any initialisation if available, but only once
+        if not mod.__dict__.has_key('__init_done__'):
+            try:
+                mod.__dict__['__init__']()
+                mod.__init_done__ = True
+            except KeyError:
+                pass
+
         return mod
 
 class NotebookFinder(object):
-    """Module finder that locates IPython Notebooks"""
+    """ Module finder that locates IPython Notebooks. """
     def __init__(self):
         self.loaders = {}
     
