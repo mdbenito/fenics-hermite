@@ -1,10 +1,23 @@
-# Imports IPython notebooks.
-# Based on https://github.com/adrn/ipython/blob/master/examples/Notebook/Importing%20Notebooks.ipynb
-# See also: https://github.com/grst/nbimporter
-#
-# This basically adds some parsing which avoids executing any code
-# in the notebooks which isn't a definition or explicit initialisation.
-# See the options dict and NotebookLoader below.
+"""
+Enables importing of IPython Notebooks as modules from Jupyter v4.
+
+Based on code from
+https://github.com/adrn/ipython/blob/master/examples/Notebook/Importing%20Notebooks.ipynb
+
+Importing from a notebook is different from a module: because one
+typically keeps many computations and tests besides exportable defs,
+here we only run code which either defines a function or a class, or
+imports code from other modules and notebooks. This behaviour can be
+disabled by setting nbimporter.options['only_defs'] = False.
+
+Furthermore, in order to provide per-notebook initialisation, if a
+special function __init__() is defined in the notebook, it will be
+executed the first time an import statement is. This behaviour can be
+disabled by setting nbimporter.options['run_init'] = False.
+
+Finally, you can set the encoding of the notebooks with
+nbimporter.options['encoding']. The default is 'utf-8'.
+"""
 
 import io, os, sys, types, ast
 import nbformat
@@ -12,7 +25,7 @@ import nbformat
 from IPython import get_ipython
 from IPython.core.interactiveshell import InteractiveShell
 
-options = {'only_defs': True, 'run_init': True}
+options = {'only_defs': True, 'run_init': True, 'encoding': 'utf-8'}
 
 def find_notebook(fullname, path=None):
     """ Find a notebook, given its fully qualified name and an
@@ -33,6 +46,7 @@ def find_notebook(fullname, path=None):
         if os.path.isfile(nb_path):
             return nb_path
 
+
 class CellDeleter(ast.NodeTransformer):
     """ Removes all nodes from an AST tree which are not suitable
     for exporting out of a notebook. """
@@ -42,6 +56,7 @@ class CellDeleter(ast.NodeTransformer):
                                        'Import', 'ImportFrom']:
             return node
         return None
+
 
 class NotebookLoader(object):
     """ Module Loader for IPython Notebooks.
@@ -66,10 +81,11 @@ class NotebookLoader(object):
         """ Imports a notebook as a module. """
         path = find_notebook(fullname, self.path)
         
-        #print("Importing notebook `%s`." % path)
-                                       
         # load the notebook object
-        nb = nbformat.read(path, as_version=4)    
+        nb_version = nbformat.version_info[0]
+        
+        with io.open(path, 'r', encoding=options['encoding']) as f:
+            nb = nbformat.read(f, nb_version)
         
         # create the module and add it to sys.modules
         # if name in sys.modules:
@@ -78,8 +94,15 @@ class NotebookLoader(object):
         mod.__file__ = path
         mod.__loader__ = self
         mod.__dict__['get_ipython'] = get_ipython
+
+        # Only do something if it's a python notebook
+        if nb.metadata.kernelspec.language != 'python':
+            print("Ignoring '%s': not a python notebook." % path)
+            return mod
+
+        print("Importing notebook `%s`." % path)
         sys.modules[fullname] = mod
-        
+
         # extra work to ensure that magics that would affect the user_ns
         # actually affect the notebook module's ns
         save_user_ns = self.shell.user_ns
@@ -104,11 +127,12 @@ class NotebookLoader(object):
         # Run any initialisation if available, but only once
         if options['run_init'] and not mod.__dict__.has_key('__init_done__'):
             try:
-                mod.__dict__['__init__']()
+                mod.__init__()
                 mod.__init_done__ = True
-            except KeyError:
+                print("%s.__init__() done." % fullname)
+            except (AttributeError, TypeError) as _:
+                print("Could not run __init__() in %s." % fullname)
                 pass
-
         return mod
 
 class NotebookFinder(object):
