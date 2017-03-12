@@ -3,13 +3,16 @@
 # See also: https://github.com/grst/nbimporter
 #
 # This basically adds some parsing which avoids executing any code
-# in the notebooks which isn't a definition. See NotebookLoader below.
+# in the notebooks which isn't a definition or explicit initialisation.
+# See the options dict and NotebookLoader below.
 
 import io, os, sys, types, ast
 import nbformat
 
 from IPython import get_ipython
 from IPython.core.interactiveshell import InteractiveShell
+
+options = {'only_defs': True, 'run_init': True}
 
 def find_notebook(fullname, path=None):
     """ Find a notebook, given its fully qualified name and an
@@ -30,7 +33,7 @@ def find_notebook(fullname, path=None):
         if os.path.isfile(nb_path):
             return nb_path
 
-class CellTransformer(ast.NodeTransformer):
+class CellDeleter(ast.NodeTransformer):
     """ Removes all nodes from an AST tree which are not suitable
     for exporting out of a notebook. """
     def visit(self, node):
@@ -46,11 +49,13 @@ class NotebookLoader(object):
     Importing from a notebook is different from a module: because one
     typically has many computations and tests besides actual usable code,
     here we only run code which either defines a function or a class, or
-    imports code from other modules and notebooks.
+    imports code from other modules and notebooks. This behaviour can be
+    disabled by setting nbimporter.options['only_defs'] = False.
     
     Furthermore, in order to provide per-notebook initialisation, if a
     special function __init__() is defined in the notebook, it will be
-    executed the first time an import statement is.
+    executed the first time an import statement is. This behaviour can be
+    disabled by setting nbimporter.options['run_init'] = False.
     """
     
     def __init__(self, path=None):
@@ -81,12 +86,15 @@ class NotebookLoader(object):
         self.shell.user_ns = mod.__dict__
         
         try:
-            deleter = CellTransformer()
+            deleter = CellDeleter()
             for cell in filter(lambda c: c.cell_type == 'code', nb.cells):
                 # transform the input to executable Python
                 code = self.shell.input_transformer_manager.transform_cell(cell.source)
-                # Remove anything that isn't a def or a class
-                tree = deleter.generic_visit(ast.parse(code))
+                if options['only_defs']:
+                    # Remove anything that isn't a def or a class
+                    tree = deleter.generic_visit(ast.parse(code))
+                else:
+                    tree = ast.parse(code)
                 # run the code in the module
                 codeobj = compile(tree, filename=path, mode='exec')
                 exec(codeobj, mod.__dict__)
@@ -94,7 +102,7 @@ class NotebookLoader(object):
             self.shell.user_ns = save_user_ns
 
         # Run any initialisation if available, but only once
-        if not mod.__dict__.has_key('__init_done__'):
+        if options['run_init'] and not mod.__dict__.has_key('__init_done__'):
             try:
                 mod.__dict__['__init__']()
                 mod.__init_done__ = True
