@@ -16,7 +16,10 @@ for [FEniCS](https://fenicsproject.org/).
   the current hack).
 * Incorporate the restriction on the space of polynomials for the
   element leading to Kirchhoff triangles.
-* Implement arbitrary (d > 3) polynomial orders.
+* Implement arbitrary (d > 3) polynomial orders using hierarchic bases
+  (cf. [Solin, §6.3.2]).
+* Implement `evaluate_dof()` for `PointDerivative` to enable
+  interpolation.
 * More tests.
 * ???
 
@@ -64,3 +67,5 @@ other subprojects:
 * `README.md`: ...
 * `doc`: duh.
 * `misc.ipynb`: double duh.
+* `nbimporter.py`: A module to import notebooks with some custom
+  modifications.
