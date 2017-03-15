@@ -4,7 +4,7 @@ from functools import reduce
 from decorator import FunctionMaker
 from inspect import getargspec
 
-def fnop(op, *fs):
+def fnop(op, doc=None, *fs):
     """ Combine an arbitrary number of functions with op
         in a new function.
 
@@ -19,18 +19,18 @@ def fnop(op, *fs):
     arg_names = ['x'+str(i) for i in range(n)]
     args = '(' + ', '.join(arg_names) + ')'# '(x0, x1, ..., x(n-1))'
     body = str('return reduce(lambda x,y: x ' + op + ' y, [f' + args + ' for f in fs])')
-    res = FunctionMaker.create('res' + args, body, {'fs': fs, 'reduce': reduce}, addsource=True)
+    res = FunctionMaker.create('res' + args, body, {'fs': fs, 'reduce': reduce}, addsource=True, doc=doc)
     return res
 
-def fnand(*fs):
+def fnand(doc=None, *fs):
     """ Combine an arbitrary number of functions with `and`
         in a new function"""
-    return fnop('and', *fs)
+    return fnop('and', doc=doc, *fs)
 
-def fnor(*fs):
+def fnor(doc=None, *fs):
     """ Combine an arbitrary number of functions with `or`
         in a new function."""
-    return fnop('or', *fs)
+    return fnop('or', doc=doc, *fs)
 
 def fnnot(f):
     """ Negation of a function."""
