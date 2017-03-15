@@ -10,9 +10,11 @@ for [FEniCS](https://fenicsproject.org/).
   number of cells in the mesh. This is most surely an issue with the
   quadrature code not properly scaling the derivatives or something
   like that.
-* Finish implementing boundary conditions: Check the effect that
-  meddling with the stiffness matrix has over the solution of the
-  system. Finish essential Neumann BCs for 4th order problems (beyond
+* Finish implementing Dirichlet boundary conditions: Check the effect
+  that meddling with the stiffness matrix has over the solution of the
+  system. **In particular check that symmetry is not broken, cf §6.3 of
+  the FEniCS book.**
+* Finish essential Neumann BCs for 4th order problems (beyond
   the current hack).
 * Incorporate the restriction on the space of polynomials for the
   element leading to Kirchhoff triangles.
@@ -20,6 +22,8 @@ for [FEniCS](https://fenicsproject.org/).
   (cf. [Solin, §6.3.2]).
 * Implement `evaluate_dof()` for `PointDerivative` to enable
   interpolation.
+* Disable `vertex_to_dof_map()` and `dof_to_vertex_map()` for spaces
+  using Hermite elements.
 * More tests.
 * ???
 
