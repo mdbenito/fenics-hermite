@@ -4,6 +4,25 @@ This is a repo to collect the notes and notebooks on my progress in
 the implementation of (Cubic) Hermite elements
 for [FEniCS](https://fenicsproject.org/).
 
+## To do ##
+
+* Fix the problems with the scale of the solutions depending on the
+  number of cells in the mesh. This is most surely an issue with the
+  quadrature code not properly scaling the derivatives or something
+  like that.
+* Finish implementing boundary conditions: Check the effect that
+  meddling with the stiffness matrix has over the solution of the
+  system. Finish essential Neumann BCs for 4th order problems (beyond
+  the current hack).
+* Incorporate the restriction on the space of polynomials for the
+  element leading to Kirchhoff triangles.
+* Implement arbitrary (d > 3) polynomial orders using hierarchic bases
+  (cf. [Solin, §6.3.2]).
+* Implement `evaluate_dof()` for `PointDerivative` to enable
+  interpolation.
+* More tests.
+* ???
+
 ## Dependencies ##
 
 Most of the code depends on my branches on ffc, fiat and ufl, where
@@ -22,6 +41,11 @@ other subprojects:
 
 * `Poisson1D.ipynb`: A 1D example to test Dirichlet BCs.
 * `Poisson2D.ipynb`: The official 2D example in dolfin, with Hermite
+  elements. **TODO:** Find out why the solution is slightly
+  skewed. Properly apply Neumann.
+* `discrete-gradient.ipynb`: An implementation of the discrete
+  gradient operator from CG1 to DG0 using PETSc matrices. This should
+  be the first step towards the actual operator I need for Kirchhoff
   elements.
 * `boundary.ipynb`: Steps towards the implementation of Dirichlet and
   Neumann boundary conditions with Hermite elements. Mostly just a
@@ -43,3 +67,5 @@ other subprojects:
 * `README.md`: ...
 * `doc`: duh.
 * `misc.ipynb`: double duh.
+* `nbimporter.py`: A module to import notebooks with some custom
+  modifications.
