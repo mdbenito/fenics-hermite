@@ -39,6 +39,18 @@ def fnand(*fs):
     return fnop('and', doc, *fs)
 
 
+def fnor(*fs):
+    """ Combine an arbitrary number of functions with `or`
+        in a new function."""
+    def func_name(f):
+        arg_names = getargspec(f).args
+        args = '(' + ', '.join(arg_names) + ')'
+        return f.__name__ + args
+    funcs = ', '.join(list(map(func_name, fs)))
+    doc = "Returns the 'or' concatenation of %s" % funcs
+    return fnop('or', doc, *fs)
+
+
 def fnnot(f):
     """ Negation of a function."""
     n = len(getargspec(f).args)
