@@ -50,12 +50,6 @@ def fnnot(f):
     return res
 
 
-def one_arg(f):
-    def res(x):
-        return f(x)
-    return res
-
-
 def color_reset(color_func):
     def reset_string(s):
         return color_func(s) + "\x1b[0m"
