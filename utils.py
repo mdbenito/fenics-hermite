@@ -4,13 +4,24 @@ from functools import reduce
 from decorator import FunctionMaker
 from inspect import getargspec
 
+__all__ = ['fnand', 'fnor', 'fnnot', 'red', 'green', 'yellow', 'blue']
+
+##############################################################################
+# Boolean operations on functions
 
 def fnop(op, doc, *fs):
-    """ Combine an arbitrary number of functions with op
-        in a new function.
+    """ Combine an arbitrary number of functions using binary operator op
+        into a new function of the same arity.
 
         Arguments:
-            op: operator name as a string"""
+        ----------
+            op: operator name as a string ("and", "or", "+", ...)
+            doc: docstring for the returned callable.
+
+        Returns:
+        --------
+            A callable of the same arity as the arguments.
+        """
     n = len(getargspec(fs[0]).args)
     correct = True
     for f in fs[1:]:
@@ -29,7 +40,18 @@ def fnop(op, doc, *fs):
 
 def fnand(*fs):
     """ Combine an arbitrary number of functions with `and`
-        in a new function"""
+        into a new function.
+
+    Arguments:
+    ----------
+        *fs: one or more Callables of equal arity and boolean
+             return value.
+        
+    Returns:
+    --------
+        A Callable which returns True iff all of the *fs return
+        True on the arguments.
+    """
     def func_name(f):
         arg_names = getargspec(f).args
         args = '(' + ', '.join(arg_names) + ')'
@@ -41,7 +63,18 @@ def fnand(*fs):
 
 def fnor(*fs):
     """ Combine an arbitrary number of functions with `or`
-        in a new function."""
+        into a new function.
+    
+    Arguments:
+    ----------
+        *fs: one or more Callables of equal arity and boolean
+             return value.
+        
+    Returns:
+    --------
+        A Callable which returns True iff any of the *fs return
+        True on the arguments.
+    """
     def func_name(f):
         arg_names = getargspec(f).args
         args = '(' + ', '.join(arg_names) + ')'
@@ -52,7 +85,17 @@ def fnor(*fs):
 
 
 def fnnot(f):
-    """ Negation of a function."""
+    """ Negation of a function.
+    
+    Arguments:
+    ----------
+        *fs: one Callable of the same arity as f and boolean
+             return value.
+        
+    Returns:
+    --------
+        A Callable which returns True iff f(...) returns False.
+    """
     n = len(getargspec(f).args)
     arg_names = ['x'+str(i) for i in range(n)]
     args = '(' + ', '.join(arg_names) + ')'  # '(x0, x1, ..., x(n-1))'
@@ -61,6 +104,9 @@ def fnnot(f):
                                addsource=True, doc=doc)
     return res
 
+
+##############################################################################
+# Pretty printing, pretty useless.
 
 def color_reset(color_func):
     def reset_string(s):
