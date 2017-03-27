@@ -106,6 +106,45 @@ def fnnot(f):
 
 
 ##############################################################################
+# Taking derivatives of functions
+
+import autograd as ad
+#import autograd.numpy as np
+
+def make_derivatives(fun):
+    """ Decorates fun with an additional argument to compute derivatives.
+    The decorated function accepts two arguments: an np.ndarray with the
+    point of evaluation and a tuple "derivatives" with a multiindex.
+    Example:
+        @make_derivatives
+        def fun2d(x, y):
+            return x*y**2
+        
+        fun2d([1., 2.])  --> 4.
+        fun2d([0., 3.], derivatives=(1,0))  --> 9.
+    """
+    def diff_fun(x, derivatives=()):
+        ret = fun
+        for i, n in enumerate(derivatives):
+            for j in range(n):
+                ret = ad.grad(ret, i)
+        return ret(*x)
+
+    diff_fun.__doc__ = "Evaluates %s and its derivatives "\
+                       "(use multiindex notation)\n\n"\
+                       "Example: %s(x, derivatives=(2,0))\n"\
+                       "         Returns the 2nd partial derivative of %s"\
+                       " wrt. the first variable,\n"\
+                       "         evaluated at x "\
+                       " (which must be a numpy.ndarray)." % (fun.__name__,
+                                                              fun.__name__,
+                                                              fun.__name__)
+    return diff_fun
+
+
+
+
+##############################################################################
 # Pretty printing, pretty useless.
 
 def color_reset(color_func):
