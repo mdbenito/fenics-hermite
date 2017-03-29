@@ -16,12 +16,13 @@ for [FEniCS](https://fenicsproject.org/).
   the FEniCS book.**
 * Finish essential Neumann BCs for 4th order problems (beyond
   the current hack).
-* Incorporate the restriction on the space of polynomials for the
-  element leading to Kirchhoff triangles.
+* <strike>Incorporate the restriction on the space of polynomials for the
+  element leading to Kirchhoff triangles.</strike>
 * Implement arbitrary (d > 3) polynomial orders using hierarchic bases
   (cf. [Solin, §6.3.2]).
-* Implement `evaluate_dof()` for `PointDerivative` to enable
-  interpolation.
+* <strike>Implement `evaluate_dof()` for `PointDerivative` to enable
+  nodal interpolation.</strike> See 
+  [interpolation.ipynb](interpolation.ipynb).
 * Disable `vertex_to_dof_map()` and `dof_to_vertex_map()` for spaces
   using Hermite elements.
 * More tests.
@@ -46,7 +47,7 @@ other subprojects:
 * `Poisson1D.ipynb`: A 1D example to test Dirichlet BCs.
 * `Poisson2D.ipynb`: The official 2D example in dolfin, with Hermite
   elements. **TODO:** Find out why the solution is slightly
-  skewed. Properly apply Neumann.
+  skewed.
 * `discrete-gradient.ipynb`: An implementation of the discrete
   gradient operator from CG1 to DG0 using PETSc matrices. This should
   be the first step towards the actual operator I need for Kirchhoff
@@ -67,9 +68,7 @@ other subprojects:
   Hermite elements. In progress.
 * `instant-test.ipynb`: Tests with instant.
 * `test.py`: Use this to run tests with pdb (or realgud:pdb in emacs)
-* `utils.py`: colorizing and other amazing stuff.
-* `README.md`: ...
+* `utils.py`: Colorizing text, boolean operations on functions and more.
+* `README.md`: Suprise!
 * `doc`: duh.
 * `misc.ipynb`: double duh.
-* `nbimporter.py`: A module to import notebooks with some custom
-  modifications.
