@@ -295,9 +295,9 @@
 
   The linear forms <math|<wide|\<cal-L\>|^>\<assign\><around*|{|<wide|l|^><rsup|\<alpha\>><rsub|i>|}>\<cup\><around*|{|<wide|l|^><rsub|0>|}>>
   are a basis of <math|P<rsub|3><around*|(|<wide|K|^>|)><rprime|'>> with dual
-  <math|<wide|\<cal-V\>|^>=<around*|{|<wide|\<varphi\>|^><rsub|i><rsup|\<alpha\>>|}>\<cup\><around*|{|<wide|\<varphi\>|^><rsub|0>|}>>
-  <cite-detail|brenner_mathematical_2008|3.x.11>. Reindexing with
-  <math|k=3*<around*|(|\<alpha\>-1|)>+i>, this means that
+  <math|<wide|\<cal-V\>|^>=<around*|{|<wide|\<varphi\>|^><rsub|0>|}>\<cup\><around*|{|<wide|\<varphi\>|^><rsub|i><rsup|\<alpha\>>|}>>
+  <cite-detail|brenner_mathematical_2008|3.x.11>. Reindexing the last 9
+  functions with <math|k=3*<around*|(|\<alpha\>-1|)>+i>, this means that
   <math|<wide|\<cal-V\>|^>> consists of 10 polynomials
   <math|<wide|\<varphi\>|^><rsub|k>\<in\>P<rsub|3><around*|(|<wide|K|^>|)>>
   called <dfn|shape functions>, such that the following <dfn|duality
@@ -311,7 +311,8 @@
   <math|<wide|l|^><rsub|2><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=\<partial\><rsub|1><wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=1>
   and <math|<wide|l|^><rsub|3><around*|(|<wide|\<varphi\>|^><rsub|3>|)>=\<partial\><rsub|2><wide|\<varphi\>|^><rsub|3><around*|(|<wide|v|^><rsub|1>|)>=1>
   but <math|<wide|l|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=<wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=0>
-  and so on.
+  and so on.<todo|NOTE: in the code <math|<wide|\<varphi\>|^><rsub|0>> is
+  actually the last one, fix this.>
 
   <\big-figure>
     <image|img/hermite2d-w-0.eps|0.32par|||><image|img/hermite2d-w-1.eps|0.32par|||><image|img/hermite2d-w-2.eps|0.32par|||>
