@@ -1,8 +1,8 @@
 # Hermite elements for FEniCS #
 
 This is a repo to collect the notes and notebooks on my progress in
-the implementation of (Cubic) Hermite elements
-for [FEniCS](https://fenicsproject.org/).
+the implementation of (Cubic) Hermite and Discrete Kirchhoff Triangle
+elements for [FEniCS](https://fenicsproject.org/).
 
 ## To do ##
 
@@ -16,16 +16,14 @@ for [FEniCS](https://fenicsproject.org/).
   the FEniCS book.**
 * Finish essential Neumann BCs for 4th order problems (beyond
   the current hack).
-* <strike>Incorporate the restriction on the space of polynomials for the
-  element leading to Kirchhoff triangles.</strike>
 * Implement arbitrary (d > 3) polynomial orders using hierarchic bases
   (cf. [Solin, §6.3.2]).
-* <strike>Implement `evaluate_dof()` for `PointDerivative` to enable
-  nodal interpolation.</strike> See 
-  [interpolation.ipynb](interpolation.ipynb).
 * Disable `vertex_to_dof_map()` and `dof_to_vertex_map()` for spaces
   using Hermite elements.
 * More tests.
+* <strike>Implement `evaluate_dof()` for `PointDerivative` to enable
+  nodal interpolation.</strike> See 
+  [interpolation.ipynb](interpolation.ipynb).
 * ???
 
 ## Dependencies ##
@@ -41,34 +39,47 @@ other subprojects:
 * instant: 4bd92ec7eb114c8dfe944e770ce3c22323a75b0d
 * mshr: c4058b5287722fbcc9dd8ec25bebfd31e3e58ea4
 
-
 ## Files ##
 
-* `Poisson1D.ipynb`: A 1D example to test Dirichlet BCs.
-* `Poisson2D.ipynb`: The official 2D example in dolfin, with Hermite
-  elements. **TODO:** Find out why the solution is slightly
-  skewed.
-* `discrete-gradient.ipynb`: An implementation of the discrete
-  gradient operator from CG1 to DG0 using PETSc matrices. This should
-  be the first step towards the actual operator I need for Kirchhoff
-  elements.
+Basic implementation:
+
+* `fiat_hermite.ipynb`: Implementation of the FIAT Hermite elements.
+* `fiat_dkt.ipynb`: Implementation of the FIAT DKT elements.
+* `ffc_tests.ipynb`: Tests and routines used during the implementation
+  in FFC.
+* `quadrature.ipynb`: Progress during the implementation of
+   quadratures.
+* `interpolation.ipynb`: Nodal interpolation for elements using
+  PointDerivatives.
+* `discrete_gradient.ipynb`: An implementation using PETSc matrices of
+  the discrete gradient operator from CG1 to DG0 and from DKT to
+  Vector<P2>.
 * `boundary.ipynb`: Steps towards the implementation of Dirichlet and
   Neumann boundary conditions with Hermite elements. Mostly just a
   hack on the assembled stiffness matrix.
-* `Euler-Bernoulli.ipynb`: The Euler Bernoulli beam model in a
-   notebook.  The mathematics are taken from (and possibly out of sync
-   with) `hermite.tm`.
+
+Models:
+
+* `Poisson1D.ipynb`: A simple 1D example to test essential BCs.
+* `Poisson2D.ipynb`: Dolfin's included 2D example, but with Hermite
+  elements. **TODO:** Find out why the solution is slightly
+  skewed.
+* `Euler-Bernoulli.ipynb`: The Euler Bernoulli beam model. The
+   mathematics are taken from (and possibly out of sync with)
+   `hermite.tm`.
 * `biharmonic.ipynb`: A test (biharmonic with non conforming interior
    penalty method) using Lagrange or Hermite elements.
+* `linear_kirchhoff.ipynb`: A test for the non-conforming method
+  using the discrete gradient operator for Kirchhoff elements.
+
+Other stuff:
+
 * `debug.ipynb`: Some random tests.
-* `elements.ipynb`: Progress during the implementation in FFC.
-* `quadrature.ipynb`: Progress during the implementation of
-   quadratures.
 * `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
   Hermite elements. In progress.
-* `instant-test.ipynb`: Tests with instant.
+* `instant_test.ipynb`: Tests with instant.
 * `test.py`: Use this to run tests with pdb (or realgud:pdb in emacs)
 * `utils.py`: Colorizing text, boolean operations on functions and more.
 * `README.md`: Suprise!
-* `doc`: duh.
+* `doc/`: duh.
 * `misc.ipynb`: double duh.
