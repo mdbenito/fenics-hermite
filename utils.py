@@ -3,6 +3,7 @@
 from functools import reduce
 from decorator import FunctionMaker
 from inspect import getargspec
+from time import time
 
 __all__ = ['fnand', 'fnor', 'fnnot', 'red', 'green', 'yellow', 'blue']
 
@@ -142,8 +143,6 @@ def make_derivatives(fun):
     return diff_fun
 
 
-
-
 ##############################################################################
 # Pretty printing, pretty useless.
 
@@ -171,3 +170,43 @@ def yellow(s):
 @color_reset
 def blue(s):
     return "\x1b[34m" + s
+
+
+##############################################################################
+
+class Msg(object):
+    """ A simple context manager to time chunks of code and 
+    print status messages.
+    
+    Usage:
+        with Msg("Doing amathing stuff"):
+            do_amazing_stuff()
+            do_more_of_it()
+    
+    Output will be:
+        Doing amazing stuff... done in XX.XXs.
+    
+    Configure with either a second parameter or a global variable:
+        Msg(message, output:bool): set output to False to disable output
+        global DEBUG: set to 0, False or None to disable output for *all* Msg()
+
+    TODO: capture stdout/stderr and paste after the message,
+          log it or whatnot
+          
+    """
+    def __init__(self, msg, output=True):
+        global DEBUG
+        try:
+            self.output = DEBUG and output
+        except NameError:
+            self.output = output
+        self.msg = msg
+        self.begin = time()
+
+    def __enter__(self):
+        if self.output:
+            print(self.msg + "... ", end='')
+
+    def __exit__(self, type, value, traceback):
+        if self.output:
+            print("done in %.3fs." % (time()-self.begin))
