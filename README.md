@@ -74,6 +74,10 @@ Models:
 
 Other stuff:
 
+* `checkout_hermite.sh`: A script useful after first pulling the
+  docker image with the official sources. It checks out the right
+  commits and branches and configures the remotes with my private
+  branches.
 * `debug.ipynb`: Some random tests.
 * `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
   Hermite elements. In progress.
