@@ -35,8 +35,8 @@ The code should be compatible with the following revisions of the
 other subprojects:
 
 * dolfin: 8d4c7c807451f2301020ec23a2106f0501c632e3
-* dijitso: 030e1bb59dbf55ae05b09078597cd01bfe89bdc3
-* instant: 4bd92ec7eb114c8dfe944e770ce3c22323a75b0d
+* dijitso: tags/dijitso-2016.2.0
+* instant: tags/instant-2016.2.0
 * mshr: c4058b5287722fbcc9dd8ec25bebfd31e3e58ea4
 
 ## Files ##
