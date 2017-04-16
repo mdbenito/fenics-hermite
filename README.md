@@ -6,10 +6,6 @@ elements for [FEniCS](https://fenicsproject.org/).
 
 ## To do ##
 
-* Fix the problems with the scale of the solutions depending on the
-  number of cells in the mesh. This is most surely an issue with the
-  quadrature code not properly scaling the derivatives or something
-  like that.
 * Finish implementing Dirichlet boundary conditions: Check the effect
   that meddling with the stiffness matrix has over the solution of the
   system. **In particular check that symmetry is not broken, cf §6.3 of
