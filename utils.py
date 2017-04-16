@@ -179,7 +179,7 @@ class Msg(object):
     print status messages.
     
     Usage:
-        with Msg("Doing amathing stuff"):
+        with Msg("Doing amazing stuff"):
             do_amazing_stuff()
             do_more_of_it()
     
@@ -187,19 +187,20 @@ class Msg(object):
         Doing amazing stuff... done in XX.XXs.
     
     Configure with either a second parameter or a global variable:
-        Msg(message, output:bool): set output to False to disable output
-        global DEBUG: set to 0, False or None to disable output for *all* Msg()
+        Msg(message, level:int): will print messages only if level < DEBUG
+                                 set level to a huge number to disable output 
+        global DEBUG: set to 0 to disable output for *all* Msg()
 
     TODO: capture stdout/stderr and paste after the message,
           log it or whatnot
           
     """
-    def __init__(self, msg, output=True):
+    def __init__(self, msg:str, level:int=100):
         global DEBUG
         try:
-            self.output = DEBUG and output
-        except NameError:
-            self.output = output
+            self.output = output < DEBUG
+        except (NameError, TypeError): # TypeError because of unorderable types
+            self.output = False
         self.msg = msg
         self.begin = time()
 
