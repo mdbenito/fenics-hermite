@@ -20,6 +20,8 @@ elements for [FEniCS](https://fenicsproject.org/).
 * <strike>Implement `evaluate_dof()` for `PointDerivative` to enable
   nodal interpolation.</strike> See 
   [interpolation.ipynb](interpolation.ipynb).
+* Implement Hermite transformation for
+  `optimisedquadraturetransformer.py` too.
 * ???
 
 ## Dependencies ##
@@ -35,51 +37,21 @@ other subprojects:
 * instant: tags/instant-2016.2.0
 * mshr: c4058b5287722fbcc9dd8ec25bebfd31e3e58ea4
 
-## Files ##
+There is a script, `checkout-hermite.sh` to automate the checkouts.
 
-Basic implementation:
+## Contents ##
 
-* `fiat_hermite.ipynb`: Implementation of the FIAT Hermite elements.
-* `fiat_dkt.ipynb`: Implementation of the FIAT DKT elements.
-* `ffc_tests.ipynb`: Tests and routines used during the implementation
-  in FFC.
-* `quadrature.ipynb`: Progress during the implementation of
-   quadratures.
-* `interpolation.ipynb`: Nodal interpolation for elements using
-  PointDerivatives.
-* `discrete_gradient.ipynb`: An implementation using PETSc matrices of
-  the discrete gradient operator from CG1 to DG0 and from DKT to
-  Vector<P2>.
-* `boundary.ipynb`: Steps towards the implementation of Dirichlet and
-  Neumann boundary conditions with Hermite elements. Mostly just a
-  hack on the assembled stiffness matrix.
+There is a bunch of Jupyter notebooks with implementation steps,
+simple tests and some models for deeper testing. See `index.ipynb`.
 
-Models:
-
-* `Poisson1D.ipynb`: A simple 1D example to test essential BCs.
-* `Poisson2D.ipynb`: Dolfin's included 2D example, but with Hermite
-  elements. **TODO:** Find out why the solution is slightly
-  skewed.
-* `Euler-Bernoulli.ipynb`: The Euler Bernoulli beam model. The
-   mathematics are taken from (and possibly out of sync with)
-   `hermite.tm`.
-* `biharmonic.ipynb`: A test (biharmonic with non conforming interior
-   penalty method) using Lagrange or Hermite elements.
-* `linear_kirchhoff.ipynb`: A test for the non-conforming method
-  using the discrete gradient operator for Kirchhoff elements.
-
-Other stuff:
+Other things
 
 * `checkout_hermite.sh`: A script useful after first pulling the
   docker image with the official sources. It checks out the right
   commits and branches and configures the remotes with my private
   branches.
-* `debug.ipynb`: Some random tests.
 * `hermite.tm`, `hermite.bib`, `img/`: Document with the math for
   Hermite elements. In progress.
-* `instant_test.ipynb`: Tests with instant.
+* `discrete_gradient.tm`: A document explaining how these operators
+  are built. In progress.
 * `test.py`: Use this to run tests with pdb (or realgud:pdb in emacs)
-* `utils.py`: Colorizing text, boolean operations on functions and more.
-* `README.md`: Suprise!
-* `doc/`: duh.
-* `misc.ipynb`: double duh.
