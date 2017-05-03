@@ -198,7 +198,7 @@ class Msg(object):
     def __init__(self, msg:str, level:int=100):
         global DEBUG
         try:
-            self.output = output < DEBUG
+            self.output = level < DEBUG
         except (NameError, TypeError): # TypeError because of unorderable types
             self.output = False
         self.msg = msg
