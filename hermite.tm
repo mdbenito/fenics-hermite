@@ -116,30 +116,34 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-26>>
 
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>The
+      biharmonic equation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Appendix
       A.<space|2spc>Implementation details>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-28><vspace|0.5fn>
+      <no-break><pageref|auto-32><vspace|0.5fn>
 
       <with|par-left|1tab|A.1.<space|2spc><with|font-shape|small-caps|FIAT>
       implementation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-29>>
+      <no-break><pageref|auto-33>>
 
       <with|par-left|1tab|A.2.<space|2spc>Computing the Hermite shape
       functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-30>>
+      <no-break><pageref|auto-34>>
 
       <with|par-left|1tab|A.3.<space|2spc>Essential boundary conditions for
       Hermite elements <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-31>>
+      <no-break><pageref|auto-35>>
 
       <with|par-left|1tab|A.4.<space|2spc>Automatic differentiation for nodal
       interpolation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-32>>
+      <no-break><pageref|auto-36>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-33><vspace|0.5fn>
+      <no-break><pageref|auto-37><vspace|0.5fn>
     </table-of-contents>
   </small>
 
@@ -690,7 +694,7 @@
   even with large global deformations: it is a <em|physically linear> but
   <em|geometrically non-linear> theory. For thicker beams, Timoshenko's
   theory, which accounts for internal shear forces, yields more accurate
-  predictions <inactive|<cite|>>.
+  predictions <todo|<inactive|<cite|>>>.
 
   <subsection|Derivation>
 
@@ -846,28 +850,98 @@
   <big-figure|<image|img/supported-beam.eps|1par|||>|Simply supported steel
   beam under the effect of gravity alone.>
 
+  <section|The biharmonic equation>
+
+  We now use Hermite elements for a non-conforming discretisation of a fourth
+  order problem in <math|\<bbb-R\><rsup|2>>. Following the example in
+  <name|dolfin>'s repository, we consider the Biharmonic equation:
+
+  <\equation*>
+    \<nabla\><rsup|4>u=f<text| over >\<Omega\>=<around*|[|0,1|]><rsup|2>
+  </equation*>
+
+  with source <math|f> given by
+
+  <\equation*>
+    f<around|(|x,y|)>=4*\<mathpi\><rsup|4>*sin <around|(|\<mathpi\>*x|)>*sin
+    <around|(|\<mathpi\>*y|)>
+  </equation*>
+
+  and homogeneous boundary conditions
+
+  <\equation*>
+    u=0 <text| and >\<nabla\><rsup|2>u=0
+  </equation*>
+
+  on the whole boundary. We use a discontinuous Galerkin formulation
+  (interior penalty method) which imposes weak continuity of the normal
+  derivatives across facets and enables us to implement a non-conforming
+  discretisation (see e.g. <cite|brenner_c0_2005>). <todo|Why does this make
+  any sense at all for Hermite elements?> This results in the following weak
+  formulation. Let <math|V<rsub|h>> be a finite element space of Lagrange or
+  Hermite type, with polynomial degree 3. Find <math|u\<in\>V<rsub|h>> such
+  that
+
+  <\equation*>
+    a<around*|(|u,v|)>=<big|int><rsub|\<Omega\>>v*f*\<mathd\>x
+  </equation*>
+
+  holds for all <math|v\<in\>V<rsub|h>>, where\ 
+
+  <\equation*>
+    a<around*|(|u,v|)>\<assign\><big|sum><rsub|K\<in\><with|math-font|cal|\<cal-T\><rsub|h>>><big|int><rsub|K>\<nabla\><rsup|2>u*\<nabla\><rsup|2>v*\<mathd\>x-<big|int><rsub|\<Gamma\><rsub|K>><around*|\<langle\>|\<nabla\><rsup|2>*u|\<rangle\>>*<around*|\<llbracket\>|\<nabla\>v|\<rrbracket\>><space|0.17em>\<mathd\>s-<big|int><rsub|\<Gamma\><rsub|K>><around*|\<llbracket\>|\<nabla\>u|\<rrbracket\>><around*|\<langle\>|\<nabla\><rsup|2>*v|\<rangle\>>*<space|0.17em>\<mathd\>s+<big|int><rsub|\<Gamma\><rsub|K>><frac|\<alpha\>|h>*<around*|\<llbracket\>|\<nabla\>u|\<rrbracket\>>*<around*|\<llbracket\>|\<nabla\>v|\<rrbracket\>>*\<mathd\>s,
+  </equation*>
+
+  <math|<around*|\<langle\>|u|\<rangle\>>\<assign\><frac|1|2>*<around|(|u<rsub|+>+u<rsub|->|)>>
+  is the average of <math|u> across some edge (<math|u<rsub|\<pm\>>> being
+  its value at each side of the edge), <math|<around*|\<llbracket\>|w|\<rrbracket\>>=w<rsub|+>\<cdot\>n<rsub|+>+w<rsub|->\<cdot\>n<rsub|->>
+  is the jump in normal direction of <math|w>, <math|\<alpha\>\<geqslant\>0>
+  is a penalty term and <math|h> is some measure of the size of <math|K>.
+
+  The implementation in FEniCS is straightforward and follows closely the
+  standard demo in the package, so that we can safely omit it here. Suffice
+  to note that the only delicate point is the enforcement of the essential
+  (Dirichlet) boundary conditions, where one must only fix degrees of freedom
+  related to Lagrange evaluations and not Hermite.
+
+  <big-figure|<image|img/biharmonic-solutions.eps|0.9par|||>|A visual
+  inspection of the solutions isn't very revealing...>
+
+  <big-figure|<image|img/biharmonic-diffs.eps|0.9par|||>|The relative
+  difference between the Lagrange and Hermite solutions decreases [...] as
+  the grid resolution increases.>
+
+  <big-figure|<image|img/biharmonic-times.eps|1par|||>|Enforcing essential
+  boundary conditions after assembly requires manipulation of the system
+  matrix, invalidating its sparsity pattern. The cost of this naive <em|a
+  posteriori> modification in <name|Python> is exponential in the number of
+  degrees of freedom.>
+
+  \;
+
   <appendix|Implementation details>
 
   Here is an incomplete list of things that needed doing for the
   implementation in <name|FEniCS>:
 
   <\enumerate>
-    <item>Fixing the FIAT Hermite element definition to instantiate the right
-    dual basis and build the right <python|entity_ids>. See Section
+    <item>Fixing the <name|FIAT> Hermite element definition to instantiate
+    the right dual basis and build the right <python|entity_ids>. See Section
     <reference|sec:fiat-implementation> below.
 
-    <item>Implementing in FFC the \PHermite transformation\Q described above
-    for the element basis functions which are associated to the evaluation of
-    partial derivatives at the nodes of the simplex. This meant modifying:
+    <item>Implementing in <name|FFC> the Hermite transformation described
+    above for the element basis functions which are associated to the
+    evaluation of partial derivatives at the nodes of the simplex. This meant
+    modifying:
 
     <\itemize-dot>
-      <item><tt|representation.py>: for every dof
+      <item><tt|ffc/representation.py>: for every dof
       <math|<wide|l|^><rsub|i><rsup|\<alpha\>>> include the coefficients of
       the other dofs <math|<wide|l|^><rsub|j><rsup|\<alpha\>>> for
       <math|j\<neq\>i> in the <tt|dof_data> structure passed to the next
       compiler stage.
 
-      <item><tt|evaluatebasis.py>: using the Jacobian of the geometric
+      <item><tt|ffc/evaluatebasis.py>: using the Jacobian of the geometric
       transformation, compute the basis evaluations as per
       <eqref|eq:hermite-first-derivatives>. The intermediate variable
       <python|dof_data['hermite_node_offset']> is used in
@@ -1342,7 +1416,7 @@
   </python-code>
 
   <\bibliography|bib|tm-alpha|hermite.bib>
-    <\bib-list|8>
+    <\bib-list|9>
       <bibitem*|ABH+15><label|bib-alnaes_fenics_2015>Martin<nbsp>S.<nbsp>Alnaes,
       Jan Blechta, Johan Hake, August Johansson, Benjamin Kehlet, Anders
       Logg, Chris Richardson, Johannes Ring,
@@ -1350,6 +1424,12 @@
       >Garth<nbsp>N.<nbsp>Wells.<newblock> The FEniCS Project Version
       1.5.<newblock> <with|font-shape|italic|Archive of Numerical Software>,
       3(100), 2015.<newblock>
+
+      <bibitem*|BS05><label|bib-brenner_c0_2005>Susanne<nbsp>C.<nbsp>Brenner<localize|
+      and >Li-Yeng Sung.<newblock> C0 Interior Penalty Methods for Fourth
+      Order Elliptic Boundary Value Problems on Polygonal Domains.<newblock>
+      <with|font-shape|italic|Journal of Scientific Computing>,
+      22-23(1-3):83\U118, jun 2005.<newblock>
 
       <bibitem*|BS08><label|bib-brenner_mathematical_2008>Susanne<nbsp>C.<nbsp>Brenner<localize|
       and >L.<nbsp>Ridgway Scott.<newblock> <with|font-shape|italic|The
@@ -1403,7 +1483,7 @@
     <associate|font-base-size|11>
     <associate|info-flag|detailed>
     <associate|math-font|math-stix>
-    <associate|page-medium|paper>
+    <associate|page-medium|papyrus>
     <associate|page-screen-margin|false>
     <associate|preamble|false>
   </collection>
@@ -1431,27 +1511,32 @@
     <associate|auto-25|<tuple|4|10>>
     <associate|auto-26|<tuple|5.7|10>>
     <associate|auto-27|<tuple|5|10>>
-    <associate|auto-28|<tuple|A|11>>
-    <associate|auto-29|<tuple|A.1|11>>
+    <associate|auto-28|<tuple|6|11>>
+    <associate|auto-29|<tuple|6|11>>
     <associate|auto-3|<tuple|2.1|3>>
-    <associate|auto-30|<tuple|A.2|12>>
-    <associate|auto-31|<tuple|A.3|13>>
-    <associate|auto-32|<tuple|A.4|14>>
-    <associate|auto-33|<tuple|A.4|15>>
+    <associate|auto-30|<tuple|7|12>>
+    <associate|auto-31|<tuple|8|12>>
+    <associate|auto-32|<tuple|A|12>>
+    <associate|auto-33|<tuple|A.1|13>>
+    <associate|auto-34|<tuple|A.2|14>>
+    <associate|auto-35|<tuple|A.3|15>>
+    <associate|auto-36|<tuple|A.4|15>>
+    <associate|auto-37|<tuple|A.4|16>>
     <associate|auto-4|<tuple|1|3>>
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|2.2|4>>
     <associate|auto-7|<tuple|2.3|6>>
     <associate|auto-8|<tuple|3|6>>
     <associate|auto-9|<tuple|3.1|6>>
-    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|15>>
-    <associate|bib-brenner_mathematical_2008|<tuple|BS08|15>>
-    <associate|bib-girault_hermite_2002|<tuple|GS02|15>>
-    <associate|bib-grossmann_numerical_2007|<tuple|GRS07|15>>
-    <associate|bib-logg_automated_2012|<tuple|LMW12|15>>
-    <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|15>>
-    <associate|bib-quarteroni_numerical_2009|<tuple|Qua09|15>>
-    <associate|bib-solin_partial_2006|<tuple|Sol06|15>>
+    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|16>>
+    <associate|bib-brenner_c0_2005|<tuple|BS05|17>>
+    <associate|bib-brenner_mathematical_2008|<tuple|BS08|17>>
+    <associate|bib-girault_hermite_2002|<tuple|GS02|17>>
+    <associate|bib-grossmann_numerical_2007|<tuple|GRS07|17>>
+    <associate|bib-logg_automated_2012|<tuple|LMW12|17>>
+    <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|17>>
+    <associate|bib-quarteroni_numerical_2009|<tuple|Qua09|17>>
+    <associate|bib-solin_partial_2006|<tuple|Sol06|17>>
     <associate|eq:delta-property|<tuple|3|3>>
     <associate|eq:euler-bernoulli|<tuple|7|8>>
     <associate|eq:hermite-first-derivatives|<tuple|5|5>>
@@ -1476,11 +1561,11 @@
     <associate|footnr-6|<tuple|6|3>>
     <associate|footnr-7|<tuple|7|6>>
     <associate|footnr-8|<tuple|8|6>>
-    <associate|sec:ad-nodal-interpolation|<tuple|A.4|14>>
-    <associate|sec:bcs-implementation|<tuple|A.3|13>>
-    <associate|sec:fiat-implementation|<tuple|A.1|11>>
+    <associate|sec:ad-nodal-interpolation|<tuple|A.4|15>>
+    <associate|sec:bcs-implementation|<tuple|A.3|15>>
+    <associate|sec:fiat-implementation|<tuple|A.1|13>>
     <associate|sec:nodal-interpolant|<tuple|4.1|7>>
-    <associate|sec:shape-implementation|<tuple|A.2|12>>
+    <associate|sec:shape-implementation|<tuple|A.2|14>>
   </collection>
 </references>
 
@@ -1520,6 +1605,8 @@
       solin_partial_2006
 
       solin_partial_2006
+
+      brenner_c0_2005
     </associate>
     <\associate|figure>
       <tuple|normal|<with|color|<quote|dark
@@ -1538,6 +1625,19 @@
 
       <tuple|normal|Simply supported steel beam under the effect of gravity
       alone.|<pageref|auto-27>>
+
+      <tuple|normal|A visual inspection of the solutions isn't very
+      revealing...|<pageref|auto-29>>
+
+      <tuple|normal|The relative difference between the Lagrange and Hermite
+      solutions decreases [...] as the grid resolution
+      increases.|<pageref|auto-30>>
+
+      <tuple|normal|Enforcing essential boundary conditions after assembly
+      requires manipulation of the system matrix, invalidating its sparsity
+      pattern. The cost of this naive <with|font-shape|<quote|italic>|a
+      posteriori> modification in <with|font-shape|<quote|small-caps>|Python>
+      is exponential in the number of degrees of freedom.|<pageref|auto-31>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Setting>
@@ -1628,30 +1728,34 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-26>>
 
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>The
+      biharmonic equation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28><vspace|0.5fn>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
       A.<space|2spc>Implementation details>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-28><vspace|0.5fn>
+      <no-break><pageref|auto-32><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|A.1.<space|2spc><with|font-shape|<quote|small-caps>|FIAT>
       implementation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-29>>
+      <no-break><pageref|auto-33>>
 
       <with|par-left|<quote|1tab>|A.2.<space|2spc>Computing the Hermite shape
       functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-30>>
+      <no-break><pageref|auto-34>>
 
       <with|par-left|<quote|1tab>|A.3.<space|2spc>Essential boundary
       conditions for Hermite elements <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-31>>
+      <no-break><pageref|auto-35>>
 
       <with|par-left|<quote|1tab>|A.4.<space|2spc>Automatic differentiation
       for nodal interpolation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-32>>
+      <no-break><pageref|auto-36>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-33><vspace|0.5fn>
+      <no-break><pageref|auto-37><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
