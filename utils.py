@@ -7,7 +7,7 @@ from inspect import getargspec
 from time import time
 
 __all__ = ['fnand', 'fnor', 'fnnot', 'red', 'green', 'yellow', 'blue',
-           'make_derivatives', 'ExpresssionAD']
+           'make_derivatives', 'ExpressionAD']
 
 ##############################################################################
 # Boolean operations on functions
