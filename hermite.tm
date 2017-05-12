@@ -14,13 +14,14 @@
   </hide-preamble>
 
   <doc-data|<doc-title|Hermite elements:<new-line>introduction and
-  implementation>|<doc-author|<author-data|<author-name|Miguel de
-  Benito>|<\author-affiliation>
+  implementation>|<doc-running-title|Hermite
+  elements>|<doc-author|<author-data|<author-name|Miguel de Benito
+  Delgado>|<\author-affiliation>
     Universität Augsburg
   </author-affiliation>>>|<doc-date|March 2017>>
 
   <abstract-data|<abstract|We briefly review the setting and notation for
-  finite element approximations, using cubic Hermite elements and the
+  finite element approximations using cubic Hermite elements and the
   coordinate transformation they require. We then detail some aspects of our
   implementation for the FEniCS library <cite|alnaes_fenics_2015|logg_automated_2012>
   and finish with some applications.>>
@@ -75,50 +76,70 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
 
-      <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>Implementation
-      in <with|font-shape|small-caps|FEniCS> >
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|5.<space|2spc>The
+      Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-15><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|bold|math-font-series|bold|6.<space|2spc>The
-      Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16><vspace|0.5fn>
+      <with|par-left|1tab|5.1.<space|2spc>Derivation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
 
-      <with|par-left|1tab|6.1.<space|2spc>Derivation
+      <with|par-left|1tab|5.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-17>>
 
-      <with|par-left|1tab|6.2.<space|2spc>Weak formulation
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
-
       <with|par-left|4tab|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19><vspace|0.15fn>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
 
       <with|par-left|4tab|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
-      <with|par-left|1tab|6.3.<space|2spc>Existence and uniqueness
+      <with|par-left|1tab|5.3.<space|2spc>Existence and uniqueness
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20>>
+
+      <with|par-left|1tab|5.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-21>>
 
-      <with|par-left|1tab|6.4.<space|2spc>Discretization
+      <with|par-left|1tab|5.5.<space|2spc>Clamped beam
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-22>>
 
-      <vspace*|1fn><with|font-series|bold|math-font-series|bold|Appendix
-      A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23><vspace|0.5fn>
-
-      <with|par-left|1tab|A.1.<space|2spc>Computing the Hermite shape
-      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|1tab|5.6.<space|2spc>Cantilevered beam
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-24>>
+
+      <with|par-left|1tab|5.7.<space|2spc>Simply supported beam
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-26>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|Appendix
+      A.<space|2spc>Implementation details>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28><vspace|0.5fn>
+
+      <with|par-left|1tab|A.1.<space|2spc><with|font-shape|small-caps|FIAT>
+      implementation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-29>>
+
+      <with|par-left|1tab|A.2.<space|2spc>Computing the Hermite shape
+      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-30>>
+
+      <with|par-left|1tab|A.3.<space|2spc>Essential boundary conditions for
+      Hermite elements <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-31>>
+
+      <with|par-left|1tab|A.4.<space|2spc>Automatic differentiation for nodal
+      interpolation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-32>>
 
       <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-25><vspace|0.5fn>
+      <no-break><pageref|auto-33><vspace|0.5fn>
     </table-of-contents>
   </small>
 
@@ -216,16 +237,15 @@
     <math|V<rsub|h>>.
   </itemize-dot>
 
-  Furthermore one requires:
+  Furthermore one requires methods to:
 
   <\itemize-dot>
-    <item>A method of interpolating functions <math|g\<in\>V> into
-    <math|V<rsub|h>>, e.g. <math|H<rsup|2>>-projection.
+    <item>Interpolate functions <math|g\<in\>V> into <math|V<rsub|h>>, e.g.
+    <math|H<rsup|2>>-projection.
 
-    <item>A method of computing integrals of linear forms defined over
-    <math|V<rsub|h>>.
+    <item>Compute integrals of linear forms defined over <math|V<rsub|h>>.
 
-    <item><todo|...>
+    <item>Set boundary conditions.
   </itemize-dot>
 
   In this note we work in <math|d=2> dimensions, with polynomials of degree
@@ -546,18 +566,24 @@
   a point whose corresponding global dof has index <math|i<rsub|0>>, then
   this is easily achieved by setting <math|A<rsub|i<rsub|0>\<nocomma\>j>=\<delta\><rsub|i<rsub|0>\<nocomma\>j>>
   for all <math|j> and <math|b<rsub|i<rsub|0>>=v<rsub|0>> before solving the
-  system, see <cite-detail|quarteroni_numerical_2009|Ÿ8.4.5>.
+  system, see <cite-detail|quarteroni_numerical_2009|Ÿ8.4.5>.<\footnote>
+    Actually, one would like to preserve any symmetries that the system may
+    have without the boundary conditions and the operation described would
+    break them. This can be avoided if the boundary condition is applied
+    element-wise during the assembly, like <name|FEniCS> does.
+  </footnote>
 
   One must be careful however with Hermite elements, since not all dofs at a
   boundary node in the mesh are of Lagrange type: setting the Hermite ones
-  effectively fixes the first derivatives of the solution at this point, not
+  effectively fixes the first derivatives of the solution at that point, not
   its value.
 
   This turns out to be an issue with the current version of
   <name|FEniCS>,<\footnote>
     Version <tt|2017.1.0.dev0>.
   </footnote> where <cpp|DirichletBC> assumes that all dofs at a mesh node
-  stem from point evaluations. See the implementation details below.
+  stem from point evaluations. See the implementation details in Section
+  <reference|sec:bcs-implementation> below.
 
   <subsection|Computing integrals>
 
@@ -573,12 +599,14 @@
   </equation*>
 
   <todo|As can be seen, the transformation introduced above plays here a role
-  as well...> Notice that even though <math|V<rsub|h>\<nsubset\>H<rsup|2>> we
-  can still compute the Laplacian in the interior of each element <math|K>.
-  However, the normal derivative might present discontinuities, <todo|so...>
+  as well...> Notice that even if <math|V<rsub|h>\<nsubset\>H<rsup|2>>
+  globally, we can still compute the Laplacian in the interior of each
+  element <math|K>. However, the normal derivatives might present
+  discontinuities.
 
-  We implement a quadrature representation (as opposed to a tensor
-  representation), as in <cite|olgaard_optimizations_2010>.
+  In order to actually compute the integrals, we implement a quadrature
+  representation (as opposed to a tensor representation), as in
+  <cite|olgaard_optimizations_2010>.
 
   \;
 
@@ -597,16 +625,15 @@
 
   <\enumerate>
     <item>Use a global orthogonal projection to compute the best interpolant
-    in the <math|H<rsup|2>>-sense. This means solving the system <todo|...>.
-    If the boundary conditions allow it (e.g. if we have Dirichlet and
-    Poincaré's inequality holds) then one can use the
-    <math|H<rsup|2><rsub|0>> seminorm. <todo|Does FEniCS do this by default
-    with <python|project()>?>
+    in the <math|H<rsup|2>>-sense. If the boundary conditions allow it (e.g.
+    if we have Dirichlet and Poincaré's inequality holds) then one can use
+    the <math|H<rsup|2><rsub|0>> seminorm. <todo|Does FEniCS do this by
+    default with <python|project()>?>
 
     <item>Use nodal interpolation of vertex and derivatives plus local
     orthogonal projections in the element interiors. This improves the nodal
     interpolant in the interior for dimensions 2 or greater or higher order
-    Hermite elements. <todo|...>
+    Hermite elements.
 
     <item>Compute the nodal interpolant, cf.
     Ÿ<reference|sec:nodal-interpolant>.
@@ -630,56 +657,26 @@
     <cpp|ufc::function> to include differentiation?
   </question*>
 
+  A simple first solution is to only allow interpolation of expressions whose
+  derivative can be evaluated, e.g. via automatic differentiation. Using
+  <name|autograd> it is straightforward to implemement a <name|Python>
+  decorator extending any <python|Callable> for the evaluation of partial
+  derivatives and this is the path we first take.
+
   <subsection|<math|H<rsup|2>>-projection>
 
-  See <cite-detail|solin_partial_2006|Ÿ6.3.8>,
+  This means solving the system <todo|...>. See
+  <cite-detail|solin_partial_2006|Ÿ6.3.8>,
   <cite|brenner_mathematical_2008>...
-
-  <section|Implementation in <name|FEniCS> >
-
-  An incomplete list of things that needed doing:
-
-  <\enumerate>
-    <item>Fixing the FIAT Hermite element definition (e.g. it was returning
-    an inconsistent format of <tt|entity_ids>) in dimensions 1 to 3.\ 
-
-    <item>Implementing in FFC the \PHermite transformation\Q described above
-    for the element basis functions which are associated to the evaluation of
-    partial derivatives at the nodes of the simplex. This means:
-
-    <\itemize-dot>
-      <item><tt|representation.py>: for every dof
-      <math|<wide|l|^><rsub|i><rsup|\<alpha\>>> include the coefficients of
-      the other dofs <math|<wide|l|^><rsub|j><rsup|\<alpha\>>> for
-      <math|j\<neq\>i> in the <tt|dof_data> structure passed to the next
-      compiler stage.
-
-      <item><tt|evaluatebasis.py>: using the Jacobian of the geometric
-      transformation, compute the basis evaluations as per
-      <eqref|eq:hermite-first-derivatives>. The intermediate variable
-      <python|dof_data['hermite_node_offset']> is used in
-      <python|_compute_values()> to compute the right linear combination of
-      reference basis functions.
-
-      <item><tt|quadratures/quadraturetransformer.py>:\ 
-    </itemize-dot>
-
-    <item>Implementing the same transformation for the quadratures. See
-    <python|create_argument()> and <python|create_function()> in
-    <tt|ffc/quadratures/quadraturetransformerbase.py>.
-
-    <item>Amending the assembled stiffness matrix to account for the presence
-    of Hermite dofs. In particular undoing the changes done by
-    <cpp|DirichletBC.apply()> to the corresponding rows.
-
-    <item><todo|Implementing the nodal interpolant>.
-  </enumerate>
 
   <section|The Euler-Bernoulli beam model>
 
-  This classical model reduces a 2D beam to a 1D problem. We study the
-  deformation of the midplane of a beam subject to transveral load, under the
-  assumptions that after the deformation the normals to the midplane:
+  As a first test of our implementation of Hermite elements we use a one
+  dimensional model where these provide a conforming approximation. The
+  classical Euler-Bernoulli model reduces a 2D beam to a 1D problem. It
+  studies the deformation of the midplane of a beam subject to a transversal
+  load, under the assumptions that after the deformation the normals to the
+  midplane:
 
   <\itemize-dot>
     <item>do not bend,
@@ -735,7 +732,7 @@
   <math|f\<in\>L<rsup|2><around|(|\<omega\>|)>> (or even
   <math|H<rsup|-2><around*|(|\<omega\>|)>>). As always, the definition of
   <math|V> and the final form of the equation are determined by our choices
-  for the four boundary conditions that have to be specified:
+  for the four boundary conditions that in this case have to be specified:
 
   <paragraph|Essential boundary conditions>Split the boundary
   <math|\<gamma\>=<around*|{|a,b|}>> into (possibly empty) sets
@@ -787,27 +784,276 @@
   <subsection|Existence and uniqueness>
 
   A simple application of Hölder and Poincaré is required to check the
-  conditions for existence in Lax-Milgram. For ellipticity, assume that
-  <math|b> is a.e. bounded away from and above zero.
+  conditions for existence in Lax-Milgram's Lemma. For ellipticity, assume
+  that <math|b> is a.e. positive and bounded away from zero.
 
   <subsection|Discretization>
 
-  Even though cuadratic polynomials might be enough, we want to construct a
-  Ciarlet finite element, i.e. with a unisolvent set of degrees of freedom,
-  which requires at least cubic polynomials ... <todo|elaborate, see
-  <cite-detail|solin_partial_2006|p. 218>>.
-
   Recall that <math|H<rsup|2><around|(|a,b|)>\<subset\>C<rsup|1,\<gamma\>><around|(|a,b|)>,\<gamma\>=1/2>
-  by the Sobolev embeddings.
+  by the Sobolev embeddings. Therefore we use cubic Hermite elements, which
+  are <math|C<rsup|1>> in <math|\<bbb-R\>> and thus provide a conforming
+  discretization (see <cite-detail|solin_partial_2006|p. 218>). The
+  specification of the linear form and the assembly of the stiffness matrix
+  are done using <name|dolfin> compiled to use the extensions to <name|FIAT>
+  and <name|FFC> detailed below. Boundary conditions need special handling,
+  see also the Appendix.
 
-  We use cubic Hermite elements, which are <math|C<rsup|1>> in
-  <math|\<bbb-R\>>.
+  <subsection|Clamped beam>
 
-  <appendix|>
+  We look for a solution with clamped boundaries, i.e.
+  <math|u<around|(|a|)>=u<around|(|b|)>=u<rprime|'><around|(|a|)>=u<rprime|'><around|(|b|)>=0>.
+  Because of the essential constraints, the terms corresponding to the
+  natural ones in the weak formulation vanish and we are left with:
 
-  <subsection|Computing the Hermite shape functions>
+  <\equation*>
+    V=V<rsub|clamped>=<around|{|v\<in\>H<rsup|2><around|(|\<Omega\>|)>:v<around|(|\<alpha\>|)>=v<rsub|\<alpha\>>,v<rprime|'><around|(|\<alpha\>|)>=v<rprime|'><rsub|\<alpha\>>,\<alpha\>=1,2|}>.
+  </equation*>
 
-  Let <math|<wide|K|^>> be the reference triangle with vertices at
+  and <math|\<gamma\><rsub|M>=\<gamma\><rsub|F>=\<emptyset\>>.
+
+  <big-figure|<image|img/clamped-beam.eps|1par|||>|Clamped steel beam under
+  the effect of gravity alone.>
+
+  <subsection|Cantilevered beam>
+
+  One boundary is clamped, e.g. <math|u<around|(|a|)>=u<rprime|'><around|(|a|)>=0>,
+  and the other is left hanging freely, so that no bending moment (i.e. no
+  torque) and no shear force appear, e.g. assuming constant <math|E> and
+  <math|I>: <math|u<rprime|''><around|(|b|)>=u<rprime|'''><around|(|b|)>=0>.
+
+  We can generalise this to the case where we hang a mass from the free end
+  of the beam. The downward force will introduce shear, e.g.
+  <math|u<rprime|'''><around|(|b|)>=-m*g>, with <math|m> the mass of the
+  object and <math|g> gravity. Just set <math|m=0> for the first situation.
+
+  <big-figure|<image|img/cantilevered-beam.eps|1par|||>|Cantilevered steel
+  beam with a weight hanging from the right endpoint.>
+
+  <subsection|Simply supported beam>
+
+  The beam rests on two point supports at its ends. Displacements are fixed
+  at both ends with <math|u<around|(|a|)>=u<around|(|b|)>=0>, but since the
+  beam is free to rotate, it experiences no torque at these points, i.e. the
+  bending moments are zero: <math|u<rprime|''><around|(|a|)>=u<rprime|''><around|(|b|)>=0>,
+  so we can plug in the natural boundary condition <math|M=0> and the problem
+  is: Find <math|u\<in\>V=H<rsup|2><rsub|0><around|(|\<omega\>|)>> such that
+  for all <math|v\<in\>V>:
+
+  <\equation*>
+    <big|int><rsub|\<omega\>>b*\<Delta\>u*\<Delta\>v*\<mathd\>x+<big|int><rsub|\<gamma\>>\<nabla\>*<around|(|b*\<Delta\>u|)>*v\<mathd\>s=<big|int><rsub|\<omega\>>f*v*\<mathd\>x.
+  </equation*>
+
+  <big-figure|<image|img/supported-beam.eps|1par|||>|Simply supported steel
+  beam under the effect of gravity alone.>
+
+  <appendix|Implementation details>
+
+  Here is an incomplete list of things that needed doing for the
+  implementation in <name|FEniCS>:
+
+  <\enumerate>
+    <item>Fixing the FIAT Hermite element definition to instantiate the right
+    dual basis and build the right <python|entity_ids>. See Section
+    <reference|sec:fiat-implementation> below.
+
+    <item>Implementing in FFC the \PHermite transformation\Q described above
+    for the element basis functions which are associated to the evaluation of
+    partial derivatives at the nodes of the simplex. This meant modifying:
+
+    <\itemize-dot>
+      <item><tt|representation.py>: for every dof
+      <math|<wide|l|^><rsub|i><rsup|\<alpha\>>> include the coefficients of
+      the other dofs <math|<wide|l|^><rsub|j><rsup|\<alpha\>>> for
+      <math|j\<neq\>i> in the <tt|dof_data> structure passed to the next
+      compiler stage.
+
+      <item><tt|evaluatebasis.py>: using the Jacobian of the geometric
+      transformation, compute the basis evaluations as per
+      <eqref|eq:hermite-first-derivatives>. The intermediate variable
+      <python|dof_data['hermite_node_offset']> is used in
+      <python|_compute_values()> to compute the right linear combination of
+      reference basis functions.
+    </itemize-dot>
+
+    <item>Implementing the same transformation for the quadratures. See
+    <python|create_argument()> and <python|create_function()> in
+    <tt|ffc/quadratures/quadraturetransformerbase.py>.
+
+    <item>Amending the assembled stiffness matrix to account for the presence
+    of Hermite dofs in boundary conditions. In particular undoing the changes
+    done by <cpp|DirichletBC.apply()> to the corresponding rows.
+
+    <item>Implementing the nodal interpolant. See Section
+    <reference|sec:ad-nodal-interpolation> below.
+  </enumerate>
+
+  <subsection|<name|FIAT> implementation><label|sec:fiat-implementation>
+
+  <\python-code>
+    from FIAT import finite_element, polynomial_set, dual_set, functional,
+    reference_element
+
+    \;
+
+    class CubicHermiteDualSet(dual_set.DualSet):
+
+    \ \ \ \ """The dual basis for Cubic Hermite elements.
+
+    \ \ \ \ This class works for simplices of any dimension.
+
+    \ \ \ \ Nodes are point evaluation and derivatives at vertices,
+
+    \ \ \ \ plus point evaluation at the barycenter of each face if
+
+    \ \ \ \ the spatial dimension is \<gtr\>= 2. """
+
+    \;
+
+    \ \ \ \ def __init__(self, ref_el):
+
+    \ \ \ \ \ \ \ \ entity_ids = {}
+
+    \ \ \ \ \ \ \ \ nodes = []
+
+    \ \ \ \ \ \ \ \ cur = 0
+
+    \;
+
+    \ \ \ \ \ \ \ \ top = ref_el.get_topology()
+
+    \ \ \ \ \ \ \ \ verts = ref_el.get_vertices()
+
+    \ \ \ \ \ \ \ \ sd = ref_el.get_spatial_dimension()
+
+    \;
+
+    \ \ \ \ \ \ \ \ # Vertex dofs: one point evaluation and sd partial
+    derivatives
+
+    \ \ \ \ \ \ \ \ entity_ids[0] = {}
+
+    \ \ \ \ \ \ \ \ for v in sorted(top[0]):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(functional.PointEvaluation(ref_el,
+    verts[v]))
+
+    \ \ \ \ \ \ \ \ \ \ \ \ pd = functional.PointDerivative
+
+    \ \ \ \ \ \ \ \ \ \ \ \ for i in range(sd):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alpha = [0] * sd
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alpha[i] = 1
+
+    \;
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(pd(ref_el, verts[v], alpha))
+
+    \;
+
+    \ \ \ \ \ \ \ \ \ \ \ \ entity_ids[0][v] = list(range(cur, cur + 1 + sd))
+
+    \ \ \ \ \ \ \ \ \ \ \ \ cur += sd + 1
+
+    \;
+
+    \ \ \ \ \ \ \ \ # no edge dofs
+
+    \ \ \ \ \ \ \ \ entity_ids[1] = {}
+
+    \ \ \ \ \ \ \ \ for e in sorted(top[1]):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ entity_ids[1][e] = []
+
+    \;
+
+    \ \ \ \ \ \ \ \ if sd \<gtr\>= 2:
+
+    \ \ \ \ \ \ \ \ \ \ \ \ # face dof
+
+    \ \ \ \ \ \ \ \ \ \ \ \ # point evaluation at barycenter
+
+    \ \ \ \ \ \ \ \ \ \ \ \ entity_ids[2] = {}
+
+    \ \ \ \ \ \ \ \ \ \ \ \ for f in sorted(top[2]):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pt = ref_el.make_points(2, f, 3)[0]
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n = functional.PointEvaluation(ref_el,
+    pt)
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(n)
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entity_ids[2][f] = list(range(cur, cur +
+    1))
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur += 1
+
+    \;
+
+    \ \ \ \ \ \ \ \ \ \ \ \ # No more dof in higher dimensions
+
+    \ \ \ \ \ \ \ \ \ \ \ \ for dim in range(3, sd + 1):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entity_ids[dim] = {x: [] for x in
+    sorted(top[dim])}
+
+    \;
+
+    \ \ \ \ \ \ \ \ super(CubicHermiteDualSet, self).__init__(nodes, ref_el,
+    entity_ids)
+  </python-code>
+
+  The finite element is defined as:
+
+  <\python-code>
+    class CubicHermite(finite_element.CiarletElement):
+
+    \ \ \ \ """ The cubic Hermite finite element.
+
+    \ \ \ \ There are three degrees of freedom per vertex and one additional
+
+    \ \ \ \ for each barycenter of a 2d face. """
+
+    \;
+
+    \ \ \ \ def __init__(self, ref_el, degree=3):
+
+    \ \ \ \ \ \ \ \ # Degree is fixed to 3 for cubic Hermite elements.
+
+    \ \ \ \ \ \ \ \ poly_set = polynomial_set.ONPolynomialSet(ref_el, 3)
+
+    \ \ \ \ \ \ \ \ dual = CubicHermiteDualSet(ref_el)
+
+    \ \ \ \ \ \ \ \ super(CubicHermite, self).__init__(poly_set, dual, 3)
+
+    \;
+
+    \ \ \ \ def mapping(self):
+
+    \ \ \ \ \ \ \ \ # MBD FIXME: is this correct?
+
+    \ \ \ \ \ \ \ \ mappings = []
+
+    \ \ \ \ \ \ \ \ for f in self.dual_basis():
+
+    \ \ \ \ \ \ \ \ \ \ \ \ if isinstance(f, functional.PointEvaluation):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mappings.append("affine")
+
+    \ \ \ \ \ \ \ \ \ \ \ \ elif isinstance(f, functional.PointDerivative):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mappings.append("hermite")
+
+    \ \ \ \ \ \ \ \ return mappings
+  </python-code>
+
+  <subsection|Computing the Hermite shape
+  functions><label|sec:shape-implementation>
+
+  In order to test the <name|FIAT> implementation of Hermite elements we
+  would like to \Smanually\T compute the shape functions. Let
+  <math|<wide|K|^>> be the reference triangle with vertices at
   <math|<around*|(|0,0|)>,<around*|(|1,0|)>> and <math|<around*|(|0,1|)>>. We
   choose the monomial basis <math|G=<around|{|1,x,y,x<rsup|2>,x*y,y<rsup|2>,x<rsup|3>,x<rsup|2>*y,x*y<rsup|2>,y<rsup|3>|}>>
   to express the shape functions in. The 10 degrees of freedom
@@ -930,6 +1176,171 @@
     print(s)
   </python-code>
 
+  <subsection|Essential boundary conditions for Hermite
+  elements><label|sec:bcs-implementation>
+
+  A simple implementation of Dirichlet BCs (without enforcing symmetry) is as
+  follows. The case of Neumann conditions is a bit more involved because we
+  need to single out Hermite dofs at the boundary, but the idea is similar.
+
+  <\python-code>
+    def apply_dirichlet_hermite(A:Matrix, b:Vector, bc:DirichletBC):
+
+    \ \ \ \ warning("This won't work in parallel!")
+
+    \ \ \ \ rows = list_hermite_boundary_dofs(bc)
+
+    \ \ \ \ cols = np.arange(A.size(1), dtype=np.intc)
+
+    \ \ \ \ saved_block = np.empty((rows.size, cols.size), dtype=np.float)
+
+    \ \ \ \ A.get(saved_block, rows, cols)
+
+    \ \ \ \ saved_vec = b[rows].copy() \ \ 
+
+    \ \ \ \ bc.apply(A, b)
+
+    \ \ \ \ b[rows] = saved_vec
+
+    \ \ \ \ M = as_backend_type(A)
+
+    \ \ \ \ if isinstance(M, dolfin.cpp.la.PETScMatrix):
+
+    \ \ \ \ \ \ \ \ M.mat().setOption(PETSc.MAT_NEW_NONZERO_ALLOCATION_ERR,
+    PETSc.PETSc_FALSE)
+
+    \ \ \ \ M.set(saved_block, rows, cols) \ # Slow!!!
+
+    \ \ \ \ M.apply('insert')
+  </python-code>
+
+  <subsection|Automatic differentiation for nodal
+  interpolation><label|sec:ad-nodal-interpolation>
+
+  For consistency with the rest of <name|FEniCS> we extend the interface of
+  <python|dolfin.Expression> to take partial derivatives. Of course we can
+  only do this for expressions where we can actually compute these and this
+  is most easily done with autograd applied to callables:
+
+  <\python-code>
+    import autograd as ad
+
+    from typing import Callable
+
+    from FIAT import functional
+
+    from ffc import fiatinterface
+
+    ##### Docstrings, comments and checks omitted #####
+
+    \;
+
+    def make_derivatives(fun:Callable) -\<gtr\> Callable:
+
+    \ \ \ \ def diff_fun(x, derivatives=()):
+
+    \ \ \ \ \ \ \ \ ret = fun
+
+    \ \ \ \ \ \ \ \ for i, n in enumerate(derivatives):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ for j in range(n):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ret = ad.grad(ret, i)
+
+    \ \ \ \ \ \ \ \ return ret(*x)
+
+    \ \ \ \ # Some boilerplate omitted...
+
+    \ \ \ \ return diff_fun
+
+    \;
+
+    class ExpressionAD(Expression):
+
+    \ \ \ \ def __init__(self, **kwargs):
+
+    \ \ \ \ \ \ \ \ self.fun = make_derivatives(kwargs['fun'])
+
+    \ \ \ \ def eval(self, value, x):
+
+    \ \ \ \ \ \ \ \ value[0] = self.fun(x)
+
+    \ \ \ \ def partial(self, value, x, derivatives):
+
+    \ \ \ \ \ \ \ \ value[0] = self.fun(x, derivatives)
+
+    \ \ \ \ def __call__(self, x, derivatives=()):
+
+    \ \ \ \ \ \ \ \ return self.fun(x, derivatives)
+
+    \;
+
+    def interpolate_hermite(f:ExpressionAD, V:FunctionSpace) -\<gtr\>
+    Function:
+
+    \ \ \ \ tdim = V.element().topological_dimension()
+
+    \ \ \ \ e = fiatinterface.create_element(V.ufl_element())
+
+    \ \ \ \ hmask = np.array(list(map(lambda f: isinstance(f,
+    functional.PointDerivative),
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.dual_basis())))
+
+    \ \ \ \ lmask = np.array(list(map(lambda f: isinstance(f,
+    functional.PointEvaluation),
+
+    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.dual_basis())))
+
+    \ \ \ \ uv = np.zeros(V.dim())
+
+    \ \ \ \ dm = V.dofmap()
+
+    \ \ \ \ dof_coordinates = V.tabulate_dof_coordinates().reshape((-1,
+    tdim))
+
+    \ \ \ \ derivatives = partial_derivatives(tdim) # e.g.
+    [(1,0,0),(0,1,0),(0,0,1)]*4
+
+    \ \ \ \ for i in range(V.mesh().num_cells()):
+
+    \ \ \ \ \ \ \ \ dofs = dm.cell_dofs(i)
+
+    \ \ \ \ \ \ \ \ hermite_dofs = dofs[hmask]
+
+    \ \ \ \ \ \ \ \ lagrange_dofs = dofs[lmask]
+
+    \ \ \ \ \ \ \ \ for dd, hdof in zip(derivatives, hermite_dofs):
+
+    \ \ \ \ \ \ \ \ \ \ \ \ uv[hdof] = f(dof_coordinates[hdof],
+    derivatives=dd)
+
+    \ \ \ \ \ \ \ \ for ldof in lagrange_dofs:
+
+    \ \ \ \ \ \ \ \ \ \ \ \ uv[ldof] = f(dof_coordinates[ldof],
+    derivatives=())
+
+    \ \ \ \ u = Function(V)
+
+    \ \ \ \ u.vector().set_local(uv)
+
+    \ \ \ \ return u
+  </python-code>
+
+  Usage is simple and homogeneous with <name|dolfin>'s <python|project()>:
+
+  <\python-code>
+    V = FunctionSpace(UnitSquareMesh(20, 20), 'Hermite', 3)
+
+    f = ExpressionAD(fun=lambda x,y: x*(y+2)+x**2, degree=3)
+
+    u = interpolate_hermite(f, V) \ # Nodal interpolation
+
+    v = project(f, V)
+
+    w = Function(V, u.vector() - v.vector()) \ # difference
+  </python-code>
+
   <\bibliography|bib|tm-alpha|hermite.bib>
     <\bib-list|8>
       <bibitem*|ABH+15><label|bib-alnaes_fenics_2015>Martin<nbsp>S.<nbsp>Alnaes,
@@ -984,8 +1395,6 @@
       37(1):8\U1, jan 2010.<newblock>
     </bib-list>
   </bibliography>
-
-  \;
 </body>
 
 <\initial>
@@ -1002,39 +1411,47 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-1|<tuple|1|2>>
     <associate|auto-10|<tuple|3.2|6>>
     <associate|auto-11|<tuple|3.3|7>>
     <associate|auto-12|<tuple|4|7>>
     <associate|auto-13|<tuple|4.1|7>>
     <associate|auto-14|<tuple|4.2|7>>
-    <associate|auto-15|<tuple|5|7>>
-    <associate|auto-16|<tuple|6|8>>
-    <associate|auto-17|<tuple|6.1|8>>
-    <associate|auto-18|<tuple|6.2|8>>
-    <associate|auto-19|<tuple|1|9>>
+    <associate|auto-15|<tuple|5|8>>
+    <associate|auto-16|<tuple|5.1|8>>
+    <associate|auto-17|<tuple|5.2|8>>
+    <associate|auto-18|<tuple|1|8>>
+    <associate|auto-19|<tuple|2|8>>
     <associate|auto-2|<tuple|2|3>>
-    <associate|auto-20|<tuple|2|9>>
-    <associate|auto-21|<tuple|6.3|9>>
-    <associate|auto-22|<tuple|6.4|9>>
-    <associate|auto-23|<tuple|A|9>>
-    <associate|auto-24|<tuple|A.1|9>>
-    <associate|auto-25|<tuple|A.1|10>>
+    <associate|auto-20|<tuple|5.3|9>>
+    <associate|auto-21|<tuple|5.4|9>>
+    <associate|auto-22|<tuple|5.5|9>>
+    <associate|auto-23|<tuple|3|9>>
+    <associate|auto-24|<tuple|5.6|9>>
+    <associate|auto-25|<tuple|4|10>>
+    <associate|auto-26|<tuple|5.7|10>>
+    <associate|auto-27|<tuple|5|10>>
+    <associate|auto-28|<tuple|A|11>>
+    <associate|auto-29|<tuple|A.1|11>>
     <associate|auto-3|<tuple|2.1|3>>
+    <associate|auto-30|<tuple|A.2|12>>
+    <associate|auto-31|<tuple|A.3|13>>
+    <associate|auto-32|<tuple|A.4|14>>
+    <associate|auto-33|<tuple|A.4|15>>
     <associate|auto-4|<tuple|1|3>>
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|2.2|4>>
     <associate|auto-7|<tuple|2.3|6>>
     <associate|auto-8|<tuple|3|6>>
     <associate|auto-9|<tuple|3.1|6>>
-    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|10>>
-    <associate|bib-brenner_mathematical_2008|<tuple|BS08|10>>
-    <associate|bib-girault_hermite_2002|<tuple|GS02|11>>
-    <associate|bib-grossmann_numerical_2007|<tuple|GRS07|10>>
-    <associate|bib-logg_automated_2012|<tuple|LMW12|11>>
-    <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|11>>
-    <associate|bib-quarteroni_numerical_2009|<tuple|Qua09|11>>
-    <associate|bib-solin_partial_2006|<tuple|Sol06|11>>
+    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|15>>
+    <associate|bib-brenner_mathematical_2008|<tuple|BS08|15>>
+    <associate|bib-girault_hermite_2002|<tuple|GS02|15>>
+    <associate|bib-grossmann_numerical_2007|<tuple|GRS07|15>>
+    <associate|bib-logg_automated_2012|<tuple|LMW12|15>>
+    <associate|bib-olgaard_optimizations_2010|<tuple|ØW10|15>>
+    <associate|bib-quarteroni_numerical_2009|<tuple|Qua09|15>>
+    <associate|bib-solin_partial_2006|<tuple|Sol06|15>>
     <associate|eq:delta-property|<tuple|3|3>>
     <associate|eq:euler-bernoulli|<tuple|7|8>>
     <associate|eq:hermite-first-derivatives|<tuple|5|5>>
@@ -1043,21 +1460,27 @@
     <associate|eq:linear-problem|<tuple|1|2>>
     <associate|eq:linear-system|<tuple|2|2>>
     <associate|fig:reference-triangle|<tuple|1|3>>
-    <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|2>>
     <associate|footnote-5|<tuple|5|2>>
     <associate|footnote-6|<tuple|6|3>>
     <associate|footnote-7|<tuple|7|6>>
-    <associate|footnr-1|<tuple|1|1>>
+    <associate|footnote-8|<tuple|8|6>>
+    <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|2>>
     <associate|footnr-5|<tuple|5|2>>
-    <associate|footnr-6|<tuple|6|2>>
+    <associate|footnr-6|<tuple|6|3>>
     <associate|footnr-7|<tuple|7|6>>
+    <associate|footnr-8|<tuple|8|6>>
+    <associate|sec:ad-nodal-interpolation|<tuple|A.4|14>>
+    <associate|sec:bcs-implementation|<tuple|A.3|13>>
+    <associate|sec:fiat-implementation|<tuple|A.1|11>>
     <associate|sec:nodal-interpolant|<tuple|4.1|7>>
+    <associate|sec:shape-implementation|<tuple|A.2|12>>
   </collection>
 </references>
 
@@ -1106,6 +1529,15 @@
 
       <tuple|normal|The ten Hermite shape functions over the reference
       triangle.|<pageref|auto-5>>
+
+      <tuple|normal|Clamped steel beam under the effect of gravity
+      alone.|<pageref|auto-23>>
+
+      <tuple|normal|Cantilevered steel beam with a weight hanging from the
+      right endpoint.|<pageref|auto-25>>
+
+      <tuple|normal|Simply supported steel beam under the effect of gravity
+      alone.|<pageref|auto-27>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1.<space|2spc>Setting>
@@ -1156,50 +1588,70 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>Implementation
-      in <with|font-shape|<quote|small-caps>|FEniCS> >
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5.<space|2spc>The
+      Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-15><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6.<space|2spc>The
-      Euler-Bernoulli beam model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16><vspace|0.5fn>
+      <with|par-left|<quote|1tab>|5.1.<space|2spc>Derivation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
 
-      <with|par-left|<quote|1tab>|6.1.<space|2spc>Derivation
+      <with|par-left|<quote|1tab>|5.2.<space|2spc>Weak formulation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-17>>
 
-      <with|par-left|<quote|1tab>|6.2.<space|2spc>Weak formulation
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-18>>
-
       <with|par-left|<quote|4tab>|Essential boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19><vspace|0.15fn>>
+      <no-break><pageref|auto-18><vspace|0.15fn>>
 
       <with|par-left|<quote|4tab>|Natural boundary conditions
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20><vspace|0.15fn>>
+      <no-break><pageref|auto-19><vspace|0.15fn>>
 
-      <with|par-left|<quote|1tab>|6.3.<space|2spc>Existence and uniqueness
+      <with|par-left|<quote|1tab>|5.3.<space|2spc>Existence and uniqueness
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20>>
+
+      <with|par-left|<quote|1tab>|5.4.<space|2spc>Discretization
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-21>>
 
-      <with|par-left|<quote|1tab>|6.4.<space|2spc>Discretization
+      <with|par-left|<quote|1tab>|5.5.<space|2spc>Clamped beam
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-22>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
-      A.<space|2spc>> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-23><vspace|0.5fn>
-
-      <with|par-left|<quote|1tab>|A.1.<space|2spc>Computing the Hermite shape
-      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|5.6.<space|2spc>Cantilevered beam
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-24>>
+
+      <with|par-left|<quote|1tab>|5.7.<space|2spc>Simply supported beam
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-26>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
+      A.<space|2spc>Implementation details>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|A.1.<space|2spc><with|font-shape|<quote|small-caps>|FIAT>
+      implementation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-29>>
+
+      <with|par-left|<quote|1tab>|A.2.<space|2spc>Computing the Hermite shape
+      functions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-30>>
+
+      <with|par-left|<quote|1tab>|A.3.<space|2spc>Essential boundary
+      conditions for Hermite elements <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-31>>
+
+      <with|par-left|<quote|1tab>|A.4.<space|2spc>Automatic differentiation
+      for nodal interpolation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-32>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-25><vspace|0.5fn>
+      <no-break><pageref|auto-33><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
