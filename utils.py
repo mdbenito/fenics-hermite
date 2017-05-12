@@ -149,6 +149,8 @@ from dolfin import Expression
 
 class ExpressionAD(Expression):
     """ A wrapper Expression which takes partial derivatives of callables.
+    This is only for **scalar** expressions of several variables.
+
     Usage:
         def f(x, y):
             return x*y
@@ -230,11 +232,14 @@ class Msg(object):
           log it or whatnot
           
     """
-    def __init__(self, msg:str, level:int=100):
-        global DEBUG
+    output_level = 9  # Default value (dolfin's default DEBUG is 10)
+
+    def __init__(self, msg:str, level:int=output_level):
+        import dolfin
         try:
-            self.output = level < DEBUG
+            self.output = level < dolfin.DEBUG
         except (NameError, TypeError): # TypeError because of unorderable types
+            print("[class Msg] DEBUG not defined or invalid. Disabling output.")
             self.output = False
         self.msg = msg
         self.begin = time()
