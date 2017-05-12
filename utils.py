@@ -1,11 +1,13 @@
 # coding: utf-8
 
+from typing import Callable
 from functools import reduce
 from decorator import FunctionMaker
 from inspect import getargspec
 from time import time
 
-__all__ = ['fnand', 'fnor', 'fnnot', 'red', 'green', 'yellow', 'blue']
+__all__ = ['fnand', 'fnor', 'fnnot', 'red', 'green', 'yellow', 'blue',
+           'make_derivatives', 'ExpresssionAD']
 
 ##############################################################################
 # Boolean operations on functions
@@ -112,7 +114,7 @@ def fnnot(f):
 import autograd as ad
 #import autograd.numpy as np
 
-def make_derivatives(fun):
+def make_derivatives(fun:Callable) -> Callable:
     """ Decorates fun with an additional argument to compute derivatives.
     The decorated function accepts two arguments: an np.ndarray with the
     point of evaluation and a tuple "derivatives" with a multiindex.
@@ -141,6 +143,39 @@ def make_derivatives(fun):
                                                               fun.__name__,
                                                               fun.__name__)
     return diff_fun
+
+
+from dolfin import Expression
+
+class ExpressionAD(Expression):
+    """ A wrapper Expression which takes partial derivatives of callables.
+    Usage:
+        def f(x, y):
+            return x*y
+        e = ExpressionAD(fun=f, degree=3)
+    """
+    def __init__(self, **kwargs):
+        try:
+            fun = kwargs['fun']
+            assert callable(fun), \
+                   "ExpressionAD can only use a Callable, got %s." % type(fun)
+            self.fun = make_derivatives(fun)
+        except KeyError as e:
+            print("ExpressionAD requires a named argument 'fun'")
+            raise e  # TODO: Choose something better
+
+    def eval(self, value, x):
+        value[0] = self.fun(x)
+        
+    def partial(self, value, x, derivatives):
+        value[0] = self.fun(x, derivatives)
+
+    def __call__(self, x, derivatives=()):
+        return self.fun(x, derivatives)
+
+    # FIXME: this is wrong. What should I return?
+    #def value_shape(self):
+    #    return (1,)
 
 
 ##############################################################################
