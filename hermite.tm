@@ -860,14 +860,13 @@
   <name|dolfin>'s repository, we consider the Biharmonic equation:
 
   <\equation*>
-    \<nabla\><rsup|4>u=f<text| over >\<Omega\>=<around*|[|0,1|]><rsup|2>
+    \<nabla\><rsup|4>u=f<text| over >\<Omega\>=<around|[|0,\<pi\>|]>\<times\>[-\<mathpi\>/2,\<mathpi\>/2]
   </equation*>
 
   with source <math|f> given by
 
   <\equation*>
-    f<around|(|x,y|)>=4*\<mathpi\><rsup|4>*sin <around|(|\<mathpi\>*x|)>*sin
-    <around|(|\<mathpi\>*y|)>
+    f<around|(|x,y|)>=4*sin <around|(|x|)>*cos <around|(|y|)>
   </equation*>
 
   and homogeneous boundary conditions
@@ -876,14 +875,19 @@
     u=0 <text| and >\<nabla\><rsup|2>u=0
   </equation*>
 
-  on the whole boundary. We use a discontinuous Galerkin formulation
-  (interior penalty method) which imposes weak continuity of the normal
-  derivatives across facets and enables us to implement a non-conforming
-  discretisation (see e.g. <cite|brenner_c0_2005>). <todo|Why does this make
-  any sense at all for Hermite elements?> This results in the following weak
-  formulation. Let <math|V<rsub|h>> be a finite element space of Lagrange or
-  Hermite type, with polynomial degree 3. Find <math|u\<in\>V<rsub|h>> such
-  that
+  on the whole boundary. The analytic solution is
+
+  <\equation*>
+    u<around*|(|x,y|)>=sin<around*|(|x|)>*cos<around*|(|y|)>.
+  </equation*>
+
+  We use a discontinuous Galerkin formulation (interior penalty method) which
+  imposes weak continuity of the normal derivatives across facets and enables
+  us to implement a non-conforming discretisation (see e.g.
+  <cite|brenner_c0_2005>). <todo|Why does this make any sense at all for
+  Hermite elements?> This results in the following weak formulation. Let
+  <math|V<rsub|h>> be a finite element space of Lagrange or Hermite type,
+  with polynomial degree 3. Find <math|u\<in\>V<rsub|h>> such that
 
   <\equation*>
     a<around*|(|u,v|)>=<big|int><rsub|\<Omega\>>v*f*\<mathd\>x
