@@ -255,15 +255,18 @@
         A<rsub|i\<nocomma\>j>=m<rsub|k*j>*m<rsub|l*i>*A<rsub|l*k><rsup|<around|(|2|)>>=<around|(|M<rsub|:i>|)><rsup|\<top\>>*A<rsup|<around|(|2|)>>*M<rsub|:j>
       </equation*>
 
-      <item>Do this inside <verbatim|cell_integral::tabulate_tensor()> for
-      the form.
+      <item><strike-through|Do this inside
+      <verbatim|cell_integral::tabulate_tensor()> for the form.>
     </enumerate>
 
-    <item>Compile and link the new form and make it available to
-    <name|dolfin>.
+    <item><strike-through|Compile and link the new form and make it available
+    to <name|dolfin>.>
 
-    <item>Let <name|dolfin> assemble the full system matrix.
+    <item><strike-through|Let <name|dolfin> assemble the full system matrix.>
   </enumerate>
+
+  <todo|It is actually much easier to assemble the matrix ourselves using the
+  tensor from 1. and the dofmaps from 2.>
 </body>
 
 <initial|<\collection>
