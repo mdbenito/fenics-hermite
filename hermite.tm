@@ -245,20 +245,21 @@
 
   <\itemize-dot>
     <item>Interpolate functions <math|g\<in\>V> into <math|V<rsub|h>>, e.g.
-    <math|H<rsup|2>>-projection.
+    <math|H<rsup|1>>-projection.
 
     <item>Compute integrals of linear forms defined over <math|V<rsub|h>>.
 
     <item>Set boundary conditions.
   </itemize-dot>
 
-  In this note we work in <math|d=2> dimensions, with polynomials of degree
-  <math|p=3> and a particular choice of degrees of freedom giving rise to the
-  classic <em|Hermite finite element>. This element is a generalization of
-  cubic Hermite interpolating polynomials on 1 dimension which has been in
-  the literature since at least <inactive|<cite|ciarlet_raviart>>. Hermite
-  elements are <math|C<rsup|1>> in 1D but not in 2D
-  <cite-detail|brenner_mathematical_2008|Proposition 3.3.17>.<\footnote>
+  In this note we work in <math|d\<in\><around*|{|1,2|}>> dimensions, with
+  polynomials of degree <math|p=3> and a particular choice of degrees of
+  freedom giving rise to the classic <em|Hermite finite element>. This
+  element is a generalization of cubic Hermite interpolating polynomials in 1
+  dimension which has been in the literature since at least
+  <inactive|<cite|ciarlet_raviart>>. Hermite elements are <math|C<rsup|1>> in
+  1D but not in 2D <cite-detail|brenner_mathematical_2008|Proposition
+  3.3.17>.<\footnote>
     From <hlink|CompSci SE|http://scicomp.stackexchange.com/questions/2012/construction-of-c1-h2-conforming-finite-element-basis-for-triangular-or-te>:
 
     <\quotation>
@@ -554,12 +555,13 @@
   element, meaning that we compute the values
 
   <\equation*>
-    A<rsub|i>=a<around*|(|\<varphi\><rsub|i><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|j>|)>=<big|sum><rsub|K\<in\>\<cal-T\>>a<rsup|K><around*|(|\<varphi\><rsub|i><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|j>|)>
+    A<rsub|i\<nocomma\>j>=a<around*|(|\<varphi\><rsub|j><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|i>|)>=<big|sum><rsub|K\<in\>\<cal-T\>>a<rsup|K><around*|(|\<varphi\><rsub|j><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|i>|)>
   </equation*>
 
   with \ <math|0\<leqslant\>i,j\<less\>M> and <math|a<rsup|K>> the
-  contribution from element <math|K>. <todo|This results in a global element
-  matrix <math|A> and a system <math|A*u=b>...>
+  contribution from element <math|K>. Applying the same idea to the linear
+  form at the right hand side of the equation yields a global linear system
+  <math|A*u=b> as in <eqref|eq:linear-system>.
 
   <subsection|Imposing boundary conditions>
 
@@ -574,7 +576,7 @@
     Actually, one would like to preserve any symmetries that the system may
     have without the boundary conditions and the operation described would
     break them. This can be avoided if the boundary condition is applied
-    element-wise during the assembly, like <name|FEniCS> does.
+    element-wise during the assembly, as is done in <name|FEniCS>.
   </footnote>
 
   One must be careful however with Hermite elements, since not all dofs at a
@@ -599,18 +601,19 @@
   compute
 
   <\equation*>
-    a<rsup|K><around*|(|\<varphi\><rsub|i><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|j>|)>=<big|int><rsub|K>\<Delta\>\<varphi\><rsub|i><rsup|<around*|(|1|)>>*\<mathLaplace\>\<varphi\><rsup|<around*|(|2|)>><rsub|j>*\<mathd\>x=<big|int><rsub|<wide|K|^>><todo|\<ldots\>>.
+    a<rsup|K><around*|(|\<varphi\><rsub|j><rsup|<around*|(|1|)>>,\<varphi\><rsup|<around*|(|2|)>><rsub|i>|)>=<big|int><rsub|K>\<Delta\>\<varphi\><rsub|j><rsup|<around*|(|1|)>>*\<mathLaplace\>\<varphi\><rsup|<around*|(|2|)>><rsub|i>*\<mathd\>x=<big|int><rsub|<wide|K|^>><todo|\<ldots\>>.
   </equation*>
 
   <todo|As can be seen, the transformation introduced above plays here a role
   as well...> Notice that even if <math|V<rsub|h>\<nsubset\>H<rsup|2>>
   globally, we can still compute the Laplacian in the interior of each
   element <math|K>. However, the normal derivatives might present
-  discontinuities.
+  discontinuities, so we must modify <math|a<rsup|K>> to enforce some sort of
+  weak continuity (see below).
 
   In order to actually compute the integrals, we implement a quadrature
-  representation (as opposed to a tensor representation), as in
-  <cite|olgaard_optimizations_2010>.
+  representation as in <cite|olgaard_optimizations_2010> (as opposed to a
+  tensor representation).
 
   \;
 
@@ -815,7 +818,7 @@
 
   and <math|\<gamma\><rsub|M>=\<gamma\><rsub|F>=\<emptyset\>>.
 
-  <big-figure|<image|img/clamped-beam.eps|1par|||>|Clamped steel beam under
+  <big-figure|<image|img/clamped-beam.eps|0.8par|||>|Clamped steel beam under
   the effect of gravity alone.>
 
   <subsection|Cantilevered beam>
@@ -830,7 +833,7 @@
   <math|u<rprime|'''><around|(|b|)>=-m*g>, with <math|m> the mass of the
   object and <math|g> gravity. Just set <math|m=0> for the first situation.
 
-  <big-figure|<image|img/cantilevered-beam.eps|1par|||>|Cantilevered steel
+  <big-figure|<image|img/cantilevered-beam.eps|0.8par|||>|Cantilevered steel
   beam with a weight hanging from the right endpoint.>
 
   <subsection|Simply supported beam>
@@ -847,7 +850,7 @@
     <big|int><rsub|\<omega\>>b*\<Delta\>u*\<Delta\>v*\<mathd\>x+<big|int><rsub|\<gamma\>>\<nabla\>*<around|(|b*\<Delta\>u|)>*v\<mathd\>s=<big|int><rsub|\<omega\>>f*v*\<mathd\>x.
   </equation*>
 
-  <big-figure|<image|img/supported-beam.eps|1par|||>|Simply supported steel
+  <big-figure|<image|img/supported-beam.eps|0.8par|||>|Simply supported steel
   beam under the effect of gravity alone.>
 
   <section|The biharmonic equation>
@@ -913,7 +916,7 @@
 
   <big-figure|<image|img/biharmonic-times.eps|1par|||>|Enforcing essential
   boundary conditions after assembly requires manipulation of the system
-  matrix, invalidating its sparsity pattern. The cost of this naive <em|a
+  matrix, invalidating its sparsity pattern. The cost of a naive <em|a
   posteriori> modification in <name|Python> is exponential in the number of
   degrees of freedom.>
 
@@ -1635,7 +1638,7 @@
 
       <tuple|normal|Enforcing essential boundary conditions after assembly
       requires manipulation of the system matrix, invalidating its sparsity
-      pattern. The cost of this naive <with|font-shape|<quote|italic>|a
+      pattern. The cost of a naive <with|font-shape|<quote|italic>|a
       posteriori> modification in <with|font-shape|<quote|small-caps>|Python>
       is exponential in the number of degrees of freedom.|<pageref|auto-31>>
     </associate>
