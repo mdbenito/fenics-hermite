@@ -233,7 +233,8 @@ class Msg(object):
           
     """
     output_level = 9  # Default value (dolfin's default DEBUG is 10)
-
+    last = 0.0        # Last execution time
+    
     def __init__(self, msg:str, level:int=output_level):
         import dolfin
         try:
@@ -249,5 +250,6 @@ class Msg(object):
             print(self.msg + "... ", end='')
 
     def __exit__(self, type, value, traceback):
+        self.__class__.last = time() - self.begin
         if self.output:
-            print("done in %.3fs." % (time()-self.begin))
+            print("done in %.3fs." % self.__class__.last)
