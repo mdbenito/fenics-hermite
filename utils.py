@@ -247,9 +247,9 @@ class Msg(object):
 
     def __enter__(self):
         if self.output:
-            print(self.msg + "... ", end='')
+            print(self.msg + "... ", end='', flush=True)
 
     def __exit__(self, type, value, traceback):
         self.__class__.last = time() - self.begin
         if self.output:
-            print("done in %.3fs." % self.__class__.last)
+            print("done in %.3fs." % self.__class__.last, flush=True)
