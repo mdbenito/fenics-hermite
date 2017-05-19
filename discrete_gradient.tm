@@ -167,12 +167,16 @@
   where
 
   <\equation>
-    <label|eq:local-dkt-gradient>M<rsub|T>=<matrix|<tformat|<table|<row|<cell|0>|<cell|I<rsub|2>>|<cell|0>|<cell|0>|<cell|0>|<cell|0>>|<row|<cell|0>|<cell|0>|<cell|0>|<cell|I<rsub|2>>|<cell|0>|<cell|0>>|<row|<cell|0>|<cell|0>|<cell|0>|<cell|0>|<cell|0>|<cell|I<rsub|2>>>|<row|<cell|0>|<cell|0>|<cell|<wide|t|~><rsub|S<rsub|1>>>|<cell|<wide|T|~><rsub|S<rsub|1>>>|<cell|-<wide|t|~><rsub|S<rsub|1>>>|<cell|<wide|T|~><rsub|S<rsub|1>>>>|<row|<cell|<wide|t|~><rsub|S<rsub|2>>>|<cell|<wide|T|~><rsub|S<rsub|2>>>|<cell|0>|<cell|0>|<cell|-<wide|t|~><rsub|S<rsub|2>>>|<cell|<wide|T|~><rsub|S<rsub|2>>>>|<row|<cell|<wide|t|~><rsub|S<rsub|3>>>|<cell|<wide|T|~><rsub|S<rsub|3>>>|<cell|-<wide|t|~><rsub|S<rsub|3>>>|<cell|<wide|T|~><rsub|S<rsub|3>>>|<cell|0>|<cell|0>>>>>\<in\>\<bbb-R\><rsup|12\<times\>9>,<space|1em><wide|T|~><rsub|S<rsub|l>>=<tfrac|-3|4>*t<rsub|S<rsub|l>>*t<rsub|S<rsub|l>><rsup|\<top\>>,<space|1em><wide|t|~><rsub|S<rsub|l>>=<tfrac|-3|2*<around*|\||S<rsub|l>|\|>>*t<rsub|S<rsub|l>>
+    <label|eq:local-dkt-gradient>M<rsub|T>=<matrix|<tformat|<table|<row|<cell|0>|<cell|I<rsub|2>>|<cell|0>|<cell|0>|<cell|0>|<cell|0>>|<row|<cell|0>|<cell|0>|<cell|0>|<cell|I<rsub|2>>|<cell|0>|<cell|0>>|<row|<cell|0>|<cell|0>|<cell|0>|<cell|0>|<cell|0>|<cell|I<rsub|2>>>|<row|<cell|0>|<cell|0>|<cell|<wide|t|~><rsub|S<rsub|1>>>|<cell|<wide|T|~><rsub|S<rsub|1>>>|<cell|-<wide|t|~><rsub|S<rsub|1>>>|<cell|<wide|T|~><rsub|S<rsub|1>>>>|<row|<cell|<wide|t|~><rsub|S<rsub|2>>>|<cell|<wide|T|~><rsub|S<rsub|2>>>|<cell|0>|<cell|0>|<cell|-<wide|t|~><rsub|S<rsub|2>>>|<cell|<wide|T|~><rsub|S<rsub|2>>>>|<row|<cell|<wide|t|~><rsub|S<rsub|3>>>|<cell|<wide|T|~><rsub|S<rsub|3>>>|<cell|-<wide|t|~><rsub|S<rsub|3>>>|<cell|<wide|T|~><rsub|S<rsub|3>>>|<cell|0>|<cell|0>>>>>\<in\>\<bbb-R\><rsup|12\<times\>9>,<space|1em><wide|T|~><rsub|S<rsub|l>>=<tfrac|-3|4>*t<rsub|S<rsub|l>>*t<rsub|S<rsub|l>><rsup|\<top\>>+<tfrac|1|2>*I<rsub|2>,<space|1em><wide|t|~><rsub|S<rsub|l>>=<tfrac|-3|2*<around*|\||S<rsub|l>|\|>>*t<rsub|S<rsub|l>>
   </equation>
 
   and <math|t<rsub|S<rsub|l>>> is the vector tangent to face
   <math|S<rsub|l>>, which is the one containing the two vertices other than
-  <math|z<rsub|l>> (i.e. opposite to <math|z<rsub|l>>).
+  <math|z<rsub|l>> (i.e. opposite to <math|z<rsub|l>>). Note that because we
+  are not using a hierarchical basis for the <math|P<rsub|2>> element, the
+  computations in <inactive|<cite|bartels..>> don't apply verbatim and our
+  <math|<wide|T|~><rsub|S<rsub|l>>> differs by a constant
+  <math|+<tfrac|1|2>I<rsub|2>>.
 
   In order to implement this globally, its enough to construct once a global
   (sparse) matrix by traversing all the cells in the mesh and then multiply
