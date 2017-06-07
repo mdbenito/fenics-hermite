@@ -608,74 +608,26 @@
   <math|i=j=2> Note that we have three times all the products in
   <eqref|eq:nodal-isometry-constraint-components>, once per node in a cell.
 
-  <\equation*>
-    <tabular|<tformat|<cwith|1|1|3|3|cell-row-span|1>|<cwith|1|1|3|3|cell-col-span|3>|<cwith|1|1|6|6|cell-row-span|1>|<cwith|1|1|6|6|cell-col-span|3>|<cwith|1|1|9|9|cell-row-span|1>|<cwith|1|1|9|9|cell-col-span|3>|<cwith|2|7|4|4|cell-background|pastel
-    green>|<cwith|3|7|7|7|cell-background|pastel
-    green>|<cwith|3|7|10|10|cell-background|pastel
-    green>|<cwith|3|7|8|8|cell-background|pastel
-    orange>|<cwith|3|7|5|5|cell-background|pastel
-    orange>|<cwith|3|7|11|11|cell-background|pastel
-    orange>|<cwith|5|5|4|4|cell-background|pastel
-    green>|<cwith|5|5|7|7|cell-background|pastel
-    green>|<cwith|5|5|10|10|cell-background|pastel
-    green>|<cwith|5|5|8|8|cell-background|pastel
-    orange>|<cwith|5|5|5|5|cell-background|pastel
-    orange>|<cwith|5|5|11|11|cell-background|pastel
-    orange>|<cwith|3|3|3|12|cell-tborder|0ln>|<cwith|2|2|3|12|cell-bborder|0ln>|<cwith|3|3|3|12|cell-bborder|1ln>|<cwith|4|4|3|12|cell-tborder|1ln>|<cwith|3|3|3|3|cell-lborder|0ln>|<cwith|4|4|3|12|cell-tsep|0.3em>|<cwith|2|2|4|4|cell-background|pastel
-    green>|<cwith|2|2|5|5|cell-background|pastel
-    orange>|<cwith|1|-1|1|-1|cell-halign|c>|<cwith|4|4|2|2|cell-row-span|4>|<cwith|4|4|2|2|cell-col-span|1>|<cwith|3|3|3|3|cell-bborder|0ln>|<cwith|4|7|2|5|cell-bborder|0ln>|<cwith|4|7|2|5|cell-rborder|0ln>|<cwith|4|7|2|5|cell-lborder|0ln>|<cwith|4|4|12|12|cell-row-span|4>|<cwith|4|4|12|12|cell-col-span|1>|<cwith|3|3|4|12|cell-tborder|0ln>|<cwith|2|2|4|12|cell-bborder|0ln>|<cwith|3|3|4|12|cell-bborder|0ln>|<cwith|4|7|2|12|cell-tborder|0ln>|<cwith|3|3|4|4|cell-lborder|0ln>|<cwith|3|3|3|3|cell-rborder|0ln>|<cwith|3|3|1|-1|cell-bsep|0px>|<cwith|3|3|1|-1|cell-tsep|0px>|<cwith|3|3|1|-1|cell-valign|c>|<cwith|3|3|1|-1|cell-height|0.8em>|<cwith|3|3|1|-1|cell-vmode|exact>|<cwith|4|4|2|2|cell-bsep|0px>|<cwith|4|4|2|2|cell-tsep|0px>|<cwith|4|4|12|12|cell-bsep|0px>|<cwith|4|4|12|12|cell-tsep|0px>|<cwith|7|7|1|-1|cell-bsep|0px>|<cwith|4|4|2|2|cell-valign|b>|<cwith|4|4|12|12|cell-valign|b>|<cwith|2|7|11|11|cell-rborder|0.5ln>|<cwith|3|3|12|12|cell-background|>|<cwith|3|3|3|12|cell-background|>|<cwith|4|4|1|1|cell-row-span|4>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|1|cell-valign|c>|<twith|table-lsep|0px>|<cwith|1|-1|1|-1|cell-lsep|0.1em>|<cwith|1|-1|1|-1|cell-rsep|0.1em>|<cwith|4|7|6|11|cell-lsep|0.2em>|<cwith|4|7|6|11|cell-rsep|0.2em>|<cwith|2|2|3|12|math-level|1>|<cwith|1|1|3|12|math-level|1>|<cwith|1|1|1|-1|cell-tsep|0px>|<cwith|1|-1|2|2|cell-rsep|0px>|<cwith|1|-1|12|12|cell-lsep|0px>|<cwith|5|5|7|7|cell-valign|c>|<cwith|5|5|8|8|cell-valign|c>|<cwith|5|5|10|10|cell-valign|c>|<cwith|5|5|11|11|cell-valign|c>|<cwith|3|3|10|11|cell-tborder|0ln>|<cwith|2|2|10|11|cell-bborder|0ln>|<cwith|7|7|10|11|cell-bborder|0ln>|<cwith|3|7|10|11|cell-lborder|0ln>|<cwith|3|7|9|9|cell-rborder|0ln>|<cwith|3|7|10|11|cell-rborder|0ln>|<cwith|3|7|12|12|cell-lborder|0ln>|<cwith|3|3|7|7|cell-background|pastel
-    green>|<cwith|3|3|8|8|cell-background|pastel
-    orange>|<cwith|3|3|6|8|cell-tborder|0ln>|<cwith|3|3|6|8|cell-bborder|1ln>|<cwith|3|3|6|6|cell-lborder|0ln>|<cwith|3|3|6|8|cell-halign|c>|<cwith|3|3|6|6|cell-bborder|0ln>|<cwith|3|3|7|8|cell-tborder|0ln>|<cwith|3|3|7|8|cell-bborder|0ln>|<cwith|3|3|7|7|cell-lborder|0ln>|<cwith|3|3|6|6|cell-rborder|0ln>|<cwith|3|3|6|8|cell-bsep|0px>|<cwith|3|3|6|8|cell-tsep|0px>|<cwith|3|3|6|8|cell-valign|c>|<cwith|3|3|6|8|cell-height|0.8em>|<cwith|3|3|6|8|cell-vmode|exact>|<cwith|3|3|6|8|cell-background|>|<cwith|3|3|6|8|cell-lsep|0.1em>|<cwith|3|3|6|8|cell-rsep|0.1em>|<cwith|3|3|10|10|cell-background|pastel
-    green>|<cwith|3|3|11|11|cell-background|pastel
-    orange>|<cwith|3|3|9|11|cell-tborder|0ln>|<cwith|3|3|9|11|cell-bborder|1ln>|<cwith|3|3|9|9|cell-lborder|0ln>|<cwith|3|3|9|11|cell-halign|c>|<cwith|3|3|9|9|cell-bborder|0ln>|<cwith|3|3|10|11|cell-tborder|0ln>|<cwith|3|3|10|11|cell-bborder|0ln>|<cwith|3|3|10|10|cell-lborder|0ln>|<cwith|3|3|9|9|cell-rborder|0ln>|<cwith|3|3|9|11|cell-bsep|0px>|<cwith|3|3|9|11|cell-tsep|0px>|<cwith|3|3|9|11|cell-valign|c>|<cwith|3|3|9|11|cell-height|0.8em>|<cwith|3|3|9|11|cell-vmode|exact>|<cwith|3|3|9|11|cell-background|>|<cwith|3|3|9|11|cell-lsep|0.1em>|<cwith|3|3|9|11|cell-rsep|0.1em>|<cwith|2|2|6|6|cell-row-span|1>|<cwith|2|2|6|6|cell-col-span|1>|<cwith|2|2|9|9|cell-row-span|1>|<cwith|2|2|9|9|cell-col-span|1>|<cwith|2|2|11|11|cell-tborder|0ln>|<cwith|1|1|11|11|cell-bborder|0ln>|<cwith|2|2|11|11|cell-bborder|0ln>|<cwith|3|3|11|11|cell-tborder|0ln>|<cwith|2|2|11|11|cell-lborder|0ln>|<cwith|2|2|10|10|cell-rborder|0ln>|<cwith|2|2|11|11|cell-rborder|0ln>|<cwith|2|2|12|12|cell-lborder|0ln>|<cwith|2|2|7|7|cell-background|pastel
-    green>|<cwith|2|2|6|8|cell-bborder|0ln>|<cwith|2|2|7|7|cell-background|pastel
-    green>|<cwith|2|2|8|8|cell-background|pastel
-    orange>|<cwith|2|2|6|8|cell-halign|c>|<cwith|2|2|7|8|cell-bborder|0ln>|<cwith|2|2|6|8|cell-lsep|0.1em>|<cwith|2|2|6|8|cell-rsep|0.1em>|<cwith|2|2|6|8|math-level|1>|<cwith|2|2|10|10|cell-background|pastel
-    green>|<cwith|2|2|9|11|cell-bborder|0ln>|<cwith|2|2|10|10|cell-background|pastel
-    green>|<cwith|2|2|11|11|cell-background|pastel
-    orange>|<cwith|2|2|9|11|cell-halign|c>|<cwith|2|2|10|11|cell-bborder|0ln>|<cwith|2|2|9|11|cell-lsep|0.1em>|<cwith|2|2|9|11|cell-rsep|0.1em>|<cwith|2|2|9|11|math-level|1>|<cwith|5|5|8|8|cell-row-span|1>|<cwith|5|5|8|8|cell-col-span|1>|<cwith|5|5|11|11|cell-row-span|1>|<cwith|5|5|11|11|cell-col-span|1>|<cwith|5|5|10|10|cell-row-span|1>|<cwith|5|5|10|10|cell-col-span|1>|<cwith|5|5|7|7|cell-row-span|1>|<cwith|5|5|7|7|cell-col-span|1>|<cwith|4|7|8|8|cell-background|pastel
-    orange>|<cwith|5|5|8|8|cell-background|pastel
-    orange>|<cwith|4|4|8|8|cell-tborder|1ln>|<cwith|4|4|8|8|cell-tsep|0.3em>|<cwith|4|7|8|8|cell-halign|c>|<cwith|4|7|8|8|cell-bborder|0ln>|<cwith|4|7|8|8|cell-rborder|0ln>|<cwith|4|7|8|8|cell-lborder|0ln>|<cwith|4|7|8|8|cell-tborder|0ln>|<cwith|7|7|8|8|cell-bsep|0px>|<cwith|4|7|8|8|cell-lsep|0.1em>|<cwith|4|7|8|8|cell-rsep|0.1em>|<cwith|4|7|11|11|cell-background|pastel
-    orange>|<cwith|5|5|11|11|cell-background|pastel
-    orange>|<cwith|4|4|11|11|cell-tborder|1ln>|<cwith|4|4|11|11|cell-tsep|0.3em>|<cwith|4|7|11|11|cell-halign|c>|<cwith|4|7|11|11|cell-bborder|0ln>|<cwith|4|7|11|11|cell-rborder|0ln>|<cwith|4|7|11|11|cell-lborder|0ln>|<cwith|4|7|11|11|cell-tborder|0ln>|<cwith|7|7|11|11|cell-bsep|0px>|<cwith|4|7|11|11|cell-lsep|0.1em>|<cwith|4|7|11|11|cell-rsep|0.1em>|<cwith|3|3|1|1|cell-halign|r>|<cwith|3|3|1|1|cell-background|>|<cwith|1|3|1|-1|color|darker
-    grey>|<cwith|2|2|1|1|cell-halign|r>|<cwith|1|1|12|12|cell-valign|b>|<cwith|1|1|12|12|cell-hyphen|n>|<cwith|1|1|12|12|cell-row-span|1>|<cwith|1|1|12|12|cell-col-span|1>|<table|<row|<cell|>|<cell|>|<cell|<text|eval.
-    at >z<rsub|1>>|<cell|>|<cell|>|<cell|<text|eval. at
-    >z<rsub|2>>|<cell|>|<cell|>|<cell|<text|eval. at
-    >z<rsub|3>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|d<rsub|t>
-    y<rsup|k><rsub|i>>|<cell|d<rsub|t> y<rsup|k><rsub|i,1>>|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,2>>|<cell|d<rsub|t> y<rsup|k><rsub|i>>|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,1>>|<cell|d<rsub|t> y<rsup|k><rsub|i,2>>|<cell|d<rsub|t>
-    y<rsup|k><rsub|i>>|<cell|d<rsub|t> y<rsup|k><rsub|i,1>>|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,2>>|<cell|>>|<row|<cell|<with|color|darker
-    grey|<very-small|<text|dof>>>>|<cell|>|<cell|<very-small|0>>|<cell|<very-small|1>>|<cell|<very-small|2>>|<cell|<very-small|3>>|<cell|<very-small|4>>|<cell|<very-small|5>>|<cell|<very-small|6>>|<cell|<very-small|7>>|<cell|<very-small|8>>|<cell|>>|<row|<cell|B<rsub|i><rsup|k-1>\<assign\><rsub|>>|<cell|<smash|<shift|<around*|(|<resize|||||5.2em>|\<nobracket\>>||0.3em>>>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<shift|||-0.2em><smash|<shift|<around*|\<nobracket\>|<resize|||||5.2em>|)>||0.3em>>>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>>>>>
-  </equation*>
-
   <\big-table>
     <\equation*>
-      <tabular|<tformat|<cwith|1|5|4|4|cell-background|pastel
-      green>|<cwith|1|5|7|7|cell-background|pastel
-      green>|<cwith|1|5|10|10|cell-background|pastel
-      green>|<cwith|1|5|8|8|cell-background|pastel
-      orange>|<cwith|1|5|5|5|cell-background|pastel
-      orange>|<cwith|1|5|11|11|cell-background|pastel
-      orange>|<cwith|3|3|4|4|cell-background|pastel
-      green>|<cwith|1|1|3|12|cell-tborder|0ln>|<cwith|1|1|3|12|cell-bborder|1ln>|<cwith|2|2|3|12|cell-tborder|1ln>|<cwith|1|1|3|3|cell-lborder|0ln>|<cwith|2|2|3|12|cell-tsep|0.3em>|<cwith|1|5|1|12|cell-halign|c>|<cwith|2|2|2|2|cell-row-span|4>|<cwith|2|2|2|2|cell-col-span|1>|<cwith|1|1|3|3|cell-bborder|0ln>|<cwith|2|5|2|5|cell-bborder|0ln>|<cwith|2|5|2|5|cell-rborder|0ln>|<cwith|2|5|2|5|cell-lborder|0ln>|<cwith|2|2|12|12|cell-row-span|4>|<cwith|2|2|12|12|cell-col-span|1>|<cwith|1|1|4|12|cell-tborder|0ln>|<cwith|1|1|4|12|cell-bborder|0ln>|<cwith|2|5|2|12|cell-tborder|0ln>|<cwith|1|1|4|4|cell-lborder|0ln>|<cwith|1|1|3|3|cell-rborder|0ln>|<cwith|1|1|1|12|cell-bsep|0px>|<cwith|1|1|1|12|cell-tsep|0px>|<cwith|1|1|1|12|cell-valign|c>|<cwith|1|1|1|12|cell-height|0.8em>|<cwith|1|1|1|12|cell-vmode|exact>|<cwith|2|2|2|2|cell-bsep|0px>|<cwith|2|2|2|2|cell-tsep|0px>|<cwith|2|2|12|12|cell-bsep|0px>|<cwith|2|2|12|12|cell-tsep|0px>|<cwith|5|5|1|12|cell-bsep|0px>|<cwith|2|2|2|2|cell-valign|b>|<cwith|2|2|12|12|cell-valign|b>|<cwith|1|5|11|11|cell-rborder|0.5ln>|<cwith|1|1|12|12|cell-background|>|<cwith|1|1|3|12|cell-background|>|<cwith|2|2|1|1|cell-row-span|4>|<cwith|2|2|1|1|cell-col-span|1>|<cwith|2|2|1|1|cell-valign|c>|<cwith|1|5|1|12|cell-lsep|0.1em>|<cwith|1|5|1|12|cell-rsep|0.1em>|<cwith|2|5|6|11|cell-lsep|0.2em>|<cwith|2|5|6|11|cell-rsep|0.2em>|<cwith|1|5|2|2|cell-rsep|0px>|<cwith|1|5|12|12|cell-lsep|0px>|<cwith|3|3|7|7|cell-valign|c>|<cwith|3|3|8|8|cell-valign|c>|<cwith|3|3|10|10|cell-valign|c>|<cwith|3|3|11|11|cell-valign|c>|<cwith|1|1|10|11|cell-tborder|0ln>|<cwith|5|5|10|11|cell-bborder|0ln>|<cwith|1|5|10|11|cell-lborder|0ln>|<cwith|1|5|9|9|cell-rborder|0ln>|<cwith|1|5|10|11|cell-rborder|0ln>|<cwith|1|5|12|12|cell-lborder|0ln>|<cwith|1|1|7|7|cell-background|pastel
-      green>|<cwith|1|1|8|8|cell-background|pastel
-      orange>|<cwith|1|1|6|8|cell-tborder|0ln>|<cwith|1|1|6|8|cell-bborder|1ln>|<cwith|1|1|6|6|cell-lborder|0ln>|<cwith|1|1|6|8|cell-halign|c>|<cwith|1|1|6|6|cell-bborder|0ln>|<cwith|1|1|7|8|cell-tborder|0ln>|<cwith|1|1|7|8|cell-bborder|0ln>|<cwith|1|1|7|7|cell-lborder|0ln>|<cwith|1|1|6|6|cell-rborder|0ln>|<cwith|1|1|6|8|cell-bsep|0px>|<cwith|1|1|6|8|cell-tsep|0px>|<cwith|1|1|6|8|cell-valign|c>|<cwith|1|1|6|8|cell-height|0.8em>|<cwith|1|1|6|8|cell-vmode|exact>|<cwith|1|1|6|8|cell-background|>|<cwith|1|1|6|8|cell-lsep|0.1em>|<cwith|1|1|6|8|cell-rsep|0.1em>|<cwith|1|1|10|10|cell-background|pastel
-      green>|<cwith|1|1|11|11|cell-background|pastel
-      orange>|<cwith|1|1|9|11|cell-tborder|0ln>|<cwith|1|1|9|11|cell-bborder|1ln>|<cwith|1|1|9|9|cell-lborder|0ln>|<cwith|1|1|9|11|cell-halign|c>|<cwith|1|1|9|9|cell-bborder|0ln>|<cwith|1|1|10|11|cell-tborder|0ln>|<cwith|1|1|10|11|cell-bborder|0ln>|<cwith|1|1|10|10|cell-lborder|0ln>|<cwith|1|1|9|9|cell-rborder|0ln>|<cwith|1|1|9|11|cell-bsep|0px>|<cwith|1|1|9|11|cell-tsep|0px>|<cwith|1|1|9|11|cell-valign|c>|<cwith|1|1|9|11|cell-height|0.8em>|<cwith|1|1|9|11|cell-vmode|exact>|<cwith|1|1|9|11|cell-background|>|<cwith|1|1|9|11|cell-lsep|0.1em>|<cwith|1|1|9|11|cell-rsep|0.1em>|<cwith|1|1|11|11|cell-tborder|0ln>|<cwith|3|3|8|8|cell-row-span|1>|<cwith|3|3|8|8|cell-col-span|1>|<cwith|3|3|11|11|cell-row-span|1>|<cwith|3|3|11|11|cell-col-span|1>|<cwith|3|3|10|10|cell-row-span|1>|<cwith|3|3|10|10|cell-col-span|1>|<cwith|3|3|7|7|cell-row-span|1>|<cwith|3|3|7|7|cell-col-span|1>|<cwith|2|2|8|8|cell-tborder|1ln>|<cwith|2|2|8|8|cell-tsep|0.3em>|<cwith|2|5|8|8|cell-halign|c>|<cwith|2|5|8|8|cell-bborder|0ln>|<cwith|2|5|8|8|cell-rborder|0ln>|<cwith|2|5|8|8|cell-lborder|0ln>|<cwith|2|5|8|8|cell-tborder|0ln>|<cwith|5|5|8|8|cell-bsep|0px>|<cwith|2|5|8|8|cell-lsep|0.1em>|<cwith|2|5|8|8|cell-rsep|0.1em>|<cwith|2|2|11|11|cell-tborder|1ln>|<cwith|2|2|11|11|cell-tsep|0.3em>|<cwith|2|5|11|11|cell-halign|c>|<cwith|2|5|11|11|cell-bborder|0ln>|<cwith|2|5|11|11|cell-rborder|0ln>|<cwith|2|5|11|11|cell-lborder|0ln>|<cwith|2|5|11|11|cell-tborder|0ln>|<cwith|5|5|11|11|cell-bsep|0px>|<cwith|2|5|11|11|cell-lsep|0.1em>|<cwith|2|5|11|11|cell-rsep|0.1em>|<cwith|1|1|1|1|cell-halign|r>|<cwith|1|1|1|1|cell-background|>|<cwith|1|1|1|12|color|darker
-      grey>|<cwith|2|-1|5|5|cell-background|pastel
-      green>|<cwith|2|-1|7|8|cell-background|pastel
-      orange>|<cwith|2|-1|10|11|cell-background|pastel
-      yellow>|<cwith|2|-1|9|9|cell-background|pastel
-      yellow>|<cwith|5|5|6|6|cell-background|pastel
-      orange>|<cwith|2|4|6|6|cell-background|pastel
-      orange>|<cwith|5|5|3|3|cell-background|pastel
-      green>|<cwith|4|4|3|3|cell-background|pastel
-      green>|<cwith|3|3|3|3|cell-background|pastel
-      green>|<cwith|2|2|3|3|cell-background|pastel
-      green>|<table|<row|<cell|<with|color|darker
-      grey|<very-small|<text|dof>>>>|<cell|>|<cell|<very-small|0><application-space|1em>>|<cell|<very-small|1>>|<cell|<very-small|2>>|<cell|<very-small|3><application-space|1em>>|<cell|<very-small|4>>|<cell|<very-small|5>>|<cell|<very-small|6><application-space|1em>>|<cell|<very-small|7>>|<cell|<very-small|8>>|<cell|>>|<row|<cell|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>=<rsub|>>|<cell|<smash|<shift|<around*|(|<resize|||||5.2em>|\<nobracket\>>||0.3em>>>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<shift|||-0.2em><smash|<shift|<around*|\<nobracket\>|<resize|||||5.2em>|)>||0.3em>>>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
+      <matrix|<tformat|<cwith|1|4|2|2|cell-background|pastel
+      green>|<cwith|1|4|5|5|cell-background|pastel
+      green>|<cwith|1|4|8|8|cell-background|pastel
+      green>|<cwith|1|4|6|6|cell-background|pastel
+      orange>|<cwith|1|4|3|3|cell-background|pastel
+      orange>|<cwith|1|4|9|9|cell-background|pastel
+      orange>|<cwith|2|2|2|2|cell-background|pastel
+      green>|<cwith|1|1|1|9|cell-tborder|1ln>|<cwith|1|1|1|9|cell-tsep|0.3em>|<cwith|1|4|1|9|cell-halign|c>|<cwith|1|4|1|3|cell-bborder|0ln>|<cwith|1|4|1|3|cell-rborder|0ln>|<cwith|1|4|1|3|cell-lborder|0ln>|<cwith|1|4|1|9|cell-tborder|0ln>|<cwith|4|4|1|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-rborder|0.5ln>|<cwith|1|4|1|9|cell-lsep|0.1em>|<cwith|1|4|1|9|cell-rsep|0.1em>|<cwith|1|4|4|9|cell-lsep|0.2em>|<cwith|1|4|4|9|cell-rsep|0.2em>|<cwith|2|2|5|5|cell-valign|c>|<cwith|2|2|6|6|cell-valign|c>|<cwith|2|2|8|8|cell-valign|c>|<cwith|2|2|9|9|cell-valign|c>|<cwith|4|4|8|9|cell-bborder|0ln>|<cwith|1|4|8|9|cell-lborder|0ln>|<cwith|1|4|7|7|cell-rborder|0ln>|<cwith|1|4|8|9|cell-rborder|0ln>|<cwith|2|2|6|6|cell-row-span|1>|<cwith|2|2|6|6|cell-col-span|1>|<cwith|2|2|9|9|cell-row-span|1>|<cwith|2|2|9|9|cell-col-span|1>|<cwith|2|2|8|8|cell-row-span|1>|<cwith|2|2|8|8|cell-col-span|1>|<cwith|2|2|5|5|cell-row-span|1>|<cwith|2|2|5|5|cell-col-span|1>|<cwith|1|1|6|6|cell-tborder|1ln>|<cwith|1|1|6|6|cell-tsep|0.3em>|<cwith|1|4|6|6|cell-halign|c>|<cwith|1|4|6|6|cell-bborder|0ln>|<cwith|1|4|6|6|cell-rborder|0ln>|<cwith|1|4|6|6|cell-lborder|0ln>|<cwith|1|4|6|6|cell-tborder|0ln>|<cwith|4|4|6|6|cell-bsep|0px>|<cwith|1|4|6|6|cell-lsep|0.1em>|<cwith|1|4|6|6|cell-rsep|0.1em>|<cwith|1|1|9|9|cell-tborder|1ln>|<cwith|1|1|9|9|cell-tsep|0.3em>|<cwith|1|4|9|9|cell-halign|c>|<cwith|1|4|9|9|cell-bborder|0ln>|<cwith|1|4|9|9|cell-rborder|0ln>|<cwith|1|4|9|9|cell-lborder|0ln>|<cwith|1|4|9|9|cell-tborder|0ln>|<cwith|4|4|9|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-lsep|0.1em>|<cwith|1|4|9|9|cell-rsep|0.1em>|<cwith|1|4|3|3|cell-background|pastel
+      green>|<cwith|1|4|5|6|cell-background|pastel
+      orange>|<cwith|1|4|8|9|cell-background|pastel
+      yellow>|<cwith|1|4|7|7|cell-background|pastel
+      yellow>|<cwith|4|4|4|4|cell-background|pastel
+      orange>|<cwith|1|3|4|4|cell-background|pastel
+      orange>|<cwith|4|4|1|1|cell-background|pastel
+      green>|<cwith|3|3|1|1|cell-background|pastel
+      green>|<cwith|2|2|1|1|cell-background|pastel
+      green>|<cwith|1|1|1|1|cell-background|pastel
+      green>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
       grey>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-halign|c>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-lsep|0.1em>|<cwith|2|2|1|2|cell-rsep|0.1em>|<cwith|2|2|1|2|math-level|1>|<cwith|2|2|1|2|color|darker
       grey>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-halign|c>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-lsep|0.1em>|<cwith|3|3|1|2|cell-rsep|0.1em>|<cwith|3|3|1|2|math-level|1>|<cwith|3|3|1|2|color|darker
       grey>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|1|cell-row-span|1>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|2|color|darker
@@ -697,51 +649,12 @@
       y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
       y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t> y<rsup|k><rsub|i,2>>>>>>
     </equation*>
-  </big-table|<label|tab:matrix-bk>The (local) matrix <math|B<rsup|k-1>> is
-  made of three blocks, one per subspace. Empty entries are zeroes. The
-  header rows refer to the dofs of the vector <math|d<rsub|t>
-  Y<rsub|i><rsup|k>> which we will multiply with this matrix, i.e. the local
-  dof indices in each element of <math|W<rsup|<around*|(|i|)>><rsub|h>>.>
-
-  <\equation*>
-    <matrix|<tformat|<cwith|1|4|2|2|cell-background|pastel
-    green>|<cwith|1|4|5|5|cell-background|pastel
-    green>|<cwith|1|4|8|8|cell-background|pastel
-    green>|<cwith|1|4|6|6|cell-background|pastel
-    orange>|<cwith|1|4|3|3|cell-background|pastel
-    orange>|<cwith|1|4|9|9|cell-background|pastel
-    orange>|<cwith|2|2|2|2|cell-background|pastel
-    green>|<cwith|1|1|1|9|cell-tborder|1ln>|<cwith|1|1|1|9|cell-tsep|0.3em>|<cwith|1|4|1|9|cell-halign|c>|<cwith|1|4|1|3|cell-bborder|0ln>|<cwith|1|4|1|3|cell-rborder|0ln>|<cwith|1|4|1|3|cell-lborder|0ln>|<cwith|1|4|1|9|cell-tborder|0ln>|<cwith|4|4|1|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-rborder|0.5ln>|<cwith|1|4|1|9|cell-lsep|0.1em>|<cwith|1|4|1|9|cell-rsep|0.1em>|<cwith|1|4|4|9|cell-lsep|0.2em>|<cwith|1|4|4|9|cell-rsep|0.2em>|<cwith|2|2|5|5|cell-valign|c>|<cwith|2|2|6|6|cell-valign|c>|<cwith|2|2|8|8|cell-valign|c>|<cwith|2|2|9|9|cell-valign|c>|<cwith|4|4|8|9|cell-bborder|0ln>|<cwith|1|4|8|9|cell-lborder|0ln>|<cwith|1|4|7|7|cell-rborder|0ln>|<cwith|1|4|8|9|cell-rborder|0ln>|<cwith|2|2|6|6|cell-row-span|1>|<cwith|2|2|6|6|cell-col-span|1>|<cwith|2|2|9|9|cell-row-span|1>|<cwith|2|2|9|9|cell-col-span|1>|<cwith|2|2|8|8|cell-row-span|1>|<cwith|2|2|8|8|cell-col-span|1>|<cwith|2|2|5|5|cell-row-span|1>|<cwith|2|2|5|5|cell-col-span|1>|<cwith|1|1|6|6|cell-tborder|1ln>|<cwith|1|1|6|6|cell-tsep|0.3em>|<cwith|1|4|6|6|cell-halign|c>|<cwith|1|4|6|6|cell-bborder|0ln>|<cwith|1|4|6|6|cell-rborder|0ln>|<cwith|1|4|6|6|cell-lborder|0ln>|<cwith|1|4|6|6|cell-tborder|0ln>|<cwith|4|4|6|6|cell-bsep|0px>|<cwith|1|4|6|6|cell-lsep|0.1em>|<cwith|1|4|6|6|cell-rsep|0.1em>|<cwith|1|1|9|9|cell-tborder|1ln>|<cwith|1|1|9|9|cell-tsep|0.3em>|<cwith|1|4|9|9|cell-halign|c>|<cwith|1|4|9|9|cell-bborder|0ln>|<cwith|1|4|9|9|cell-rborder|0ln>|<cwith|1|4|9|9|cell-lborder|0ln>|<cwith|1|4|9|9|cell-tborder|0ln>|<cwith|4|4|9|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-lsep|0.1em>|<cwith|1|4|9|9|cell-rsep|0.1em>|<cwith|1|4|3|3|cell-background|pastel
-    green>|<cwith|1|4|5|6|cell-background|pastel
-    orange>|<cwith|1|4|8|9|cell-background|pastel
-    yellow>|<cwith|1|4|7|7|cell-background|pastel
-    yellow>|<cwith|4|4|4|4|cell-background|pastel
-    orange>|<cwith|1|3|4|4|cell-background|pastel
-    orange>|<cwith|4|4|1|1|cell-background|pastel
-    green>|<cwith|3|3|1|1|cell-background|pastel
-    green>|<cwith|2|2|1|1|cell-background|pastel
-    green>|<cwith|1|1|1|1|cell-background|pastel
-    green>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
-    grey>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-halign|c>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-lsep|0.1em>|<cwith|2|2|1|2|cell-rsep|0.1em>|<cwith|2|2|1|2|math-level|1>|<cwith|2|2|1|2|color|darker
-    grey>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-halign|c>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-lsep|0.1em>|<cwith|3|3|1|2|cell-rsep|0.1em>|<cwith|3|3|1|2|math-level|1>|<cwith|3|3|1|2|color|darker
-    grey>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|1|cell-row-span|1>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|2|color|darker
-    grey>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-halign|c>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-lsep|0.1em>|<cwith|5|5|1|2|cell-rsep|0.1em>|<cwith|5|5|1|2|math-level|1>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-halign|c>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-lsep|0.1em>|<cwith|5|5|1|2|cell-rsep|0.1em>|<cwith|5|5|1|2|math-level|1>|<cwith|5|5|1|2|color|darker
-    grey>|<cwith|6|6|1|2|cell-bborder|0ln>|<cwith|6|6|1|2|cell-halign|c>|<cwith|6|6|1|2|cell-bborder|0ln>|<cwith|6|6|1|2|cell-lsep|0.1em>|<cwith|6|6|1|2|cell-rsep|0.1em>|<cwith|6|6|1|2|math-level|1>|<cwith|6|6|1|1|cell-bborder|0ln>|<cwith|6|6|1|1|cell-halign|c>|<cwith|6|6|1|1|cell-bborder|0ln>|<cwith|6|6|1|1|cell-lsep|0.1em>|<cwith|6|6|1|1|cell-rsep|0.1em>|<cwith|6|6|1|1|math-level|1>|<cwith|6|6|1|2|color|darker
-    grey>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-halign|c>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-lsep|0.1em>|<cwith|7|7|1|2|cell-rsep|0.1em>|<cwith|7|7|1|2|math-level|1>|<cwith|7|7|1|1|cell-row-span|1>|<cwith|7|7|1|1|cell-col-span|1>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-halign|c>|<cwith|7|7|1|2|cell-lsep|0.1em>|<cwith|7|7|1|2|cell-rsep|0.1em>|<cwith|7|7|1|2|math-level|1>|<cwith|7|7|1|2|color|darker
-    grey>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-halign|c>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-lsep|0.1em>|<cwith|8|8|1|2|cell-rsep|0.1em>|<cwith|8|8|1|2|math-level|1>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|1|cell-rborder|0ln>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-halign|c>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-lsep|0.1em>|<cwith|8|8|1|2|cell-rsep|0.1em>|<cwith|8|8|1|2|math-level|1>|<cwith|8|8|1|2|color|darker
-    grey>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-halign|c>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-rborder|0.5ln>|<cwith|9|9|1|1|cell-lsep|0.1em>|<cwith|9|9|1|1|cell-rsep|0.1em>|<cwith|9|9|1|1|math-level|1>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-tborder|0ln>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-lborder|0ln>|<cwith|9|9|1|1|cell-rborder|0ln>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-halign|c>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-lsep|0.1em>|<cwith|9|9|1|1|cell-rsep|0.1em>|<cwith|9|9|1|1|math-level|1>|<cwith|9|9|1|1|color|darker
-    grey>|<cwith|1|3|1|1|cell-background|pastel
-    green>|<cwith|4|6|1|1|cell-background|pastel
-    orange>|<cwith|7|9|1|1|cell-background|pastel
-    yellow>|<table|<row|<cell|d<rsub|t> y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,2>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,2>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-    y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t> y<rsup|k><rsub|i,2>>>>>>
-  </equation*>
+  </big-table|<label|tab:matrix-bk>One of the (local) products
+  <math|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>> (for subspace
+  <math|W<rsup|<around*|(|i|)>><rsub|h>>) for a single element. Colours
+  denote evaluation at each of the three nodes of a triangle. Empty entries
+  are zeroes. Column indices correspond to local dof indices:
+  <math|0,1,2,\<ldots\>>>
 
   For instance, the products <eqref|eq:nodal-isometry-constraint-components>
   for <math|i=1,j=2> are given by row 2 of all 3 matrices
@@ -836,6 +749,7 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|4.1|?>>
     <associate|auto-11|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
+    <associate|auto-12|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
     <associate|auto-2|<tuple|2|1>>
     <associate|auto-3|<tuple|2.1|1>>
     <associate|auto-4|<tuple|2.2|3>>
@@ -899,12 +813,12 @@
       plate under a constant force.|<pageref|auto-7>>
     </associate>
     <\associate|table>
-      <tuple|normal|The (local) matrix <with|mode|<quote|math>|B<rsub|k-1>>
+      <tuple|normal|The (local) matrix <with|mode|<quote|math>|B<rsup|k-1>>
       is made of three blocks, one per subspace. Empty entries are zeroes.
-      The three header rows refer to the dofs of the vector
-      <with|mode|<quote|math>|d<rsub|t> Y<rsup|k>> which we will multiply
-      with this matrix, i.e. the location of the dofs in the space
-      <with|mode|<quote|math>|W<rsub|h><rsup|3>>.|<pageref|auto-9>>
+      The header rows refer to the dofs of the vector
+      <with|mode|<quote|math>|d<rsub|t> Y<rsub|i><rsup|k>> which we will
+      multiply with this matrix, i.e. the local dof indices in each element
+      of <with|mode|<quote|math>|W<rsup|<around*|(|i|)>><rsub|h>>.|<pageref|auto-9>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Discrete
