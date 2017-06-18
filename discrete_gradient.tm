@@ -29,9 +29,9 @@
 
   <math|H<rsup|2>>-non-conforming continouous elements, based on reduced
   <math|P<rsub|3>> elements, their main ingredient is the interpolation of
-  gradients into a <math|P<rsub|2>> space. Key: derivatives at nodes are
-  decoupled from function values and can be handled in interleaving steps of
-  numerical schemes.
+  gradients into a <math|P<rsub|2>> space. <strong|Key:> derivatives at nodes
+  are decoupled from function values and can be handled in interleaving steps
+  of numerical schemes.
 
   <section|Discrete gradient operators>
 
@@ -706,6 +706,18 @@
     <item>Is the number of zeroes for the global tensor for DKT elements
     correctly precomputed by <name|FEniCS>? How is it done? See
     <cpp|AssemblerBase::init_global_tensor()>
+
+    <item>Using a <cpp|dolfin::BlockMatrix> to store the system matrix seemed
+    convenient but no solver can use it since it doesn't implement
+    <cpp|dolfin::GenericLinearOperator>. A quick fix was to write a
+    <cpp|BlockMatrixAdapter> to conctruct a \Pflattened\Q version of the
+    block matrix which kept track of the positions of the blocks so as to
+    read from and write to them when updating was needed (in particular,
+    updating of the isometry constraint). This doubles memory usage and
+    completely broke parallel operation but \Pquickly\Q got the job
+    done.<\footnote>
+      It still took several days of coding... :(
+    </footnote>
   </itemize-dot>
 
   <\bibliography|bib|tm-alpha|hermite.bib>
@@ -748,8 +760,7 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|4.1|?>>
-    <associate|auto-11|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
-    <associate|auto-12|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
+    <associate|auto-11|<tuple|7|?>>
     <associate|auto-2|<tuple|2|1>>
     <associate|auto-3|<tuple|2.1|1>>
     <associate|auto-4|<tuple|2.2|3>>
@@ -773,12 +784,14 @@
     <associate|footnote-4|<tuple|4|6>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-7|<tuple|7|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|6>>
     <associate|footnr-5|<tuple|5|?>>
     <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-7|<tuple|7|?>>
     <associate|rem:extending-ufl-discrete-gradient|<tuple|1|1>>
     <associate|sec:linear-kirchhoff|<tuple|3|5>>
     <associate|tab:matrix-bk|<tuple|1|?>>
@@ -813,12 +826,12 @@
       plate under a constant force.|<pageref|auto-7>>
     </associate>
     <\associate|table>
-      <tuple|normal|The (local) matrix <with|mode|<quote|math>|B<rsup|k-1>>
-      is made of three blocks, one per subspace. Empty entries are zeroes.
-      The header rows refer to the dofs of the vector
-      <with|mode|<quote|math>|d<rsub|t> Y<rsub|i><rsup|k>> which we will
-      multiply with this matrix, i.e. the local dof indices in each element
-      of <with|mode|<quote|math>|W<rsup|<around*|(|i|)>><rsub|h>>.|<pageref|auto-9>>
+      <tuple|normal|One of the (local) products
+      <with|mode|<quote|math>|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>>
+      (for subspace <with|mode|<quote|math>|W<rsup|<around*|(|i|)>><rsub|h>>)
+      for a single element. Colours denote evaluation at each of the three
+      nodes of a triangle. Empty entries are zeroes. Column indices
+      correspond to local dof indices: <with|mode|<quote|math>|0,1,2,\<ldots\>>|<pageref|auto-9>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Discrete
