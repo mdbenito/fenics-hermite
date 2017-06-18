@@ -10,16 +10,16 @@
 source $HOME/fenics-dev.env.conf && $HOME/bin/fenics-pull
 
 cd $SRC/dolfin
-git checkout 8d4c7c807451f2301020ec23a2106f0501c632e3
+git checkout tags/2017.1.0
 
 cd $SRC/mshr
-git checkout c4058b5287722fbcc9dd8ec25bebfd31e3e58ea4
+git checkout tags/2017.1.0
 
 cd $SRC/dijitso
-git checkout tags/dijitso-2016.2.0
+git checkout tags/2017.1.0
 
 cd $SRC/instant
-git checkout tags/instant-2016.2.0
+git checkout tags/2017.1.0
 
 cd $SRC/ffc
 git remote rename origin fenics
