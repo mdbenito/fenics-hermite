@@ -534,7 +534,15 @@
     <label|eq:nodal-isometry-constraint-components>d<rsub|t>
     y<rsup|k><rsub|l,i>*y<rsup|k-1><rsub|l,j>+y<rsub|l,i><rsup|k-1>*d<rsub|t>
     y<rsup|k><rsub|l,j>=0<text| for each >i,j\<in\><around*|{|1,2|}><text| at
-    every node >z\<in\>\<cal-N\><rsub|h>.
+    every node >z\<in\>\<cal-N\><rsub|h>
+  </equation>
+
+  and\ 
+
+  <\equation>
+    <label|eq:nodal-dirichlet-constraint>d<rsub|t> y<rsup|k><rsub|l>=0<text|
+    at every node >z\<in\>\<cal-N\><rsub|h>\<cap\>\<Gamma\><rsub|D>.<todo|fix
+    notation>
   </equation>
 
   Using the local dofmaps we translate <eqref|eq:nodal-isometry-constraint-components>
@@ -556,10 +564,12 @@
 
   We construct a matrix <math|B<rsup|k-1>> whose rows will realize each one
   of the components of the constraint. By inspecting the products in
-  <eqref|eq:nodal-isometry-constraint-components> we can construct the matrix
+  <eqref|eq:nodal-isometry-constraint-components> and
+  <eqref|eq:nodal-dirichlet-constraint> we can construct the matrix for one
+  cell
 
   <\equation*>
-    B<rsup|k-1>\<assign\><matrix|<tformat|<table|<row|<cell|B<rsub|1><rsup|k-1>>|<cell|B<rsub|2><rsup|k-1>>|<cell|B<rsub|3><rsup|k-1>>>>>>\<in\>\<bbb-R\><rsup|4\<times\>27>
+    B<rsup|k-1>\<assign\><matrix|<tformat|<table|<row|<cell|B<rsub|1><rsup|k-1>>|<cell|B<rsub|2><rsup|k-1>>|<cell|B<rsub|3><rsup|k-1>>>>>>\<in\>\<bbb-R\><rsup|7\<times\>27>
   </equation*>
 
   whose components are given in Table <reference|tab:matrix-bk>.<\footnote>
@@ -627,7 +637,10 @@
       green>|<cwith|3|3|1|1|cell-background|pastel
       green>|<cwith|2|2|1|1|cell-background|pastel
       green>|<cwith|1|1|1|1|cell-background|pastel
-      green>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
+      green>|<cwith|5|7|1|3|cell-background|pastel
+      green>|<cwith|5|7|4|6|cell-background|pastel
+      orange>|<cwith|5|7|7|9|cell-background|pastel
+      yellow>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>|<row|<cell|1>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|1>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|1>|<cell|>|<cell|>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
       grey>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-halign|c>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-lsep|0.1em>|<cwith|2|2|1|2|cell-rsep|0.1em>|<cwith|2|2|1|2|math-level|1>|<cwith|2|2|1|2|color|darker
       grey>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-halign|c>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-lsep|0.1em>|<cwith|3|3|1|2|cell-rsep|0.1em>|<cwith|3|3|1|2|math-level|1>|<cwith|3|3|1|2|color|darker
       grey>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|1|cell-row-span|1>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|2|color|darker
@@ -774,9 +787,10 @@
     <associate|bib-brenner_c0_2005|<tuple|BS05|8>>
     <associate|eq:coeff-midpoint|<tuple|2|?>>
     <associate|eq:h2-flow-update-system|<tuple|4|6>>
-    <associate|eq:kirchhoff-local-timestep-system|<tuple|6|?>>
+    <associate|eq:kirchhoff-local-timestep-system|<tuple|7|?>>
     <associate|eq:local-dkt-gradient|<tuple|1|3>>
     <associate|eq:local-tensor-lki|<tuple|3|4>>
+    <associate|eq:nodal-dirichlet-constraint|<tuple|6|?>>
     <associate|eq:nodal-isometry-constraint-components|<tuple|5|6>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|4>>
