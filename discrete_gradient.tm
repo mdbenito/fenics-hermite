@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|generic|british|better-amsart>>
 
@@ -20,6 +20,48 @@
 
     <assign|cpp|<macro|body|<small|<with|mode|prog|prog-language|cpp|font-family|rm|<arg|body>>>>>
   </hide-preamble>
+
+  <doc-data|<doc-title|Kirchhoff models for plates>|<doc-date|May 2017>>
+
+  <\small>
+    <\table-of-contents|toc>
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|1<space|2spc>Discrete
+      Kirchhoff Triangles> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|2<space|2spc>Discrete
+      gradient operators> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2><vspace|0.5fn>
+
+      <with|par-left|1tab|2.1<space|2spc>Piecewise linear functions
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3>>
+
+      <with|par-left|1tab|2.2<space|2spc>Discrete Kirchhoff Triangles
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|2tab|2.2.1<space|2spc>Computation of the local tensor
+      <with|mode|math|M> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|3<space|2spc>Linear
+      Kirchhoff model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|4<space|2spc>Non
+      linear Kirchhoff model> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8><vspace|0.5fn>
+
+      <with|par-left|1tab|4.1<space|2spc>Implementation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12><vspace|0.5fn>
+    </table-of-contents>
+  </small>
 
   <section|Discrete Kirchhoff Triangles>
 
@@ -620,7 +662,7 @@
 
   <\big-table>
     <\equation*>
-      <matrix|<tformat|<cwith|1|4|2|2|cell-background|pastel
+      <below|<matrix|<tformat|<cwith|1|4|2|2|cell-background|pastel
       green>|<cwith|1|4|5|5|cell-background|pastel
       green>|<cwith|1|4|8|8|cell-background|pastel
       green>|<cwith|1|4|6|6|cell-background|pastel
@@ -637,10 +679,8 @@
       green>|<cwith|3|3|1|1|cell-background|pastel
       green>|<cwith|2|2|1|1|cell-background|pastel
       green>|<cwith|1|1|1|1|cell-background|pastel
-      green>|<cwith|5|7|1|3|cell-background|pastel
-      green>|<cwith|5|7|4|6|cell-background|pastel
-      orange>|<cwith|5|7|7|9|cell-background|pastel
-      yellow>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>|<row|<cell|1>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|1>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|1>|<cell|>|<cell|>>>>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
+      green>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>>>>|<text|+BCs
+      ><around*|(|9\<times\>\<ldots\>|)>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
       grey>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-halign|c>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-lsep|0.1em>|<cwith|2|2|1|2|cell-rsep|0.1em>|<cwith|2|2|1|2|math-level|1>|<cwith|2|2|1|2|color|darker
       grey>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-halign|c>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-lsep|0.1em>|<cwith|3|3|1|2|cell-rsep|0.1em>|<cwith|3|3|1|2|math-level|1>|<cwith|3|3|1|2|color|darker
       grey>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|1|cell-row-span|1>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|2|color|darker
@@ -662,6 +702,8 @@
       y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
       y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t> y<rsup|k><rsub|i,2>>>>>>
     </equation*>
+
+    \;
   </big-table|<label|tab:matrix-bk>One of the (local) products
   <math|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>> (for subspace
   <math|W<rsup|<around*|(|i|)>><rsub|h>>) for a single element. Colours
@@ -692,8 +734,8 @@
     Y<rsup|k>>>|<row|<cell|\<Lambda\>>>>>>=<matrix|<tformat|<table|<row|<cell|-\<alpha\>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M*Y<rsup|k-1>+\<tau\>*F>>|<row|<cell|0>>>>>.
   </equation>
 
-  This is a square <math|<around*|(|27+4|)>\<times\><around*|(|27+4|)>>
-  matrix and a <math|27+4> right hand side. <todo|The unknown
+  This is a square <math|<around*|(|27+13|)>\<times\><around*|(|27+13|)>>
+  matrix and a <math|27+13> right hand side. <todo|The unknown
   <math|\<Lambda\>> can be discarded>
 
   The matrix <math|M> realizes the (local) operator
@@ -733,6 +775,9 @@
     </footnote>
   </itemize-dot>
 
+  <big-figure|<image|nonlinear-kirchhoff-dirichlet-bogus.png|0.8par|||>|Bogus
+  solution...>
+
   <\bibliography|bib|tm-alpha|hermite.bib>
     <\bib-list|3>
       <bibitem*|Bar13><label|bib-bartels_approximation_2013>S.<nbsp>Bartels.<newblock>
@@ -749,10 +794,10 @@
       2015.<newblock>
 
       <bibitem*|BS05><label|bib-brenner_c0_2005>Susanne<nbsp>C.<nbsp>Brenner<localize|
-      and >Li-Yeng Sung.<newblock> <math|C<rsup|0>> Interior Penalty Methods
-      for Fourth Order Elliptic Boundary Value Problems on Polygonal
-      Domains.<newblock> <with|font-shape|italic|Journal of Scientific
-      Computing>, 22-23(1-3):83\U118, jun 2005.<newblock>
+      and >Li-Yeng Sung.<newblock> C0 Interior Penalty Methods for Fourth
+      Order Elliptic Boundary Value Problems on Polygonal Domains.<newblock>
+      <with|font-shape|italic|Journal of Scientific Computing>,
+      22-23(1-3):83\U118, jun 2005.<newblock>
     </bib-list>
   </bibliography>
 </body>
@@ -764,51 +809,192 @@
     <associate|indent-indentation|1.5tab>
     <associate|info-flag|detailed>
     <associate|math-font|math-stix>
-    <associate|page-medium|papyrus>
+    <associate|page-medium|paper>
     <associate|preamble|false>
   </collection>
 </initial>
 
+<\attachments>
+  <\collection>
+    <\associate|bib-bibliography>
+      <\db-entry|+RVLqbjQcAuqQ2W|book|bartels_numerical_2015>
+        <db-field|contributor|miguel>
+
+        <db-field|modus|imported>
+
+        <db-field|date|1498030748>
+      <|db-entry>
+        <db-field|author|Sören <name|Bartels>>
+
+        <db-field|title|Numerical Methods for Nonlinear Partial Differential
+        Equations>
+
+        <db-field|publisher|Springer International Publishing>
+
+        <db-field|year|2015>
+
+        <db-field|volume|47>
+
+        <db-field|series|Springer Series in Computational Mathematics>
+
+        <db-field|address|Cham>
+
+        <db-field|isbn|978-3-319-13796-4 978-3-319-13797-1>
+
+        <db-field|url|<slink|http://link.springer.com/10.1007/978-3-319-13797-1>>
+
+        <db-field|urldate|2016-10-26>
+
+        <db-field|file|Bartels - 2015 - Numerical Methods for Nonlinear
+        Partial Differenti.pdf:/Users/miguel/Library/Application
+        Support/Zotero/Profiles/j358n6qi.default/zotero/storage/84XBQWTH/Bartels
+        - 2015 - Numerical Methods for Nonlinear Partial
+        Differenti.pdf:application/pdf>
+      </db-entry>
+
+      <\db-entry|+RVLqbjQcAuqQ2f|article|brenner_c0_2005>
+        <db-field|contributor|miguel>
+
+        <db-field|modus|imported>
+
+        <db-field|date|1498030748>
+      <|db-entry>
+        <db-field|author|Susanne C. <name|Brenner><name-sep>Li-Yeng
+        <name|Sung>>
+
+        <db-field|title|C0 Interior Penalty Methods for Fourth Order Elliptic
+        Boundary Value Problems on Polygonal Domains>
+
+        <db-field|journal|Journal of Scientific Computing>
+
+        <db-field|year|2005>
+
+        <db-field|volume|22-23>
+
+        <db-field|number|1-3>
+
+        <db-field|pages|83\U118>
+
+        <db-field|month|jun>
+
+        <db-field|issn|0885-7474, 1573-7691>
+
+        <db-field|url|https://link.springer.com/article/10.1007/s10915-004-4135-7>
+
+        <db-field|doi|10.1007/s10915-004-4135-7>
+
+        <db-field|abstract|C0 interior penalty methods for fourth order
+        elliptic boundary value problems on polygonal domains are analyzed in
+        this paper. A post-processing procedure that can generate C1
+        approximate solutions from the C0 approximate solutions is presented.
+        New C0 interior penalty methods based on the techniques involved in
+        the post-processing procedure are introduced. These new methods are
+        applicable to rough right-hand sides.>
+
+        <db-field|language|en>
+
+        <db-field|urldate|2017-05-12>
+
+        <db-field|file|Brenner and Sung - 2005 - C0 Interior Penalty Methods
+        for Fourth Order Ellip.pdf:/Users/miguel/Library/Application
+        Support/Zotero/Profiles/j358n6qi.default/zotero/storage/BF5PH59K/Brenner
+        and Sung - 2005 - C0 Interior Penalty Methods for Fourth Order
+        Ellip.pdf:application/pdf>
+      </db-entry>
+
+      <\db-entry|+RVLqbjQcAuqQ2Y|article|bartels_approximation_2013>
+        <db-field|contributor|miguel>
+
+        <db-field|modus|imported>
+
+        <db-field|date|1498030748>
+      <|db-entry>
+        <db-field|author|S. <name|Bartels>>
+
+        <db-field|title|Approximation of Large Bending Isometries with
+        Discrete Kirchhoff Triangles>
+
+        <db-field|journal|SIAM Journal on Numerical Analysis>
+
+        <db-field|year|2013>
+
+        <db-field|volume|51>
+
+        <db-field|number|1>
+
+        <db-field|pages|516\U525>
+
+        <db-field|month|jan>
+
+        <db-field|issn|0036-1429>
+
+        <db-field|url|<slink|http://epubs.siam.org/doi/abs/10.1137/110855405>>
+
+        <db-field|doi|10.1137/110855405>
+
+        <db-field|abstract|We devise and analyze a simple numerical method
+        for the approximation of large bending isometries. The discretization
+        employs a discrete Kirchhoff triangle to deal with second order
+        derivatives and convergence of discrete solutions to minimizers of
+        the continuous formulation is proved. Unconditional stability and
+        convergence of an iterative scheme for the computation of discrete
+        minimizers that is based on a linearization of the isometry
+        constraint is verified. Numerical experiments illustrate the
+        performance of the proposed method.>
+
+        <db-field|urldate|2016-12-20>
+
+        <db-field|file|Bartels - 2013 - Approximation of Large Bending
+        Isometries with Dis.pdf:/Users/miguel/Library/Application
+        Support/Zotero/Profiles/j358n6qi.default/zotero/storage/RRCM8GRI/Bartels
+        - 2013 - Approximation of Large Bending Isometries with
+        Dis.pdf:application/pdf>
+      </db-entry>
+    </associate>
+  </collection>
+</attachments>
+
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.1|?>>
-    <associate|auto-11|<tuple|7|?>>
+    <associate|auto-10|<tuple|4.1|9>>
+    <associate|auto-11|<tuple|2|9>>
+    <associate|auto-12|<tuple|2|9>>
     <associate|auto-2|<tuple|2|1>>
-    <associate|auto-3|<tuple|2.1|1>>
+    <associate|auto-3|<tuple|2.1|2>>
     <associate|auto-4|<tuple|2.2|3>>
     <associate|auto-5|<tuple|2.2.1|4>>
     <associate|auto-6|<tuple|3|5>>
-    <associate|auto-7|<tuple|1|5>>
-    <associate|auto-8|<tuple|4|7>>
-    <associate|auto-9|<tuple|1|7>>
-    <associate|bib-bartels_approximation_2013|<tuple|Bar13|7>>
-    <associate|bib-bartels_numerical_2015|<tuple|Bar15|7>>
-    <associate|bib-brenner_c0_2005|<tuple|BS05|8>>
-    <associate|eq:coeff-midpoint|<tuple|2|?>>
-    <associate|eq:h2-flow-update-system|<tuple|4|6>>
-    <associate|eq:kirchhoff-local-timestep-system|<tuple|7|?>>
-    <associate|eq:local-dkt-gradient|<tuple|1|3>>
+    <associate|auto-7|<tuple|1|6>>
+    <associate|auto-8|<tuple|4|6>>
+    <associate|auto-9|<tuple|1|8>>
+    <associate|bib-bartels_approximation_2013|<tuple|Bar13|9>>
+    <associate|bib-bartels_numerical_2015|<tuple|Bar15|9>>
+    <associate|bib-brenner_c0_2005|<tuple|BS05|9>>
+    <associate|eq:coeff-midpoint|<tuple|2|4>>
+    <associate|eq:h2-flow-update-system|<tuple|4|7>>
+    <associate|eq:kirchhoff-local-timestep-system|<tuple|7|8>>
+    <associate|eq:local-dkt-gradient|<tuple|1|4>>
     <associate|eq:local-tensor-lki|<tuple|3|4>>
-    <associate|eq:nodal-dirichlet-constraint|<tuple|6|?>>
-    <associate|eq:nodal-isometry-constraint-components|<tuple|5|6>>
-    <associate|footnote-1|<tuple|1|2>>
+    <associate|eq:nodal-dirichlet-constraint|<tuple|6|7>>
+    <associate|eq:nodal-isometry-constraint-components|<tuple|5|7>>
+    <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|4>>
     <associate|footnote-3|<tuple|3|5>>
     <associate|footnote-4|<tuple|4|6>>
-    <associate|footnote-5|<tuple|5|?>>
-    <associate|footnote-6|<tuple|6|?>>
-    <associate|footnote-7|<tuple|7|?>>
-    <associate|footnr-1|<tuple|1|2>>
+    <associate|footnote-5|<tuple|5|7>>
+    <associate|footnote-6|<tuple|6|8>>
+    <associate|footnote-7|<tuple|7|9>>
+    <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|6>>
-    <associate|footnr-5|<tuple|5|?>>
-    <associate|footnr-6|<tuple|6|?>>
-    <associate|footnr-7|<tuple|7|?>>
+    <associate|footnr-5|<tuple|5|7>>
+    <associate|footnr-6|<tuple|6|8>>
+    <associate|footnr-7|<tuple|7|9>>
     <associate|rem:extending-ufl-discrete-gradient|<tuple|1|1>>
     <associate|sec:linear-kirchhoff|<tuple|3|5>>
-    <associate|tab:matrix-bk|<tuple|1|?>>
+    <associate|tab:matrix-bk|<tuple|1|8>>
   </collection>
 </references>
 
@@ -838,6 +1024,8 @@
     <\associate|figure>
       <tuple|normal|Solution of the linear Kirchhoff model for a clamped
       plate under a constant force.|<pageref|auto-7>>
+
+      <tuple|normal|Bogus solution...|<pageref|auto-11>>
     </associate>
     <\associate|table>
       <tuple|normal|One of the (local) products
@@ -882,7 +1070,7 @@
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11><vspace|0.5fn>
+      <no-break><pageref|auto-12><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
