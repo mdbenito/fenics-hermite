@@ -429,9 +429,9 @@
   for the form, compile and link the new form and make it available to
   <name|dolfin> to let the it assemble the full system matrix. This proves
   technically tricky and provides little advantage over assembling the matrix
-  ourselves using the tensor from 1. and the dofmaps from 2. This method
-  might have the advantage that all issues related to the preinitialisation
-  of the system matrices are left to <name|FEniCS>.
+  ourselves using the tensor from 1 and the dofmaps from 2. This method might
+  have the advantage that the initialisation of the system matrices is left
+  to <name|FEniCS>.
 
   <section|Linear Kirchhoff model><label|sec:linear-kirchhoff>
 
@@ -474,10 +474,10 @@
 
   We provide two implementations in <name|FEniCS>, a first one in
   <name|Python> which served as test-bed and a second one in <c++>. The two
-  main issues where the computation of the local discrete gradient operator
+  main issues were the computation of the local discrete gradient operator
   and its application during manual assembly of the system matrix and careful
-  assignment of essential boundary conditions. See Appendix
-  <inactive|<reference|>> for the details.
+  assignment of essential boundary conditions. <todo|See Appendix
+  <inactive|<reference|>> for the details>.
 
   <section|Non linear Kirchhoff model>
 
@@ -532,8 +532,9 @@
   </problem*>
 
   For the approximation properties of this discretization, see
-  <cite-detail|bartels_approximation_2013|Theorem 3.1>. It is solved using a
-  discrete gradient flow of the energy <cite|bartels_approximation_2013>,<cite-detail|bartels_numerical_2015|Algorithm
+  <cite-detail|bartels_approximation_2013|Theorem 3.1>. It is solved using
+  the following discrete gradient flow of the energy
+  <cite|bartels_approximation_2013>,<cite-detail|bartels_numerical_2015|Algorithm
   8.1>:
 
   <\named-algorithm|(discrete <math|H<rsup|2>>-isometry-flow)>
@@ -541,14 +542,14 @@
     For <math|k=1,2,\<ldots\>>, define
 
     <\equation*>
-      \<cal-F\><rsub|h><around*|[|y<rsup|k-1><rsub|h>|]>\<assign\><around*|{|w<rsub|h>\<in\>W<rsub|h,D><rsup|3>:\<nabla\><rsup|\<top\>>w<rsub|h><around*|(|z|)>*\<nabla\>y<rsup|k-1><rsub|h><around*|(|z|)>+\<nabla\><rsup|\<top\>>y<rsup|k-1><rsub|h><around*|(|z|)>*\<nabla\>w<rsub|h><around*|(|z|)>=0<text|
+      \<cal-F\><rsub|h><around*|[|y<rsup|k-1><rsub|h>|]>\<assign\><around*|{|w<rsub|h>\<in\>W<rsub|h,D,0><rsup|3>:\<nabla\><rsup|\<top\>>w<rsub|h><around*|(|z|)>*\<nabla\>y<rsup|k-1><rsub|h><around*|(|z|)>+\<nabla\><rsup|\<top\>>y<rsup|k-1><rsub|h><around*|(|z|)>*\<nabla\>w<rsub|h><around*|(|z|)>=0<text|
       f.a. >z\<in\>\<cal-N\><rsub|h>|}>
     </equation*>
 
     and set <math|y<rsup|k><rsub|h>=y<rsup|k-1><rsub|h>+\<tau\>*d<rsub|t>y<rsub|h><rsup|k>>
     where the <em|update> <math|d<rsub|t>y<rsup|k><rsub|h>> satisfies the
     constraint <math|d<rsub|t> y<rsup|k><rsub|h>\<in\>\<cal-F\><rsub|h><around*|[|y<rsup|k-1><rsub|h>|]>>
-    and solves the system
+    while solving the system
 
     <\equation>
       <label|eq:h2-flow-update-system><around*|(|\<nabla\>\<nabla\><rsub|h>
@@ -560,6 +561,8 @@
     for all <math|w<rsub|h>\<in\>\<cal-F\><rsub|h><around*|[|y<rsup|k-1><rsub|h>|]>>.
     Stop the iteration if <math|<around*|\<\|\|\>|\<nabla\>\<nabla\><rsub|h>
     d<rsub|t> y<rsup|k><rsub|h>|\<\|\|\>>\<leqslant\>\<varepsilon\><rsub|stop>>.
+    Here <math|W<rsub|h,D,0>> is analogous to <math|W<rsub|h,D>>, but with
+    zero boundary data.
   </named-algorithm>
 
   <cite-detail|bartels_approximation_2013|Theorem 3.2> proves that the
@@ -576,175 +579,92 @@
     <label|eq:nodal-isometry-constraint-components>d<rsub|t>
     y<rsup|k><rsub|l,i>*y<rsup|k-1><rsub|l,j>+y<rsub|l,i><rsup|k-1>*d<rsub|t>
     y<rsup|k><rsub|l,j>=0<text| for each >i,j\<in\><around*|{|1,2|}><text| at
-    every node >z\<in\>\<cal-N\><rsub|h>
+    every node >z\<in\>\<cal-N\><rsub|h>,
   </equation>
 
-  and\ 
+  i.e. 4 constraints per node, with 3, 6, 6 and 3 different products
+  respectively, and
 
   <\equation>
     <label|eq:nodal-dirichlet-constraint>d<rsub|t> y<rsup|k><rsub|l>=0<text|
-    at every node >z\<in\>\<cal-N\><rsub|h>\<cap\>\<Gamma\><rsub|D>.<todo|fix
-    notation>
+    and >\<nabla\>d<rsub|t> y<rsup|k><rsub|l>=0<text| at every node
+    >z\<in\>\<cal-N\><rsub|h>\<cap\>\<Gamma\><rsub|D>.
   </equation>
 
+  These last conditions ensure that the update <math|d<rsub|t>y<rsup|k>>
+  doesn't modify the value of any dof at the Dirichlet boundary. Since they
+  can be included into the main system matrix as usual and need not be
+  updated at each step we will not explicitly consider them in what follows.
+
   Using the local dofmaps we translate <eqref|eq:nodal-isometry-constraint-components>
-  into matrix <math|\<cdot\>> vector form, for one cell. First, assume that
-  the <verbatim|VectorFunctionSpace \<less\>DKT\<gtr\>> sorts the local dofs
-  of its subspaces simply by concatenating them, that is: for a fixed cell,
-  the local indices 0-8 are for the first subspace, 9-17 for the second and
-  18-26 for the third.<\footnote>
-    This is actually the case, at least in <name|FEniCS> 2017.1
-  </footnote> Then we have that the local components
-  <math|d<rsub|t>Y<rsup|k>> of <math|d<rsub|t> y<rsup|k><rsub|h>> are
-  <math|d<rsub|t>Y<rsup|k><rsub|3*l+n*i>=d<rsub|t>y<rsub|l,i><rsup|k><around*|(|z<rsub|n>|)>>,
-  <math|l\<in\><around*|{|0,1,2|}>>, explicitly:
+  into matrix <math|\<cdot\>> vector form. First let
+  <math|n:\<cal-N\><rsub|h>\<rightarrow\>\<bbb-N\>> be a numbering of the
+  vertices in the mesh and <math|\<nu\>:\<cal-N\><rsub|h>\<rightarrow\>\<bbb-N\>>
+  the vertex-to-dof mapping for <verbatim|VectorFunctionSpace
+  \<less\>DKT\<gtr\>>. In <name|FEniCS> the latter is obtained with
+  <cpp|dolfin::vertex_to_dof_map()>, which provides an array with all 9 dofs
+  for each vertex contiguously placed, in groups of three, one per subspace.
 
-  <\equation*>
-    d<rsub|t> Y<rsup|k>=<around*|(|d<rsub|t>y<rsub|1><rsup|k><around*|(|z<rsub|1>|)>,d<rsub|t>y<rsub|1,1><rsup|k><around*|(|z<rsub|1>|)>,d<rsub|t>
-    y<rsub|1,2><rsup|k><around*|(|z<rsub|1>|)>,\<ldots\>,d<rsub|t>y<rsub|3><rsup|k><around*|(|z<rsub|3>|)>,d<rsub|t>y<rsub|3,1><rsup|k><around*|(|z<rsub|3>|)>,d<rsub|t>y<rsub|3,2><rsup|k><around*|(|z<rsub|3>|)>|)>.
-  </equation*>
-
-  We construct a matrix <math|B<rsup|k-1>> whose rows will realize each one
-  of the components of the constraint. By inspecting the products in
-  <eqref|eq:nodal-isometry-constraint-components> and
-  <eqref|eq:nodal-dirichlet-constraint> we can construct the matrix for one
-  cell
-
-  <\equation*>
-    B<rsup|k-1>\<assign\><matrix|<tformat|<table|<row|<cell|B<rsub|1><rsup|k-1>>|<cell|B<rsub|2><rsup|k-1>>|<cell|B<rsub|3><rsup|k-1>>>>>>\<in\>\<bbb-R\><rsup|7\<times\>27>
-  </equation*>
-
-  whose components are given in Table <reference|tab:matrix-bk>.<\footnote>
-    The full matrix is
-
-    <\equation*>
-      <tabular|<tformat|<cwith|1|1|12|12|cell-row-span|1>|<cwith|1|1|12|12|cell-col-span|9>|<cwith|1|1|21|21|cell-row-span|1>|<cwith|1|1|21|21|cell-col-span|9>|<cwith|2|2|3|3|cell-row-span|1>|<cwith|2|2|3|3|cell-col-span|3>|<cwith|1|1|3|3|cell-row-span|1>|<cwith|1|1|3|3|cell-col-span|9>|<cwith|2|2|6|6|cell-row-span|1>|<cwith|2|2|6|6|cell-col-span|3>|<cwith|2|2|9|9|cell-row-span|1>|<cwith|2|2|9|9|cell-col-span|3>|<cwith|2|2|12|12|cell-row-span|1>|<cwith|2|2|12|12|cell-col-span|3>|<cwith|2|2|15|15|cell-row-span|1>|<cwith|2|2|15|15|cell-col-span|3>|<cwith|2|2|18|18|cell-row-span|1>|<cwith|2|2|18|18|cell-col-span|3>|<cwith|2|2|21|21|cell-row-span|1>|<cwith|2|2|21|21|cell-col-span|3>|<cwith|2|2|24|24|cell-row-span|1>|<cwith|2|2|24|24|cell-col-span|3>|<cwith|2|2|27|27|cell-row-span|1>|<cwith|2|2|27|27|cell-col-span|3>|<cwith|3|3|6|6|cell-row-span|1>|<cwith|3|3|6|6|cell-col-span|3>|<cwith|3|3|9|9|cell-row-span|1>|<cwith|3|3|9|9|cell-col-span|3>|<cwith|3|3|15|15|cell-row-span|1>|<cwith|3|3|15|15|cell-col-span|3>|<cwith|3|3|18|18|cell-row-span|1>|<cwith|3|3|18|18|cell-col-span|3>|<cwith|3|3|24|24|cell-row-span|1>|<cwith|3|3|24|24|cell-col-span|3>|<cwith|3|3|27|27|cell-row-span|1>|<cwith|3|3|27|27|cell-col-span|3>|<cwith|3|8|4|4|cell-background|pastel
-      green>|<cwith|4|8|7|7|cell-background|pastel
-      green>|<cwith|4|8|10|10|cell-background|pastel
-      green>|<cwith|4|8|8|8|cell-background|pastel
-      orange>|<cwith|4|8|5|5|cell-background|pastel
-      orange>|<cwith|4|8|11|11|cell-background|pastel
-      orange>|<cwith|6|6|4|4|cell-background|pastel
-      green>|<cwith|6|6|7|7|cell-background|pastel
-      green>|<cwith|6|6|10|10|cell-background|pastel
-      green>|<cwith|6|6|8|8|cell-background|pastel
-      orange>|<cwith|6|6|5|5|cell-background|pastel
-      orange>|<cwith|6|6|11|11|cell-background|pastel
-      orange>|<cwith|4|4|3|29|cell-tborder|0ln>|<cwith|3|3|3|29|cell-bborder|0ln>|<cwith|4|4|3|29|cell-bborder|1ln>|<cwith|5|5|3|29|cell-tborder|1ln>|<cwith|4|4|3|3|cell-lborder|0ln>|<cwith|4|4|29|29|cell-rborder|0ln>|<cwith|5|5|3|29|cell-tsep|0.3em>|<cwith|3|3|4|4|cell-background|pastel
-      green>|<cwith|3|3|5|5|cell-background|pastel
-      orange>|<cwith|5|8|29|29|cell-lborder|0ln>|<cwith|5|8|28|28|cell-rborder|0ln>|<cwith|5|8|29|29|cell-rborder|1ln>|<cwith|1|-1|1|-1|cell-halign|c>|<cwith|5|5|2|2|cell-row-span|4>|<cwith|5|5|2|2|cell-col-span|1>|<cwith|4|4|3|3|cell-bborder|0ln>|<cwith|5|8|2|5|cell-bborder|0ln>|<cwith|5|8|2|5|cell-rborder|0ln>|<cwith|5|8|2|5|cell-lborder|0ln>|<cwith|5|5|29|29|cell-tborder|0ln>|<cwith|4|4|29|29|cell-bborder|0ln>|<cwith|5|5|29|29|cell-lborder|0ln>|<cwith|5|5|28|28|cell-rborder|0ln>|<cwith|5|5|29|29|cell-rborder|0ln>|<cwith|8|8|29|29|cell-bborder|0ln>|<cwith|8|8|29|29|cell-lborder|0ln>|<cwith|8|8|28|28|cell-rborder|0ln>|<cwith|8|8|29|29|cell-rborder|0ln>|<cwith|6|6|29|29|cell-tborder|0ln>|<cwith|5|5|29|29|cell-bborder|0ln>|<cwith|6|6|29|29|cell-lborder|0ln>|<cwith|6|6|28|28|cell-rborder|0ln>|<cwith|6|6|29|29|cell-rborder|0ln>|<cwith|7|7|29|29|cell-tborder|0ln>|<cwith|6|6|29|29|cell-bborder|0ln>|<cwith|7|7|29|29|cell-bborder|0ln>|<cwith|8|8|29|29|cell-tborder|0ln>|<cwith|7|7|29|29|cell-lborder|0ln>|<cwith|7|7|28|28|cell-rborder|0ln>|<cwith|7|7|29|29|cell-rborder|0ln>|<cwith|5|5|30|30|cell-row-span|4>|<cwith|5|5|30|30|cell-col-span|1>|<cwith|4|4|4|28|cell-tborder|0ln>|<cwith|3|3|4|28|cell-bborder|0ln>|<cwith|4|4|4|28|cell-bborder|0ln>|<cwith|5|8|2|28|cell-tborder|0ln>|<cwith|4|4|4|4|cell-lborder|0ln>|<cwith|4|4|3|3|cell-rborder|0ln>|<cwith|4|4|28|28|cell-rborder|0ln>|<cwith|4|4|29|29|cell-lborder|0ln>|<cwith|4|4|1|-1|cell-bsep|0px>|<cwith|4|4|1|-1|cell-tsep|0px>|<cwith|4|4|1|-1|cell-valign|c>|<cwith|4|4|1|-1|cell-height|0.8em>|<cwith|4|4|1|-1|cell-vmode|exact>|<cwith|5|5|2|2|cell-bsep|0px>|<cwith|5|5|2|2|cell-tsep|0px>|<cwith|5|5|30|30|cell-bsep|0px>|<cwith|5|5|30|30|cell-tsep|0px>|<cwith|8|8|1|-1|cell-bsep|0px>|<cwith|3|8|13|13|cell-background|pastel
-      green>|<cwith|3|8|22|22|cell-background|pastel
-      green>|<cwith|3|8|14|14|cell-background|pastel
-      orange>|<cwith|3|8|23|23|cell-background|pastel
-      orange>|<cwith|5|8|16|16|cell-background|pastel
-      green>|<cwith|5|8|19|19|cell-background|pastel
-      green>|<cwith|5|8|25|25|cell-background|pastel
-      green>|<cwith|5|8|28|28|cell-background|pastel
-      green>|<cwith|5|8|17|17|cell-background|pastel
-      orange>|<cwith|5|8|20|20|cell-background|pastel
-      orange>|<cwith|5|8|26|26|cell-background|pastel
-      orange>|<cwith|5|8|29|29|cell-background|pastel
-      orange>|<cwith|5|5|2|2|cell-valign|b>|<cwith|5|5|30|30|cell-valign|b>|<cwith|3|3|12|12|cell-tborder|0ln>|<cwith|2|2|12|12|cell-bborder|0ln>|<cwith|8|8|12|12|cell-bborder|0ln>|<cwith|3|8|12|12|cell-lborder|0.5ln>|<cwith|3|8|11|11|cell-rborder|0.5ln>|<cwith|3|8|12|12|cell-rborder|0ln>|<cwith|3|8|13|13|cell-lborder|0ln>|<cwith|3|3|21|21|cell-tborder|0ln>|<cwith|2|2|21|21|cell-bborder|0ln>|<cwith|8|8|21|21|cell-bborder|0ln>|<cwith|3|8|21|21|cell-lborder|0.5ln>|<cwith|3|8|20|20|cell-rborder|0.5ln>|<cwith|3|8|21|21|cell-rborder|0ln>|<cwith|3|8|22|22|cell-lborder|0ln>|<cwith|4|4|30|30|cell-background|>|<cwith|4|4|3|29|cell-background|>|<cwith|5|5|1|1|cell-row-span|4>|<cwith|5|5|1|1|cell-col-span|1>|<cwith|5|5|1|1|cell-valign|c>|<twith|table-lsep|0px>|<cwith|1|-1|1|-1|cell-lsep|0.1em>|<cwith|1|-1|1|-1|cell-rsep|0.1em>|<cwith|5|8|6|11|cell-lsep|0.2em>|<cwith|5|8|6|11|cell-rsep|0.2em>|<cwith|5|8|15|19|cell-lsep|0.2em>|<cwith|5|8|15|19|cell-rsep|0.2em>|<cwith|5|8|24|29|cell-lsep|0.2em>|<cwith|5|8|24|29|cell-rsep|0.2em>|<cwith|1|-1|20|20|cell-lsep|0.2em>|<cwith|1|-1|20|20|cell-rsep|0.2em>|<cwith|1|2|3|27|color|darker
-      grey>|<cwith|4|4|3|23|color|darker grey>|<cwith|3|3|6|9|color|darker
-      grey>|<cwith|3|3|15|18|color|darker grey>|<cwith|3|3|24|27|color|darker
-      grey>|<cwith|3|3|3|27|math-level|1>|<cwith|2|2|3|27|math-level|1>|<cwith|1|1|3|21|math-level|1>|<cwith|1|1|1|-1|cell-bsep|0px>|<cwith|2|2|1|-1|cell-tsep|0px>|<cwith|1|-1|2|2|cell-rsep|0px>|<cwith|1|-1|30|30|cell-lsep|0px>|<cwith|6|6|7|7|cell-valign|c>|<cwith|6|6|8|8|cell-row-span|2>|<cwith|6|6|8|8|cell-col-span|1>|<cwith|6|6|7|7|cell-row-span|2>|<cwith|6|6|7|7|cell-col-span|1>|<cwith|6|6|8|8|cell-valign|c>|<cwith|6|6|11|11|cell-row-span|2>|<cwith|6|6|11|11|cell-col-span|1>|<cwith|6|6|10|10|cell-row-span|2>|<cwith|6|6|10|10|cell-col-span|1>|<cwith|6|6|10|10|cell-valign|c>|<cwith|6|6|11|11|cell-valign|c>|<table|<row|<cell|>|<cell|>|<cell|<text|subspace
-      0>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|<text|subspace
-      1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|<text|subspace
-      2>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|<text|eval.
-      at >z<rsub|1>>|<cell|>|<cell|>|<cell|z<rsub|2>>|<cell|>|<cell|>|<cell|z<rsub|3>>|<cell|>|<cell|>|<cell|<text|eval.
-      at >z<rsub|1>>|<cell|>|<cell|>|<cell|z<rsub|2>>|<cell|>|<cell|>|<cell|z<rsub|3>>|<cell|>|<cell|>|<cell|<text|eval.
-      at >z<rsub|1>>|<cell|>|<cell|>|<cell|z<rsub|2>>|<cell|>|<cell|>|<cell|z<rsub|3>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|y<rsup|k><rsub|1>>|<cell|y<rsup|k><rsub|1,1>>|<cell|y<rsup|k><rsub|1,2>>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|y<rsup|k><rsub|2>>|<cell|y<rsup|k><rsub|2,1>>|<cell|y<rsup|k><rsub|2,2>>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|y<rsup|k><rsub|3>>|<cell|y<rsup|k><rsub|3,1>>|<cell|y<rsup|k><rsub|3,2>>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|\<cdots\>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|<very-small|0>>|<cell|<very-small|1>>|<cell|<very-small|2>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|<very-small|9>>|<cell|<very-small|10>>|<cell|<very-small|11>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|<very-small|18>>|<cell|<very-small|19>>|<cell|<very-small|20>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|B<rsub|k-1>\<assign\><rsub|>>|<cell|<smash|<shift|<around*|(|<resize|||||5.2em>|\<nobracket\>>||0.3em>>>|<cell|>|<cell|2*y<rsup|k-1><rsub|1,1>>|<cell|0>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|2,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|3,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|<shift|||-0.2em><smash|<shift|<around*|\<nobracket\>|<resize|||||5.2em>|)>||0.3em>>>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|1,2>>|<cell|y<rsup|k-1><rsub|1,1>>|<cell|>|<cell|\<vdots\>>|<cell|\<vdots\>>|<cell|>|<cell|\<vdots\>>|<cell|\<vdots\>>|<cell|>|<cell|y<rsup|k-1><rsub|2,2>>|<cell|y<rsup|k-1><rsub|2,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|3,2>>|<cell|y<rsup|k-1><rsub|3,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|1,2>>|<cell|y<rsup|k-1><rsub|1,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|2,2>>|<cell|y<rsup|k-1><rsub|2,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|y<rsup|k-1><rsub|3,2>>|<cell|y<rsup|k-1><rsub|3,1>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|0>|<cell|2*y<rsup|k-1><rsub|1,2>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|2,2>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|3,2>>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>>
-    </equation*>
-  </footnote> Row 1 encodes <eqref|eq:nodal-isometry-constraint-components>
-  for <math|i=j=1>, rows 2,3 encode <math|i=1,2,j=2,1> and row 4 encodes
-  <math|i=j=2> Note that we have three times all the products in
-  <eqref|eq:nodal-isometry-constraint-components>, once per node in a cell.
+  For each node <math|z\<in\>\<cal-N\><rsub|h>> we construct a matrix
+  <math|B<rsub|z><rsup|k-1>\<in\>\<bbb-R\><rsup|4\<times\>27>> whose rows
+  will realize each one of the four components of the constraint. By
+  inspecting the products in <eqref|eq:nodal-isometry-constraint-components>
+  we arrive at Table <reference|tab:matrix-bk>. Row 1 of the matrix encodes
+  <eqref|eq:nodal-isometry-constraint-components> for <math|i=j=1>, rows 2,3
+  encode <math|i=1,2,j=2,1> and row 4 encodes <math|i=j=2>.
 
   <\big-table>
-    <\equation*>
-      <below|<matrix|<tformat|<cwith|1|4|2|2|cell-background|pastel
-      green>|<cwith|1|4|5|5|cell-background|pastel
-      green>|<cwith|1|4|8|8|cell-background|pastel
-      green>|<cwith|1|4|6|6|cell-background|pastel
-      orange>|<cwith|1|4|3|3|cell-background|pastel
-      orange>|<cwith|1|4|9|9|cell-background|pastel
-      orange>|<cwith|2|2|2|2|cell-background|pastel
-      green>|<cwith|1|1|1|9|cell-tborder|1ln>|<cwith|1|1|1|9|cell-tsep|0.3em>|<cwith|1|4|1|9|cell-halign|c>|<cwith|1|4|1|3|cell-bborder|0ln>|<cwith|1|4|1|3|cell-rborder|0ln>|<cwith|1|4|1|3|cell-lborder|0ln>|<cwith|1|4|1|9|cell-tborder|0ln>|<cwith|4|4|1|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-rborder|0.5ln>|<cwith|1|4|1|9|cell-lsep|0.1em>|<cwith|1|4|1|9|cell-rsep|0.1em>|<cwith|1|4|4|9|cell-lsep|0.2em>|<cwith|1|4|4|9|cell-rsep|0.2em>|<cwith|2|2|5|5|cell-valign|c>|<cwith|2|2|6|6|cell-valign|c>|<cwith|2|2|8|8|cell-valign|c>|<cwith|2|2|9|9|cell-valign|c>|<cwith|4|4|8|9|cell-bborder|0ln>|<cwith|1|4|8|9|cell-lborder|0ln>|<cwith|1|4|7|7|cell-rborder|0ln>|<cwith|1|4|8|9|cell-rborder|0ln>|<cwith|2|2|6|6|cell-row-span|1>|<cwith|2|2|6|6|cell-col-span|1>|<cwith|2|2|9|9|cell-row-span|1>|<cwith|2|2|9|9|cell-col-span|1>|<cwith|2|2|8|8|cell-row-span|1>|<cwith|2|2|8|8|cell-col-span|1>|<cwith|2|2|5|5|cell-row-span|1>|<cwith|2|2|5|5|cell-col-span|1>|<cwith|1|1|6|6|cell-tborder|1ln>|<cwith|1|1|6|6|cell-tsep|0.3em>|<cwith|1|4|6|6|cell-halign|c>|<cwith|1|4|6|6|cell-bborder|0ln>|<cwith|1|4|6|6|cell-rborder|0ln>|<cwith|1|4|6|6|cell-lborder|0ln>|<cwith|1|4|6|6|cell-tborder|0ln>|<cwith|4|4|6|6|cell-bsep|0px>|<cwith|1|4|6|6|cell-lsep|0.1em>|<cwith|1|4|6|6|cell-rsep|0.1em>|<cwith|1|1|9|9|cell-tborder|1ln>|<cwith|1|1|9|9|cell-tsep|0.3em>|<cwith|1|4|9|9|cell-halign|c>|<cwith|1|4|9|9|cell-bborder|0ln>|<cwith|1|4|9|9|cell-rborder|0ln>|<cwith|1|4|9|9|cell-lborder|0ln>|<cwith|1|4|9|9|cell-tborder|0ln>|<cwith|4|4|9|9|cell-bsep|0px>|<cwith|1|4|9|9|cell-lsep|0.1em>|<cwith|1|4|9|9|cell-rsep|0.1em>|<cwith|1|4|3|3|cell-background|pastel
-      green>|<cwith|1|4|5|6|cell-background|pastel
-      orange>|<cwith|1|4|8|9|cell-background|pastel
-      yellow>|<cwith|1|4|7|7|cell-background|pastel
-      yellow>|<cwith|4|4|4|4|cell-background|pastel
-      orange>|<cwith|1|3|4|4|cell-background|pastel
-      orange>|<cwith|4|4|1|1|cell-background|pastel
-      green>|<cwith|3|3|1|1|cell-background|pastel
-      green>|<cwith|2|2|1|1|cell-background|pastel
-      green>|<cwith|1|1|1|1|cell-background|pastel
-      green>|<table|<row|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|<application-space|1em>>|<cell|2*y<rsup|k-1><rsub|i,1>>|<cell|>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>|<cell|>|<cell|y<rsup|k-1><rsub|i,2>>|<cell|y<rsup|k-1><rsub|i,1>>>|<row|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>|<cell|>|<cell|>|<cell|2*y<rsup|k-1><rsub|i,2>>>>>>|<text|+BCs
-      ><around*|(|9\<times\>\<ldots\>|)>>*<matrix|<tformat|<cwith|1|1|1|2|cell-bborder|0ln>|<cwith|1|1|1|2|cell-halign|c>|<cwith|1|1|1|2|cell-lsep|0.1em>|<cwith|1|1|1|2|cell-rsep|0.1em>|<cwith|1|1|1|2|math-level|1>|<cwith|1|1|1|2|color|darker
-      grey>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-halign|c>|<cwith|2|2|1|2|cell-bborder|0ln>|<cwith|2|2|1|2|cell-lsep|0.1em>|<cwith|2|2|1|2|cell-rsep|0.1em>|<cwith|2|2|1|2|math-level|1>|<cwith|2|2|1|2|color|darker
-      grey>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-halign|c>|<cwith|3|3|1|2|cell-bborder|0ln>|<cwith|3|3|1|2|cell-lsep|0.1em>|<cwith|3|3|1|2|cell-rsep|0.1em>|<cwith|3|3|1|2|math-level|1>|<cwith|3|3|1|2|color|darker
-      grey>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|1|cell-row-span|1>|<cwith|4|4|1|1|cell-col-span|1>|<cwith|4|4|1|2|cell-bborder|0ln>|<cwith|4|4|1|2|cell-halign|c>|<cwith|4|4|1|2|cell-lsep|0.1em>|<cwith|4|4|1|2|cell-rsep|0.1em>|<cwith|4|4|1|2|math-level|1>|<cwith|4|4|1|2|color|darker
-      grey>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-halign|c>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-lsep|0.1em>|<cwith|5|5|1|2|cell-rsep|0.1em>|<cwith|5|5|1|2|math-level|1>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-halign|c>|<cwith|5|5|1|2|cell-bborder|0ln>|<cwith|5|5|1|2|cell-lsep|0.1em>|<cwith|5|5|1|2|cell-rsep|0.1em>|<cwith|5|5|1|2|math-level|1>|<cwith|5|5|1|2|color|darker
-      grey>|<cwith|6|6|1|2|cell-bborder|0ln>|<cwith|6|6|1|2|cell-halign|c>|<cwith|6|6|1|2|cell-bborder|0ln>|<cwith|6|6|1|2|cell-lsep|0.1em>|<cwith|6|6|1|2|cell-rsep|0.1em>|<cwith|6|6|1|2|math-level|1>|<cwith|6|6|1|1|cell-bborder|0ln>|<cwith|6|6|1|1|cell-halign|c>|<cwith|6|6|1|1|cell-bborder|0ln>|<cwith|6|6|1|1|cell-lsep|0.1em>|<cwith|6|6|1|1|cell-rsep|0.1em>|<cwith|6|6|1|1|math-level|1>|<cwith|6|6|1|2|color|darker
-      grey>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-halign|c>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-lsep|0.1em>|<cwith|7|7|1|2|cell-rsep|0.1em>|<cwith|7|7|1|2|math-level|1>|<cwith|7|7|1|1|cell-row-span|1>|<cwith|7|7|1|1|cell-col-span|1>|<cwith|7|7|1|2|cell-bborder|0ln>|<cwith|7|7|1|2|cell-halign|c>|<cwith|7|7|1|2|cell-lsep|0.1em>|<cwith|7|7|1|2|cell-rsep|0.1em>|<cwith|7|7|1|2|math-level|1>|<cwith|7|7|1|2|color|darker
-      grey>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-halign|c>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-lsep|0.1em>|<cwith|8|8|1|2|cell-rsep|0.1em>|<cwith|8|8|1|2|math-level|1>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|1|cell-rborder|0ln>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-halign|c>|<cwith|8|8|1|2|cell-bborder|0ln>|<cwith|8|8|1|2|cell-lsep|0.1em>|<cwith|8|8|1|2|cell-rsep|0.1em>|<cwith|8|8|1|2|math-level|1>|<cwith|8|8|1|2|color|darker
-      grey>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-halign|c>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-rborder|0.5ln>|<cwith|9|9|1|1|cell-lsep|0.1em>|<cwith|9|9|1|1|cell-rsep|0.1em>|<cwith|9|9|1|1|math-level|1>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-tborder|0ln>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-lborder|0ln>|<cwith|9|9|1|1|cell-rborder|0ln>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-halign|c>|<cwith|9|9|1|1|cell-bborder|0ln>|<cwith|9|9|1|1|cell-lsep|0.1em>|<cwith|9|9|1|1|cell-rsep|0.1em>|<cwith|9|9|1|1|math-level|1>|<cwith|9|9|1|1|color|darker
-      grey>|<cwith|1|3|1|1|cell-background|pastel
-      green>|<cwith|4|6|1|1|cell-background|pastel
-      orange>|<cwith|7|9|1|1|cell-background|pastel
-      yellow>|<table|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i,2>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i,2>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i>>>|<row|<cell|d<rsub|t>
-      y<rsup|k><rsub|i,1>>>|<row|<cell|d<rsub|t> y<rsup|k><rsub|i,2>>>>>>
-    </equation*>
+    <math|<tabular|<tformat|<cwith|2|2|3|12|cell-bborder|0ln>|<cwith|3|3|3|12|cell-tborder|1ln>|<cwith|3|3|3|12|cell-tsep|0.3em>|<cwith|1|-1|1|-1|cell-halign|c>|<cwith|3|3|2|2|cell-row-span|4>|<cwith|3|3|2|2|cell-col-span|1>|<cwith|3|6|2|5|cell-bborder|0ln>|<cwith|3|6|2|5|cell-rborder|0ln>|<cwith|3|6|2|5|cell-lborder|0ln>|<cwith|3|3|12|12|cell-row-span|4>|<cwith|3|3|12|12|cell-col-span|1>|<cwith|2|2|4|12|cell-bborder|0ln>|<cwith|3|6|2|12|cell-tborder|0ln>|<cwith|3|3|2|2|cell-bsep|0px>|<cwith|3|3|2|2|cell-tsep|0px>|<cwith|3|3|12|12|cell-bsep|0px>|<cwith|3|3|12|12|cell-tsep|0px>|<cwith|6|6|1|-1|cell-bsep|0px>|<cwith|3|3|2|2|cell-valign|b>|<cwith|3|3|12|12|cell-valign|b>|<cwith|2|2|6|6|cell-tborder|0ln>|<cwith|6|6|6|6|cell-bborder|0ln>|<cwith|2|6|6|6|cell-lborder|0.5ln>|<cwith|2|6|6|6|cell-rborder|0ln>|<cwith|2|6|7|7|cell-lborder|0ln>|<cwith|2|2|9|9|cell-tborder|0ln>|<cwith|6|6|9|9|cell-bborder|0ln>|<cwith|2|6|9|9|cell-lborder|0.5ln>|<cwith|2|6|9|9|cell-rborder|0ln>|<cwith|2|6|10|10|cell-lborder|0ln>|<cwith|3|3|1|1|cell-row-span|4>|<cwith|3|3|1|1|cell-col-span|1>|<cwith|3|3|1|1|cell-valign|c>|<twith|table-lsep|0px>|<cwith|1|-1|1|-1|cell-lsep|0.1em>|<cwith|1|-1|1|-1|cell-rsep|0.1em>|<cwith|3|6|6|6|cell-lsep|0.2em>|<cwith|3|6|6|6|cell-rsep|0.2em>|<cwith|3|6|9|9|cell-lsep|0.2em>|<cwith|3|6|9|9|cell-rsep|0.2em>|<cwith|1|2|3|12|color|darker
+    grey>|<cwith|2|2|3|12|math-level|1>|<cwith|1|1|3|9|math-level|1>|<cwith|1|1|1|-1|cell-bsep|0px>|<cwith|1|-1|2|2|cell-rsep|0px>|<cwith|1|-1|12|12|cell-lsep|0px>|<cwith|2|6|1|11|cell-background|>|<cwith|2|3|3|4|cell-background|pastel
+    yellow>|<cwith|2|3|5|5|cell-background|pastel
+    yellow>|<cwith|2|3|6|7|cell-background|pastel
+    yellow>|<cwith|2|3|8|8|cell-background|pastel
+    yellow>|<cwith|2|3|6|6|cell-background|pastel
+    green>|<cwith|2|3|6|6|cell-background|pastel
+    yellow>|<cwith|2|3|9|9|cell-background|pastel
+    yellow>|<cwith|2|3|10|11|cell-background|pastel
+    yellow>|<cwith|1|1|3|3|cell-row-span|1>|<cwith|1|1|3|3|cell-col-span|3>|<cwith|1|1|6|6|cell-row-span|1>|<cwith|1|1|6|6|cell-col-span|3>|<cwith|1|1|9|9|cell-row-span|1>|<cwith|1|1|9|9|cell-col-span|3>|<cwith|2|2|3|11|cell-background|>|<cwith|3|3|5|11|cell-background|>|<cwith|3|3|4|4|cell-background|>|<cwith|3|3|3|3|cell-background|>|<table|<row|<cell|>|<cell|>|<cell|<text|subspace
+    0>>|<cell|>|<cell|>|<cell|<text|subspace
+    1>>|<cell|>|<cell|>|<cell|<text|subspace
+    2>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|d<rsub|t>y<rsup|k><rsub|1>>|<cell|d<rsub|t>y<rsup|k><rsub|1,1>>|<cell|d<rsub|t>y<rsup|k><rsub|1,2>>|<cell|d<rsub|t>y<rsup|k><rsub|2>>|<cell|d<rsub|t>y<rsup|k><rsub|2,1>>|<cell|d<rsub|t>y<rsup|k><rsub|2,2>>|<cell|d<rsub|t>y<rsup|k><rsub|3>>|<cell|d<rsub|t>y<rsup|k><rsub|3,1>>|<cell|d<rsub|t>y<rsup|k><rsub|3,2>>|<cell|>>|<row|<cell|B<rsub|z><rsup|k-1>\<assign\><rsub|>>|<cell|<smash|<shift|<around*|(|<resize|||||5.2em>|\<nobracket\>>||0.3em>>>|<cell|0>|<cell|2*y<rsup|k-1><rsub|1,1>>|<cell|0>|<cell|0>|<cell|2*y<rsup|k-1><rsub|2,1>>|<cell|0>|<cell|0>|<cell|2*y<rsup|k-1><rsub|3,1>>|<cell|0>|<cell|<shift|||-0.2em><smash|<shift|<around*|\<nobracket\>|<resize|||||5.2em>|)>||0.3em>>>>|<row|<cell|>|<cell|>|<cell|0>|<cell|y<rsup|k-1><rsub|1,2>>|<cell|y<rsup|k-1><rsub|1,1>>|<cell|0>|<cell|y<rsup|k-1><rsub|2,2>>|<cell|y<rsup|k-1><rsub|2,1>>|<cell|0>|<cell|y<rsup|k-1><rsub|3,2>>|<cell|y<rsup|k-1><rsub|3,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|0>|<cell|y<rsup|k-1><rsub|1,2>>|<cell|y<rsup|k-1><rsub|1,1>>|<cell|0>|<cell|y<rsup|k-1><rsub|2,2>>|<cell|y<rsup|k-1><rsub|2,1>>|<cell|0>|<cell|y<rsup|k-1><rsub|3,2>>|<cell|y<rsup|k-1><rsub|3,1>>|<cell|>>|<row|<cell|>|<cell|>|<cell|0>|<cell|0>|<cell|2*y<rsup|k-1><rsub|1,2>>|<cell|0>|<cell|0>|<cell|2*y<rsup|k-1><rsub|2,2>>|<cell|0>|<cell|0>|<cell|2*y<rsup|k-1><rsub|3,2>>|<cell|>>>>>>
 
     \;
-  </big-table|<label|tab:matrix-bk>One of the (local) products
-  <math|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>> (for subspace
-  <math|W<rsup|<around*|(|i|)>><rsub|h>>) for a single element. Colours
-  denote evaluation at each of the three nodes of a triangle. Empty entries
-  are zeroes. Column indices correspond to local dof indices:
-  <math|0,1,2,\<ldots\>>>
+  </big-table|<label|tab:matrix-bk>The (local) products
+  <math|B<rsub|z><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|\<iota\><around*|(|z|)>>>
+  for one node. The second row displays the values of the nine relevant
+  entries of <math|d<rsub|t>Y<rsup|k>>. These chunks need to be placed into
+  the global matrix <math|B> with the local-to-global dof mapping
+  <math|\<iota\>>.>
 
-  For instance, the products <eqref|eq:nodal-isometry-constraint-components>
-  for <math|i=1,j=2> are given by row 2 of all 3 matrices
-  <math|B<rsup|k-1><rsub|i>>:
+  In order to paste all the <math|B<rsub|z><rsup|k-1>> together we just
+  concatenate rows while moving columns by means of the local-to-global dof
+  mapping <math|\<nu\>>. In this manner we obtain a global matrix
+  <math|B<rsup|k-1>> with entries
 
-  <\eqnarray*>
-    <tformat|<table|<row|<cell|<around*|(|B<rsup|k-1>|)><rsub|2l>*d<rsub|t
-    >Y<rsup|k><rsub|l>>|<cell|=>|<cell|y<rsup|k-1><rsub|1,2><around*|(|z<rsub|1>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,1><around*|(|z<rsub|1>|)>+y<rsup|k-1><rsub|1,1><around*|(|z<rsub|1>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,2><around*|(|z<rsub|1>|)>>>|<row|<cell|>|<cell|>|<cell|+y<rsup|k-1><rsub|1,2><around*|(|z<rsub|2>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,1><around*|(|z<rsub|2>|)>+y<rsup|k-1><rsub|1,1><around*|(|z<rsub|2>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,2><around*|(|z<rsub|2>|)>>>|<row|<cell|>|<cell|>|<cell|+y<rsup|k-1><rsub|1,2><around*|(|z<rsub|3>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,1><around*|(|z<rsub|3>|)>+y<rsup|k-1><rsub|1,1><around*|(|z<rsub|3>|)>*d<rsub|t
-    >y<rsup|k><rsub|1,2><around*|(|z<rsub|3>|)>>>|<row|<cell|>|<cell|>|<cell|+\<ldots\>>>>>
-  </eqnarray*>
+  <\equation*>
+    B<rsup|k-1><rsub|4*n<around*|(|z|)>+i,\<nu\><around*|(|z|)><rsub|j>>=<around*|(|B<rsup|k-1><rsub|z>|)><rsub|i\<nocomma\>j>,<application-space|1em>i\<in\><around*|[|3|]>,j\<in\><around*|[|2|]>
+  </equation*>
 
-  Using <math|B<rsup|k-1>> the (local) linear system to solve
-  <eqref|eq:h2-flow-update-system> at time step <math|k> is:
+  The linear system to solve <eqref|eq:h2-flow-update-system> at time step
+  <math|k> is then:
 
   <\equation>
     <label|eq:kirchhoff-local-timestep-system><matrix|<tformat|<table|<row|<cell|<around*|(|1+\<alpha\>*\<tau\>|)>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M>|<cell|<around*|(|B<rsup|k-1>|)><rsup|\<top\>>>>|<row|<cell|B<rsup|k-1>>|<cell|0>>>>>*<matrix|<tformat|<table|<row|<cell|d<rsub|t>
     Y<rsup|k>>>|<row|<cell|\<Lambda\>>>>>>=<matrix|<tformat|<table|<row|<cell|-\<alpha\>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M*Y<rsup|k-1>+\<tau\>*F>>|<row|<cell|0>>>>>.
   </equation>
 
-  This is a square <math|<around*|(|27+13|)>\<times\><around*|(|27+13|)>>
-  matrix and a <math|27+13> right hand side. <todo|The unknown
-  <math|\<Lambda\>> can be discarded>
+  If we have <math|m> dofs and <math|n> vertices total, then this is a square
+  <math|<around*|(|m+n|)>\<times\><around*|(|m+n|)>> system. The part
+  <math|\<Lambda\>> of the unknown can be discarded.
 
-  The matrix <math|M> realizes the (local) operator
+  The matrix <math|M> realizes the operator
   <math|\<nabla\><rsub|h>:W<rsub|h><rsup|3>\<rightarrow\>\<Theta\><rsub|h><rsup|2>>.
   Recall from the scalar case that <math|M> uses geometric information of the
   cell to combine the partial derivatives of its argument. Given the
-  definition of <math|\<nabla\><rsub|h>>, the full matrix
-  <math|M\<in\>\<bbb-R\><rsup|36\<times\>27>> is block diagonal with each of
-  its three diagonal blocks given by a copy of the scalar version.
+  definition of <math|\<nabla\><rsub|h>>, the local matrices
+  <math|<wide|M|~>\<in\>\<bbb-R\><rsup|36\<times\>27>> of which <math|M> is
+  composed are block diagonal with each of the three diagonal blocks given by
+  a copy of the scalar version.
 
   <subsection|Implementation>
 
@@ -969,8 +889,8 @@
     <associate|auto-8|<tuple|4|6>>
     <associate|auto-9|<tuple|1|8>>
     <associate|bib-bartels_approximation_2013|<tuple|Bar13|9>>
-    <associate|bib-bartels_numerical_2015|<tuple|Bar15|9>>
-    <associate|bib-brenner_c0_2005|<tuple|BS05|9>>
+    <associate|bib-bartels_numerical_2015|<tuple|Bar15|10>>
+    <associate|bib-brenner_c0_2005|<tuple|BS05|10>>
     <associate|eq:coeff-midpoint|<tuple|2|4>>
     <associate|eq:h2-flow-update-system|<tuple|4|7>>
     <associate|eq:kirchhoff-local-timestep-system|<tuple|7|8>>
@@ -983,15 +903,13 @@
     <associate|footnote-3|<tuple|3|5>>
     <associate|footnote-4|<tuple|4|6>>
     <associate|footnote-5|<tuple|5|7>>
-    <associate|footnote-6|<tuple|6|8>>
-    <associate|footnote-7|<tuple|7|9>>
+    <associate|footnote-6|<tuple|6|9>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|6>>
     <associate|footnr-5|<tuple|5|7>>
-    <associate|footnr-6|<tuple|6|8>>
-    <associate|footnr-7|<tuple|7|9>>
+    <associate|footnr-6|<tuple|6|9>>
     <associate|rem:extending-ufl-discrete-gradient|<tuple|1|1>>
     <associate|sec:linear-kirchhoff|<tuple|3|5>>
     <associate|tab:matrix-bk|<tuple|1|8>>
@@ -1028,12 +946,11 @@
       <tuple|normal|Bogus solution...|<pageref|auto-11>>
     </associate>
     <\associate|table>
-      <tuple|normal|One of the (local) products
-      <with|mode|<quote|math>|B<rsub|i><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|i>>
-      (for subspace <with|mode|<quote|math>|W<rsup|<around*|(|i|)>><rsub|h>>)
-      for a single element. Colours denote evaluation at each of the three
-      nodes of a triangle. Empty entries are zeroes. Column indices
-      correspond to local dof indices: <with|mode|<quote|math>|0,1,2,\<ldots\>>|<pageref|auto-9>>
+      <tuple|normal|The (local) products <with|mode|<quote|math>|B<rsub|z<rsub|i>><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|\<iota\><around*|(|z<rsub|i>|)>>>
+      for the three nodes of a cell. Column indices correspond to local dof
+      indices. These chunks need to be placed in the global matrix
+      <with|mode|<quote|math>|B> with the local-to-global dof mapping
+      <with|mode|<quote|math>|\<iota\>>.|<pageref|auto-9>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Discrete
