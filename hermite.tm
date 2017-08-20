@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|amsart|british|better-amsart>>
 
@@ -177,9 +177,10 @@
   of Lax-Milgram. The finite element method builds a suitable discretisation
   <math|V<rsub|h>> of the space <math|V> and projects Problem
   <eqref|eq:linear-problem> onto it for its numerical solution as a linear
-  system: Let <math|<around*|{|\<varphi\><rsub|i>|}>> be a basis for
-  <math|V<rsub|h>>. A function <math|u<rsub|h>=u<rsub|i>*\<varphi\><rsub|i>\<in\>V<rsub|h>>
-  solves <eqref|eq:linear-problem><\footnote>
+  system: More precisely, letting <math|<around*|{|\<varphi\><rsub|i>|}>> be
+  a basis for <math|V<rsub|h>>, a function
+  <math|u<rsub|h>=u<rsub|i>*\<varphi\><rsub|i>\<in\>V<rsub|h>> solves
+  <eqref|eq:linear-problem><\footnote>
     In this note we use implicit summation over repeated indices.
   </footnote> iff
 
@@ -196,14 +197,15 @@
 
   where <math|A<rsub|j\<nocomma\>i>=a<around*|(|\<varphi\><rsub|i>,\<varphi\><rsub|j>|)>>
   and <math|b<rsub|j>=L<around*|(|\<varphi\><rsub|j>|)>>.<\footnote>
-    Note the transposition: this can be a source of confusion...
+    Note the transposition: this can be a source of confusion when
+    implementing the discrete system.
   </footnote> If one proves that <math|<around*|\<\|\|\>|u<rsub|h>-u|\<\|\|\>>\<rightarrow\>0>
   as <math|h\<rightarrow\>0> in some norm, then \Pall\Q that is left is to
-  build a suitable <math|V<rsub|h>> and solve the linear system
+  actually construct a suitable <math|V<rsub|h>> and solve the linear system
   <eqref|eq:linear-system>.<\footnote>
     The error between <math|u<rsub|h>> and <math|u> will be bounded above by
-    some constant times the \Pbest approximation error\Q (see e.g. Cea's
-    lemma). One typically bounds the latter by the error made by an
+    some constant multiple of the \Pbest approximation error\Q (see e.g.
+    Cea's lemma). One typically bounds the latter by the error made by an
     interpolation operator, which in turn is bounded above by the norm of the
     solution times some power of the grid size (cf.
     <cite-detail|grossmann_numerical_2007|Ÿ4.4 and Ÿ3.3> for the conforming
@@ -257,21 +259,15 @@
   freedom giving rise to the classic <em|Hermite finite element>. This
   element is a generalization of cubic Hermite interpolating polynomials in 1
   dimension which has been in the literature since at least
-  <inactive|<cite|ciarlet_raviart>>. Hermite elements are <math|C<rsup|1>> in
-  1D but not in 2D <cite-detail|brenner_mathematical_2008|Proposition
-  3.3.17>.<\footnote>
-    From <hlink|CompSci SE|http://scicomp.stackexchange.com/questions/2012/construction-of-c1-h2-conforming-finite-element-basis-for-triangular-or-te>:
-
-    <\quotation>
-      \SThe cubic Hermite elements have a continuous normal derivative but
-      not full <math|C<rsup|1>> continuity. In particular, the normal
-      derivatives may not match at the boundary of two elements, away from
-      the vertices. If you want full <math|C<rsup|1>> continuity you will
-      have to use the Argyris element or Hsieh-Clough-Tucker or something. I
-      recommend the discussion in chapter 6 of Ciarlet's finite element
-      book.\T
-    </quotation>
-  </footnote>
+  <inactive|<cite|ciarlet_raviart>>. The dofs are given by function and
+  partial derivative evaluation at the nodes of the triangulation (plus
+  evaluation at the barycenters in 2D), which results in <math|C<rsup|1>>
+  function spaces in 1D. In 2D, since continuity of partial derivatives is
+  only ensured at the nodes but not at the edges, the resulting function
+  spaces are not in <math|C<rsup|1>> <cite-detail|brenner_mathematical_2008|Proposition
+  3.3.17>, hence not in <math|H<rsup|2><around*|(|\<Omega\>|)>>. This will be
+  relevant for some <math|4<rsup|th>> order problems of interest below, since
+  the discretisation won't be conforming as described above.
 
   <todo|Approximations and errors for non-conforming discretizations...>
 
@@ -290,6 +286,9 @@
   physical domain <math|\<Omega\>> with inverse mapping
   <math|<wide|\<b-x\>|^>:K\<rightarrow\><wide|K|^>> (Figure
   <reference|fig:reference-triangle>).
+
+  <big-figure|<with|gr-mode|<tuple|edit|point>|gr-frame|<tuple|scale|1cm|<tuple|0.270004gw|0.180009gh>>|gr-geometry|<tuple|geometry|0.280007par|0.200003par|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|<graphics||<line|<point|0|0>|<point|2.0|0.0>|<point|0.0|2.0>|<point|0.0|0.0>>|<point|0|0>|<point|0|0>|<point|2|0>|<point|0|2>|<point|0.7|0.6>>>|<todo|<label|fig:reference-triangle>The
+  reference triangle and the mapping <math|\<b-x\>>...>>
 
   Let <math|P<rsub|3>=P<rsub|3><around*|(|<wide|K|^>|)>> be the space of
   polynomials of order up to 3 defined over <math|<wide|K|^>>. We define 10
@@ -315,9 +314,6 @@
     l<rsub|0><around*|(|f|)>\<assign\>f<around*|(|<wide|v|^><rsup|0>|)>.
   </equation*>
 
-  <big-figure|<with|gr-mode|<tuple|edit|point>|gr-frame|<tuple|scale|1cm|<tuple|0.270004gw|0.180009gh>>|gr-geometry|<tuple|geometry|0.280007par|0.200003par|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|<graphics||<line|<point|0|0>|<point|2.0|0.0>|<point|0.0|2.0>|<point|0.0|0.0>>|<point|0|0>|<point|0|0>|<point|2|0>|<point|0|2>|<point|0.7|0.6>>>|<todo|<label|fig:reference-triangle>The
-  reference triangle and the mapping <math|\<b-x\>>...>>
-
   The linear forms <math|<wide|\<cal-L\>|^>\<assign\><around*|{|<wide|l|^><rsup|\<alpha\>><rsub|i>|}>\<cup\><around*|{|<wide|l|^><rsub|0>|}>>
   are a basis of <math|P<rsub|3><around*|(|<wide|K|^>|)><rprime|'>> with dual
   <math|<wide|\<cal-V\>|^>=<around*|{|<wide|\<varphi\>|^><rsub|0>|}>\<cup\><around*|{|<wide|\<varphi\>|^><rsub|i><rsup|\<alpha\>>|}>>
@@ -336,8 +332,11 @@
   <math|<wide|l|^><rsub|2><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=\<partial\><rsub|1><wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=1>
   and <math|<wide|l|^><rsub|3><around*|(|<wide|\<varphi\>|^><rsub|3>|)>=\<partial\><rsub|2><wide|\<varphi\>|^><rsub|3><around*|(|<wide|v|^><rsub|1>|)>=1>
   but <math|<wide|l|^><rsub|1><around*|(|<wide|\<varphi\>|^><rsub|2>|)>=<wide|\<varphi\>|^><rsub|2><around*|(|<wide|v|^><rsub|1>|)>=0>
-  and so on.<todo|NOTE: in the code <math|<wide|\<varphi\>|^><rsub|0>> is
-  actually the last one, fix this.>
+  and so on.<\footnote>
+    To avoid any possible confusions, we note here that in our
+    implementation, <math|<wide|\<varphi\>|^><rsub|0>> is actually assigned
+    the <math|10<rsup|th>> position in the array of basis functions.
+  </footnote>
 
   <\big-figure>
     <image|img/hermite2d-w-0.eps|0.32par|||><image|img/hermite2d-w-1.eps|0.32par|||><image|img/hermite2d-w-2.eps|0.32par|||>
@@ -347,7 +346,8 @@
     <image|img/hermite2d-w-6.eps|0.32par|||><image|img/hermite2d-w-7.eps|0.32par|||><image|img/hermite2d-w-8.eps|0.32par|||>
 
     <htab|48mm><image|img/hermite2d-w-9.eps|0.32par|||>
-  </big-figure|The ten Hermite shape functions over the reference triangle.>
+  </big-figure|The ten Hermite shape functions over the reference triangle.
+  Here <math|<wide|\<varphi\>|^><rsub|0>> is depicted last.>
 
   <subsection|The local basis over a physical element>
 
@@ -418,13 +418,11 @@
     The matrix <math|H> is obtained by solving the linear system resulting
     from imposing condition <eqref|eq:delta-property> for a linear
     combination of the relevant shape functions
-    <cite-detail|solin_partial_2006|Ÿ6.4.3>.
-
-    Property 1 follows from the fact that <math|\<b-x\>> is non-singular,
-    hence <math|det H=det D\<b-x\>\<neq\>0> <todo|and ...>.
-
-    Property 2 for the point evaluations is clear and for the others it is a
-    matter of applying the chain rule: <math|l<rsub|2><around*|(|\<varphi\><rsub|2>|)>=\<partial\><rsub|1>\<varphi\><rsub|2><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*\<delta\><rsub|k\<nocomma\>l>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=1>,
+    <cite-detail|solin_partial_2006|Ÿ6.4.3>. Property 1 follows from the fact
+    that <math|\<b-x\>> is non-singular, hence <math|det H=det
+    D\<b-x\>\<neq\>0>. Property 2 for the point evaluations is clear and for
+    the others it is a matter of applying the chain rule:
+    <math|l<rsub|2><around*|(|\<varphi\><rsub|2>|)>=\<partial\><rsub|1>\<varphi\><rsub|2><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l><around*|(|<wide|v|^><rsub|1>|)>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=\<b-x\><rsub|1,k><around*|(|<wide|v|^><rsub|1>|)>*\<delta\><rsub|k\<nocomma\>l>*<wide|\<b-x\>|^><rsub|l,1><around*|(|v<rsub|1>|)>=1>,
     where <math|k,l\<in\><around*|{|1,2|}>>.
   </proof>
 
@@ -448,11 +446,10 @@
     <label|eq:hermite-first-derivatives>\<varphi\><rsub|i,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|H<rsub|i\<nocomma\>k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><rsub|\|<wide|\<b-x\>|^><around*|(|x|)>>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2,3|}>.
   </equation>
 
-  If we look again at the matrix product, each partial derivative
-  <math|\<varphi\><rsub|i,j><rsup|\<alpha\>>>,
+  Each partial derivative <math|\<varphi\><rsub|i,j><rsup|\<alpha\>>>,
   <math|j\<in\><around*|{|1,2|}>> is a linear combination of the derivatives
-  of both reference basis functions <math|\<nabla\><wide|\<varphi\>|^><rsub|k><rsup|\<alpha\>>>
-  with weights given by <math|\<nabla\> \<b-x\><rsub|i>>:
+  of both reference basis functions <math|<wide|\<varphi\>|^><rsub|k,l><rsup|\<alpha\>>>
+  with weights given by <math|\<nabla\> \<b-x\><rsub|l>>:
 
   <\equation*>
     \<varphi\><rsub|i+1,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|\<b-x\><rsub|i,k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><rsub|\|<wide|\<b-x\>|^><around*|(|x|)>>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2|}>.
@@ -503,9 +500,10 @@
   <math|<around*|{|<around*|(|K,\<cal-V\><rsub|K>,\<cal-L\><rsub|K>|)>|}><rsub|K\<in\>\<cal-T\>>>.
   We now gather all of the shape functions into a basis for a polynomial
   space <math|V<rsub|h>> with the help of a collection of
-  <dfn|local-to-global maps> <math|\<iota\><rsub|K>>. These map local indices
-  to a global set and ensure any continuity properties by requiring local
-  dofs to agree. Specifically, for each <math|K\<in\>\<cal-T\>> we define
+  <dfn|local-to-global maps> <math|\<iota\><rsub|K>>. These map indices local
+  to a simplex into a global set and ensure any continuity properties by
+  requiring local dofs to agree. Specifically, for each
+  <math|K\<in\>\<cal-T\>> we define
 
   <\equation*>
     \<iota\><rsub|K>:I<rsub|K>=<around*|{|1,\<ldots\>,n<rsub|K>|}>\<rightarrow\>I=<around*|{|1,\<ldots\>,N|}>.
@@ -561,17 +559,21 @@
   with \ <math|0\<leqslant\>i,j\<less\>M> and <math|a<rsup|K>> the
   contribution from element <math|K>. Applying the same idea to the linear
   form at the right hand side of the equation yields a global linear system
-  <math|A*u=b> as in <eqref|eq:linear-system>.
+  <math|A*u=b> as in <eqref|eq:linear-system>. For performance reasons, this
+  process of <em|assembly> of the matrix <math|A> is actually conducted in
+  reverse fashion, by iterating over all cells <math|K> in the triangulation
+  and adding up their contributions (the relevant integrals) to each entry
+  <math|A<rsub|i\<nocomma\>j>>.
 
   <subsection|Imposing boundary conditions>
 
   A standard way of imposing Dirichlet boundary conditions (and the one used
   in <name|FEniCS>) is to force the coefficients of the discrete solution
   corresponding to nodal Lagrange shape functions at the boundary to have the
-  desired values. If the solution has to equal some value <math|v<rsub|0>> at
+  desired values. If the solution has to equal some value <math|g<rsub|0>> at
   a point whose corresponding global dof has index <math|i<rsub|0>>, then
   this is easily achieved by setting <math|A<rsub|i<rsub|0>\<nocomma\>j>=\<delta\><rsub|i<rsub|0>\<nocomma\>j>>
-  for all <math|j> and <math|b<rsub|i<rsub|0>>=v<rsub|0>> before solving the
+  for all <math|j> and <math|b<rsub|i<rsub|0>>=g<rsub|0>> before solving the
   system, see <cite-detail|quarteroni_numerical_2009|Ÿ8.4.5>.<\footnote>
     Actually, one would like to preserve any symmetries that the system may
     have without the boundary conditions and the operation described would
@@ -588,15 +590,15 @@
   <name|FEniCS>,<\footnote>
     Version <tt|2017.1.0.dev0>.
   </footnote> where <cpp|DirichletBC> assumes that all dofs at a mesh node
-  stem from point evaluations. See the implementation details in Section
-  <reference|sec:bcs-implementation> below.
+  stem from point evaluations (as does most of the library). See the
+  implementation details in Section <reference|sec:bcs-implementation> below.
 
   <subsection|Computing integrals>
 
   The contribution <math|a<rsup|K>> from element <math|K> to the stiffness
-  matrix will typically be of integral form. For example, if we are
-  discretising the biharmonic equation <math|\<Delta\><rsup|2> u=f>, assuming
-  homogeneous boundary conditions, the corresponding bilinear form is
+  requires computing some integral. For example, if we are discretising the
+  biharmonic equation <math|\<Delta\><rsup|2>u=f>, assuming homogeneous
+  boundary conditions, the corresponding bilinear form is
   <math|a<around*|(|u,v|)>=<big|int>\<Delta\>u*\<Delta\>v>, so we need to
   compute
 
@@ -612,8 +614,9 @@
   weak continuity (see below).
 
   In order to actually compute the integrals, we implement a quadrature
-  representation as in <cite|olgaard_optimizations_2010> (as opposed to a
-  tensor representation).
+  representation of the bilinear form as described in
+  <cite|olgaard_optimizations_2010> (instead of a <em|tensor representation>,
+  cf. <inactive|<cite-detail|logg...|Chapter about tensor repr.>>).
 
   \;
 
@@ -625,25 +628,29 @@
     functions.
   </note*>
 
-  We have at least the following options for interpolating functions
-  <math|g\<in\>H<rsup|2><around*|(|\<Omega\>|)>> into <math|V<rsub|h>>, from
-  slowest and most accurate to fastest and less accurate
-  <cite-detail|solin_partial_2006|Ÿ6.3.8>.
+  As already mentioned, we must interpolate the data of the problem into the
+  relevant function space, which in our examples above and below is
+  <math|H<rsup|2><around*|(|\<Omega\>|)>>. We have at least the following
+  options for interpolating functions <math|g\<in\>H<rsup|2><around*|(|\<Omega\>|)>>
+  into <math|V<rsub|h>>, from fastest and less accurate to slowest and most
+  accurate <cite-detail|solin_partial_2006|Ÿ6.3.8>.\ 
 
   <\enumerate>
-    <item>Use a global orthogonal projection to compute the best interpolant
-    in the <math|H<rsup|2>>-sense. If the boundary conditions allow it (e.g.
-    if we have Dirichlet and Poincaré's inequality holds) then one can use
-    the <math|H<rsup|2><rsub|0>> seminorm. <todo|Does FEniCS do this by
-    default with <python|project()>?>
+    <item>Compute the nodal interpolant, cf.
+    Ÿ<reference|sec:nodal-interpolant>.
 
     <item>Use nodal interpolation of vertex and derivatives plus local
     orthogonal projections in the element interiors. This improves the nodal
     interpolant in the interior for dimensions 2 or greater or higher order
     Hermite elements.
 
-    <item>Compute the nodal interpolant, cf.
-    Ÿ<reference|sec:nodal-interpolant>.
+    <item>Use a global orthogonal projection to compute the best interpolant
+    in the <math|H<rsup|2>>-sense. If the boundary conditions allow it (e.g.
+    if we have Dirichlet and Poincaré's inequality holds) then one can use
+    the <math|H<rsup|2><rsub|0>> seminorm, cf.
+    Ÿ<reference|sec:H2-projection>.<\footnote>
+      <todo|Does FEniCS do this by default with <python|project()>?>.
+    </footnote>
   </enumerate>
 
   <subsection|The local nodal interpolant><label|sec:nodal-interpolant>
@@ -659,31 +666,35 @@
   g<around*|(|v<rsup|\<alpha\>>|)>> and <math|\<partial\><rsub|0>
   f\<assign\>f>, and <math|\<varphi\><rsub|i>> are the shape functions.
 
+  Here a difficulty particular to Hermite elements presents itself:
+
   <\question*>
     How should one compute the derivatives? Should we extend the interface of
     <cpp|ufc::function> to include differentiation?
   </question*>
 
   A simple first solution is to only allow interpolation of expressions whose
-  derivative can be evaluated, e.g. via automatic differentiation. Using
-  <name|autograd> it is straightforward to implemement a <name|Python>
+  derivative can be evaluated, e.g. via automatic differentiation. In
+  <name|Python>, using <name|autograd> it is straightforward to implemement a
   decorator extending any <python|Callable> for the evaluation of partial
   derivatives and this is the path we first take.
 
-  <subsection|<math|H<rsup|2>>-projection>
+  <subsection|<math|H<rsup|2>>-projection><label|sec:H2-projection>
 
   This means solving the system <todo|...>. See
   <cite-detail|solin_partial_2006|Ÿ6.3.8>,
   <cite|brenner_mathematical_2008>...
 
+  Implementation is straightforward after defining the relevant forms in the
+  UFL file and writing a small <c++> wrapper for the solution of the system.
+
   <section|The Euler-Bernoulli beam model>
 
   As a first test of our implementation of Hermite elements we use a one
-  dimensional model where these provide a conforming approximation. The
-  classical Euler-Bernoulli model reduces a 2D beam to a 1D problem. It
-  studies the deformation of the midplane of a beam subject to a transversal
-  load, under the assumptions that after the deformation the normals to the
-  midplane:
+  dimensional model for which these provide a conforming approximation. The
+  classical Euler-Bernoulli model studies the deformation of the midplane of
+  a beam subject to a transversal load, under the assumptions that after the
+  deformation the normals to the midplane:
 
   <\itemize-dot>
     <item>do not bend,
@@ -693,11 +704,12 @@
     <item>remain orthogonal to the midplane.
   </itemize-dot>
 
-  This theory is adequate for thin beams and is intended for small strains
-  even with large global deformations: it is a <em|physically linear> but
-  <em|geometrically non-linear> theory. For thicker beams, Timoshenko's
-  theory, which accounts for internal shear forces, yields more accurate
-  predictions <todo|<inactive|<cite|>>>.
+  This effectively reduces a 2D beam problem to a 1D problem. This theory is
+  adequate for thin beams and is intended for small strains even with large
+  global deformations: it is a <em|physically linear> but <em|geometrically
+  non-linear> theory. For thicker beams, Timoshenko's theory, which accounts
+  for internal shear forces, yields more accurate predictions
+  <todo|<inactive|<cite|>>>.
 
   <subsection|Derivation>
 
@@ -1490,7 +1502,7 @@
     <associate|font-base-size|11>
     <associate|info-flag|detailed>
     <associate|math-font|math-stix>
-    <associate|page-medium|papyrus>
+    <associate|page-medium|paper>
     <associate|page-screen-margin|false>
     <associate|preamble|false>
   </collection>
@@ -1499,27 +1511,27 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|2>>
-    <associate|auto-10|<tuple|3.2|6>>
+    <associate|auto-10|<tuple|3.2|7>>
     <associate|auto-11|<tuple|3.3|7>>
     <associate|auto-12|<tuple|4|7>>
-    <associate|auto-13|<tuple|4.1|7>>
-    <associate|auto-14|<tuple|4.2|7>>
+    <associate|auto-13|<tuple|4.1|8>>
+    <associate|auto-14|<tuple|4.2|8>>
     <associate|auto-15|<tuple|5|8>>
     <associate|auto-16|<tuple|5.1|8>>
-    <associate|auto-17|<tuple|5.2|8>>
-    <associate|auto-18|<tuple|1|8>>
-    <associate|auto-19|<tuple|2|8>>
+    <associate|auto-17|<tuple|5.2|9>>
+    <associate|auto-18|<tuple|1|9>>
+    <associate|auto-19|<tuple|2|9>>
     <associate|auto-2|<tuple|2|3>>
     <associate|auto-20|<tuple|5.3|9>>
     <associate|auto-21|<tuple|5.4|9>>
     <associate|auto-22|<tuple|5.5|9>>
-    <associate|auto-23|<tuple|3|9>>
-    <associate|auto-24|<tuple|5.6|9>>
+    <associate|auto-23|<tuple|3|10>>
+    <associate|auto-24|<tuple|5.6|10>>
     <associate|auto-25|<tuple|4|10>>
     <associate|auto-26|<tuple|5.7|10>>
-    <associate|auto-27|<tuple|5|10>>
+    <associate|auto-27|<tuple|5|11>>
     <associate|auto-28|<tuple|6|11>>
-    <associate|auto-29|<tuple|6|11>>
+    <associate|auto-29|<tuple|6|12>>
     <associate|auto-3|<tuple|2.1|3>>
     <associate|auto-30|<tuple|7|12>>
     <associate|auto-31|<tuple|8|12>>
@@ -1527,15 +1539,15 @@
     <associate|auto-33|<tuple|A.1|13>>
     <associate|auto-34|<tuple|A.2|14>>
     <associate|auto-35|<tuple|A.3|15>>
-    <associate|auto-36|<tuple|A.4|15>>
-    <associate|auto-37|<tuple|A.4|16>>
+    <associate|auto-36|<tuple|A.4|16>>
+    <associate|auto-37|<tuple|A.4|17>>
     <associate|auto-4|<tuple|1|3>>
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|2.2|4>>
     <associate|auto-7|<tuple|2.3|6>>
     <associate|auto-8|<tuple|3|6>>
     <associate|auto-9|<tuple|3.1|6>>
-    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|16>>
+    <associate|bib-alnaes_fenics_2015|<tuple|ABH+15|17>>
     <associate|bib-brenner_c0_2005|<tuple|BS05|17>>
     <associate|bib-brenner_mathematical_2008|<tuple|BS08|17>>
     <associate|bib-girault_hermite_2002|<tuple|GS02|17>>
@@ -1557,21 +1569,24 @@
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|2>>
     <associate|footnote-5|<tuple|5|2>>
-    <associate|footnote-6|<tuple|6|3>>
-    <associate|footnote-7|<tuple|7|6>>
-    <associate|footnote-8|<tuple|8|6>>
+    <associate|footnote-6|<tuple|6|4>>
+    <associate|footnote-7|<tuple|7|7>>
+    <associate|footnote-8|<tuple|8|7>>
+    <associate|footnote-9|<tuple|9|7>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|2>>
     <associate|footnr-5|<tuple|5|2>>
-    <associate|footnr-6|<tuple|6|3>>
-    <associate|footnr-7|<tuple|7|6>>
-    <associate|footnr-8|<tuple|8|6>>
-    <associate|sec:ad-nodal-interpolation|<tuple|A.4|15>>
+    <associate|footnr-6|<tuple|6|4>>
+    <associate|footnr-7|<tuple|7|7>>
+    <associate|footnr-8|<tuple|8|7>>
+    <associate|footnr-9|<tuple|9|7>>
+    <associate|sec:H2-projection|<tuple|4.2|8>>
+    <associate|sec:ad-nodal-interpolation|<tuple|A.4|16>>
     <associate|sec:bcs-implementation|<tuple|A.3|15>>
     <associate|sec:fiat-implementation|<tuple|A.1|13>>
-    <associate|sec:nodal-interpolant|<tuple|4.1|7>>
+    <associate|sec:nodal-interpolant|<tuple|4.1|8>>
     <associate|sec:shape-implementation|<tuple|A.2|14>>
   </collection>
 </references>
@@ -1622,7 +1637,8 @@
       reference triangle and the mapping <with|mode|<quote|math>|\<b-x\>>...]>>|<pageref|auto-4>>
 
       <tuple|normal|The ten Hermite shape functions over the reference
-      triangle.|<pageref|auto-5>>
+      triangle. Here <with|mode|<quote|math>|<wide|\<varphi\>|^><rsub|0>> is
+      depicted last.|<pageref|auto-5>>
 
       <tuple|normal|Clamped steel beam under the effect of gravity
       alone.|<pageref|auto-23>>
