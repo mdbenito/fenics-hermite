@@ -554,7 +554,7 @@
     <\equation>
       <label|eq:h2-flow-update-system><around*|(|\<nabla\>\<nabla\><rsub|h>
       d<rsub|t>y<rsup|k><rsub|h>,\<nabla\>\<nabla\><rsub|h>w<rsub|h>|)>+\<alpha\>*<around*|(|\<nabla\>\<nabla\><rsub|h>
-      <around*|(|y<rsup|k-1><rsub|h>+\<tau\>*d<rsub|t>y<rsub|h>|)>,\<nabla\>\<nabla\><rsub|h>
+      <around*|(|y<rsup|k-1><rsub|h>+\<tau\>*d<rsub|t>y<rsup|k><rsub|h>|)>,\<nabla\>\<nabla\><rsub|h>
       w<rsub|h>|)>=<around*|(|f,w<rsub|h>|)>
     </equation>
 
@@ -649,12 +649,12 @@
   <math|k> is then:
 
   <\equation>
-    <label|eq:kirchhoff-local-timestep-system><matrix|<tformat|<table|<row|<cell|<around*|(|1+\<alpha\>*\<tau\>|)>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M>|<cell|<around*|(|B<rsup|k-1>|)><rsup|\<top\>>>>|<row|<cell|B<rsup|k-1>>|<cell|0>>>>>*<matrix|<tformat|<table|<row|<cell|d<rsub|t>
+    <label|eq:kirchhoff-local-timestep-system><matrix|<tformat|<table|<row|<cell|<around*|(|1+\<alpha\>*\<tau\>|)>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M>|<cell|<around*|(|B<rsup|k-1>|)><rsup|\<top\>>>>|<row|<cell|B<rsup|k-1>>|<cell|I>>>>>*<matrix|<tformat|<table|<row|<cell|d<rsub|t>
     Y<rsup|k>>>|<row|<cell|\<Lambda\>>>>>>=<matrix|<tformat|<table|<row|<cell|-\<alpha\>*M<rsup|\<top\>>*A<rsup|<around*|(|2|)>>*M*Y<rsup|k-1>+\<tau\>*F>>|<row|<cell|0>>>>>.
   </equation>
 
   If we have <math|m> dofs and <math|n> vertices total, then this is a square
-  <math|<around*|(|m+n|)>\<times\><around*|(|m+n|)>> system. The part
+  <math|<around*|(|m+4n|)>\<times\><around*|(|m+4n|)>> system. The part
   <math|\<Lambda\>> of the unknown can be discarded.
 
   The matrix <math|M> realizes the operator
@@ -695,8 +695,8 @@
     </footnote>
   </itemize-dot>
 
-  <big-figure|<image|nonlinear-kirchhoff-dirichlet-bogus.png|0.8par|||>|Bogus
-  solution...>
+  <big-figure|<image|img/nonlinear-kirchhoff.eps|0.8par|||>|Pure bending of
+  laterally compressed plate>
 
   <\bibliography|bib|tm-alpha|hermite.bib>
     <\bib-list|3>
@@ -877,7 +877,7 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4.1|9>>
+    <associate|auto-10|<tuple|4.1|8>>
     <associate|auto-11|<tuple|2|9>>
     <associate|auto-12|<tuple|2|9>>
     <associate|auto-2|<tuple|2|1>>
@@ -889,8 +889,8 @@
     <associate|auto-8|<tuple|4|6>>
     <associate|auto-9|<tuple|1|8>>
     <associate|bib-bartels_approximation_2013|<tuple|Bar13|9>>
-    <associate|bib-bartels_numerical_2015|<tuple|Bar15|10>>
-    <associate|bib-brenner_c0_2005|<tuple|BS05|10>>
+    <associate|bib-bartels_numerical_2015|<tuple|Bar15|9>>
+    <associate|bib-brenner_c0_2005|<tuple|BS05|9>>
     <associate|eq:coeff-midpoint|<tuple|2|4>>
     <associate|eq:h2-flow-update-system|<tuple|4|7>>
     <associate|eq:kirchhoff-local-timestep-system|<tuple|7|8>>
@@ -902,14 +902,12 @@
     <associate|footnote-2|<tuple|2|4>>
     <associate|footnote-3|<tuple|3|5>>
     <associate|footnote-4|<tuple|4|6>>
-    <associate|footnote-5|<tuple|5|7>>
-    <associate|footnote-6|<tuple|6|9>>
+    <associate|footnote-5|<tuple|5|8>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|6>>
-    <associate|footnr-5|<tuple|5|7>>
-    <associate|footnr-6|<tuple|6|9>>
+    <associate|footnr-5|<tuple|5|8>>
     <associate|rem:extending-ufl-discrete-gradient|<tuple|1|1>>
     <associate|sec:linear-kirchhoff|<tuple|3|5>>
     <associate|tab:matrix-bk|<tuple|1|8>>
@@ -943,13 +941,15 @@
       <tuple|normal|Solution of the linear Kirchhoff model for a clamped
       plate under a constant force.|<pageref|auto-7>>
 
-      <tuple|normal|Bogus solution...|<pageref|auto-11>>
+      <tuple|normal|Pure bending of laterally compressed
+      plate|<pageref|auto-11>>
     </associate>
     <\associate|table>
-      <tuple|normal|The (local) products <with|mode|<quote|math>|B<rsub|z<rsub|i>><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|\<iota\><around*|(|z<rsub|i>|)>>>
-      for the three nodes of a cell. Column indices correspond to local dof
-      indices. These chunks need to be placed in the global matrix
-      <with|mode|<quote|math>|B> with the local-to-global dof mapping
+      <tuple|normal|The (local) products <with|mode|<quote|math>|B<rsub|z><rsup|k-1>*d<rsub|t><rsub|>Y<rsup|k><rsub|\<iota\><around*|(|z|)>>>
+      for one node. The second row displays the values of the nine relevant
+      entries of <with|mode|<quote|math>|d<rsub|t>Y<rsup|k>>. These chunks
+      need to be placed into the global matrix <with|mode|<quote|math>|B>
+      with the local-to-global dof mapping
       <with|mode|<quote|math>|\<iota\>>.|<pageref|auto-9>>
     </associate>
     <\associate|toc>
