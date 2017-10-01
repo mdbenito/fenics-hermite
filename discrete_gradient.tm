@@ -112,7 +112,7 @@
   <math|u<rprime|'><rsub|h>\<in\>V<rsub|h><rprime|'>=span<around*|{|\<psi\><rsub|h><rsup|i>|}>>,
   a DG0 space over <math|\<cal-T\><rsub|h>>, where
   <math|\<psi\><rsup|i><rsub|h>> are constant over simplices. Denote by
-  <math|U=<around*|(|U<rsub|i>|)>> and <math|U<rprime|'>=<around*|(|u<rprime|'><rsub|i>|)>>
+  <math|U=<around*|(|U<rsub|i>|)>> and <math|U<rprime|'>=<around*|(|U<rprime|'><rsub|i>|)>>
   their vectors of coefficients wrt. the standard bases of nodal functions
   over <math|V<rsub|h>> and <math|V<rsub|h><rprime|'>> respectively. We want
   to compute a matrix <math|M> for the gradient operator
@@ -121,7 +121,7 @@
     \<nabla\><rsub|h>:V<rsub|h>\<rightarrow\>V<rsub|h><rprime|'>
   </equation*>
 
-  such that <math|<around*|(|M U|)><rsub|j>=u<rprime|'><rsub|j>>.
+  such that <math|<around*|(|M U|)><rsub|j>=U<rprime|'><rsub|j>>.
 
   Since <math|u<rprime|'><rsub|h>> is not in the same space as
   <math|u<rsub|h>>, one way of computing the coefficients <math|U<rprime|'>>
@@ -129,8 +129,8 @@
   above. But here we manually compute the transformation without solving a
   linear system. Note that if we were only interested in evaluation of
   <math|u<rsub|h><rprime|'>>, because <math|u<rsub|h>=<big|sum><rsub|i>U<rsub|i>*\<phi\><rsup|i><rsub|h>>
-  and by linearity <math|u<rsub|h><rprime|'>=<big|sum><rsub|i>U<rsub|i>*\<phi\><rsup|i><rsub|h><rprime|'>>.
-  We could then use <python|df.evaluate_basis_derivatives()> to evaluate the
+  and by linearity <math|u<rsub|h><rprime|'>=<big|sum><rsub|i>U<rsub|i>*\<phi\><rsup|i><rsub|h><rprime|'>>,
+  we could then use <python|df.evaluate_basis_derivatives()> to evaluate the
   <math|\<phi\><rsub|i><rprime|'>> and we would have finished.
 
   But again, we are interested in obtaining the new coefficients
@@ -172,7 +172,7 @@
   vector of coefficients <math|U<rsub|\|T><rprime|'>>:
 
   <\equation*>
-    M<rsub|T>*U<rsub|\|T>=<around*|(|<tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|c>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|c>|<cwith|1|-1|3|3|cell-halign|c>|<cwith|1|-1|4|4|cell-halign|c>|<cwith|1|-1|5|5|cell-halign|c>|<cwith|1|-1|5|5|cell-rborder|0ln>|<table|<row|<cell|\<phi\><rsub|h><rsup|0><rprime|'>>|<cell|\<phi\><rsub|h><rsup|1><rprime|'>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|\<phi\><rsub|h><rsup|1><rprime|'>>|<cell|\<phi\><rsub|h><rsup|2><rprime|'>>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|\<phi\><rsub|h><rsup|2><rprime|'>>|<cell|\<phi\><rsub|h><rsup|3><rprime|'>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|\<phi\><rsub|h><rsup|3><rprime|'>>|<cell|\<phi\><rsub|h><rsup|4><rprime|'>>>>>>|)><around*|(|<tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|c>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|1|1|cell-rborder|0ln>|<table|<row|<cell|U<rsub|0>>>|<row|<cell|U<rsub|1>>>|<row|<cell|U<rsub|2>>>|<row|<cell|U<rsub|3>>>|<row|<cell|U<rsub|4>>>>>>|)>=<around*|(|<tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|c>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|1|1|cell-rborder|0ln>|<table|<row|<cell|U<rsub|0><rprime|'>>>|<row|<cell|U<rsub|1><rprime|'>>>|<row|<cell|U<rsub|2><rprime|'>>>|<row|<cell|U<rsub|3><rprime|'>>>>>>|)>.
+    M<rsub|T>*U<rsub|\|T>=<matrix|<tformat|<cwith|1|1|1|1|cell-halign|c>|<cwith|1|1|1|1|cell-lborder|0ln>|<cwith|1|1|2|2|cell-halign|c>|<cwith|2|2|2|2|cell-halign|c>|<cwith|2|2|3|3|cell-halign|c>|<cwith|3|3|3|3|cell-halign|c>|<cwith|3|3|4|4|cell-halign|c>|<cwith|4|4|4|4|cell-halign|c>|<cwith|4|4|5|5|cell-halign|c>|<cwith|4|4|5|5|cell-rborder|0ln>|<table|<row|<cell|\<phi\><rsub|h><rsup|0><rprime|'>>|<cell|\<phi\><rsub|h><rsup|1><rprime|'>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|\<phi\><rsub|h><rsup|1><rprime|'>>|<cell|\<phi\><rsub|h><rsup|2><rprime|'>>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|\<phi\><rsub|h><rsup|2><rprime|'>>|<cell|\<phi\><rsub|h><rsup|3><rprime|'>>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|\<phi\><rsub|h><rsup|3><rprime|'>>|<cell|\<phi\><rsub|h><rsup|4><rprime|'>>>>>><matrix|<tformat|<cwith|1|5|1|1|cell-halign|c>|<cwith|1|5|1|1|cell-lborder|0ln>|<cwith|1|5|1|1|cell-rborder|0ln>|<table|<row|<cell|U<rsub|0>>>|<row|<cell|U<rsub|1>>>|<row|<cell|U<rsub|2>>>|<row|<cell|U<rsub|3>>>|<row|<cell|U<rsub|4>>>>>>=<matrix|<tformat|<cwith|1|4|1|1|cell-halign|c>|<cwith|1|4|1|1|cell-lborder|0ln>|<cwith|1|4|1|1|cell-rborder|0ln>|<table|<row|<cell|U<rsub|0><rprime|'>>>|<row|<cell|U<rsub|1><rprime|'>>>|<row|<cell|U<rsub|2><rprime|'>>>|<row|<cell|U<rsub|3><rprime|'>>>>>>.
   </equation*>
 
   Note that in this particular instance and with the assumptions made, we

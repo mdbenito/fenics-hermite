@@ -443,7 +443,7 @@
   of coordinates and is also present in the Lagrange case. Component-wise:
 
   <\equation>
-    <label|eq:hermite-first-derivatives>\<varphi\><rsub|i,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|H<rsub|i\<nocomma\>k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><rsub|\|<wide|\<b-x\>|^><around*|(|x|)>>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2,3|}>.
+    <label|eq:hermite-first-derivatives>\<varphi\><rsub|i,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|H<rsub|i\<nocomma\>k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2,3|}>.
   </equation>
 
   Each partial derivative <math|\<varphi\><rsub|i,j><rsup|\<alpha\>>>,
@@ -452,7 +452,7 @@
   with weights given by <math|\<nabla\> \<b-x\><rsub|l>>:
 
   <\equation*>
-    \<varphi\><rsub|i+1,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|\<b-x\><rsub|i,k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><rsub|\|<wide|\<b-x\>|^><around*|(|x|)>>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2|}>.
+    \<varphi\><rsub|i+1,j><rsup|\<alpha\>><around*|(|x|)>=<around*|(|\<b-x\><rsub|i,k>*<wide|\<varphi\>|^><rsup|\<alpha\>><rsub|k,l>|)><around*|(|<wide|\<b-x\>|^><around*|(|x|)>|)>*<wide|\<b-x\>|^><rsub|l,j><around*|(|x|)>,<space|2em>i\<in\><around*|{|1,2|}>.
   </equation*>
 
   For the second derivatives we have a similar expression, again thanks to
@@ -1511,14 +1511,14 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|2>>
-    <associate|auto-10|<tuple|3.2|7>>
+    <associate|auto-10|<tuple|3.2|6>>
     <associate|auto-11|<tuple|3.3|7>>
     <associate|auto-12|<tuple|4|7>>
-    <associate|auto-13|<tuple|4.1|8>>
+    <associate|auto-13|<tuple|4.1|7>>
     <associate|auto-14|<tuple|4.2|8>>
     <associate|auto-15|<tuple|5|8>>
     <associate|auto-16|<tuple|5.1|8>>
-    <associate|auto-17|<tuple|5.2|9>>
+    <associate|auto-17|<tuple|5.2|8>>
     <associate|auto-18|<tuple|1|9>>
     <associate|auto-19|<tuple|2|9>>
     <associate|auto-2|<tuple|2|3>>
@@ -1569,8 +1569,8 @@
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|2>>
     <associate|footnote-5|<tuple|5|2>>
-    <associate|footnote-6|<tuple|6|4>>
-    <associate|footnote-7|<tuple|7|7>>
+    <associate|footnote-6|<tuple|6|3>>
+    <associate|footnote-7|<tuple|7|6>>
     <associate|footnote-8|<tuple|8|7>>
     <associate|footnote-9|<tuple|9|7>>
     <associate|footnr-1|<tuple|1|2>>
@@ -1578,15 +1578,15 @@
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|2>>
     <associate|footnr-5|<tuple|5|2>>
-    <associate|footnr-6|<tuple|6|4>>
-    <associate|footnr-7|<tuple|7|7>>
+    <associate|footnr-6|<tuple|6|3>>
+    <associate|footnr-7|<tuple|7|6>>
     <associate|footnr-8|<tuple|8|7>>
     <associate|footnr-9|<tuple|9|7>>
     <associate|sec:H2-projection|<tuple|4.2|8>>
     <associate|sec:ad-nodal-interpolation|<tuple|A.4|16>>
     <associate|sec:bcs-implementation|<tuple|A.3|15>>
     <associate|sec:fiat-implementation|<tuple|A.1|13>>
-    <associate|sec:nodal-interpolant|<tuple|4.1|8>>
+    <associate|sec:nodal-interpolant|<tuple|4.1|7>>
     <associate|sec:shape-implementation|<tuple|A.2|14>>
   </collection>
 </references>
